@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import { AntDesign } from "@expo/vector-icons";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 import LoginModal from "../auth/LoginSignModal";

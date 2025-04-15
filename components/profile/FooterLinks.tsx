@@ -16,7 +16,7 @@ export default function FooterLinks({ onLinkPress }: FooterLinksProps) {
         </TouchableOpacity>
       ))}
     </View>
-  );
+  );  
 }
 
 const styles = StyleSheet.create({
@@ -32,3 +32,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+

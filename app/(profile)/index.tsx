@@ -1,9 +1,11 @@
+import React, { useEffect } from "react";
 import {
   View,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
+  BackHandler,
 } from "react-native";
 import { useState } from "react";
 import ProfileHeader from "../../components/profile/ProfileHeader";
@@ -15,13 +17,35 @@ import {
   Ionicons,
   MaterialIcons,
 } from "@expo/vector-icons";
+import FAQs from "@/components/profile/FAQs";
+import AboutUs from "@/components/profile/AboutUs";
+import TermsOfUs from "@/components/profile/TermsOfUs";
+import PrivacyPolicy from "@/components/profile/PrivacyPolicy";
+import Grievance from "@/components/profile/Grievance";
 
 export default function ProfileScreen() {
   const [selectedSection, setSelectedSection] = useState("Profile");
 
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      () => {
+        if (selectedSection !== "Profile") {
+          setSelectedSection("Profile");
+          return true;
+        }
+        return false;
+      }
+    );
+
+    return () => {
+      backHandler.remove();
+    };
+  }, [selectedSection]);
+
   const renderSectionContent = () => {
-    if (selectedSection === "Profile") {
-      return (
+    const sectionComponents: { [key: string]: React.ReactNode } = {
+      Profile: (
         <>
           <ProfileHeader />
           <View style={styles.optionsContainer}>
@@ -52,17 +76,20 @@ export default function ProfileScreen() {
               customStyle={{ marginVertical: 15 }}
             />
           </View>
+          <FooterLinks onLinkPress={(link) => setSelectedSection(link)} />
+          <View style={styles.optionsContainer}>
+            <Text style={styles.versionText}>APP VERSION 4.2503.21</Text>
+          </View>
         </>
-      );
-    }
-    return (
-      <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>{selectedSection}</Text>
-        <Text style={styles.sectionBody}>
-          This is the content for {selectedSection}. 
-        </Text>
-      </View>
-    );
+      ),
+      FAQs: <FAQs />,
+      "ABOUT US": <AboutUs />,
+      "TERMS OF USE": <TermsOfUs />,
+      "PRIVACY POLICY": <PrivacyPolicy />,
+      "GRIEVANCE REDRESSAL": <Grievance />,
+    };
+
+    return sectionComponents[selectedSection] || <ProfileHeader />;
   };
 
   return (
@@ -77,13 +104,7 @@ export default function ProfileScreen() {
         <Text style={styles.headerTitle}>{selectedSection}</Text>
       </View>
 
-      <ScrollView style={styles.container}>
-        {renderSectionContent()}
-        <FooterLinks onLinkPress={(link) => setSelectedSection(link)} />
-        <View style={styles.optionsContainer}>
-          <Text style={styles.versionText}>APP VERSION 4.2503.21</Text>
-        </View>
-      </ScrollView>
+      <ScrollView style={styles.container}>{renderSectionContent()}</ScrollView>
     </View>
   );
 }

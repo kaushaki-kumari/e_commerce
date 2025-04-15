@@ -10,13 +10,15 @@ import {
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { Image } from "react-native";
+import { useRouter } from "expo-router";
 const LoginForm = () => {
   return (
     <View>
       <LoginHeader />
-      <PhoneInput />
+      <EmailInput />
       <TermsAndConditions />
       <LoginButton />
+      <LoginWithPassword />
       <HelpSection />
     </View>
   );
@@ -39,22 +41,20 @@ const LoginHeader = () => {
   );
 };
 
-const PhoneInput = () => {
+const EmailInput = () => {
   return (
     <View style={styles.inputContainer}>
       <View style={styles.floatingLabelContainer}>
         <Text style={styles.floatingLabel}>
-          Mobile Number
+          Email Address
           <Text style={styles.requiredAsterisk}>*</Text>
         </Text>
-        <View style={styles.phoneInput}>
-          <Text style={styles.countryCode}>+91</Text>
-          <TextInput
-            style={styles.mobileInput}
-            placeholder="Enter your mobile number"
-            keyboardType="phone-pad"
-          />
-        </View>
+        <TextInput
+          style={styles.emailInput}
+          placeholder="Enter your email address"
+          keyboardType="email-address"
+          autoCapitalize="none"
+        />
       </View>
     </View>
   );
@@ -88,6 +88,19 @@ const LoginButton = () => {
   return (
     <TouchableOpacity style={styles.otpButton}>
       <Text style={styles.otpButtonText}>Login using OTP</Text>
+    </TouchableOpacity>
+  );
+};
+
+const LoginWithPassword = () => {
+  const router = useRouter();
+  const handleLoginPress = () => {
+    router.push("/login");
+  };
+
+  return (
+    <TouchableOpacity style={styles.passwordButton} onPress={handleLoginPress}>
+      <Text style={styles.helpLink}>Login with Password</Text>
     </TouchableOpacity>
   );
 };
@@ -240,7 +253,7 @@ const styles = StyleSheet.create({
   floatingLabel: {
     position: "absolute",
     top: -10,
-    left: 54,
+    left: 20,
     backgroundColor: "white",
     paddingHorizontal: 6,
     fontSize: 12,
@@ -248,7 +261,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
 
-  phoneInput: {
+  emailInput: {
     flexDirection: "row",
     borderWidth: 1,
     borderColor: "#ddd",
@@ -308,7 +321,7 @@ const styles = StyleSheet.create({
   },
   termsLink: {
     color: "#ff3e6c",
-    fontWeight:'bold'
+    fontWeight: "bold",
   },
   otpButton: {
     marginHorizontal: 30,
@@ -324,7 +337,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   helpButton: {
-    margin: 30,
+    marginLeft: 30,
+    marginBottom: 22,
   },
   helpText: {
     color: "#666",
@@ -333,6 +347,10 @@ const styles = StyleSheet.create({
   helpLink: {
     color: "#ff3e6c",
     fontWeight: "bold",
+  },
+  passwordButton: {
+    marginLeft: 30,
+    marginVertical: 15,
   },
 });
 
