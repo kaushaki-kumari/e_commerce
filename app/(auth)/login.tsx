@@ -1,43 +1,87 @@
-import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import { useRouter } from 'expo-router';
+import PasswordField from "@/components/common/PasswordField";
+import TextField from "@/components/common/TextField";
+import React, { useState } from "react";
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import Button from "@/components/common/Button";
+import { useRouter } from "expo-router";
 
-const LoginScreen = () => {
+const LoginScreen: React.FC = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
+  const router = useRouter();
+  const handleSignUpPress = () => {
+    router.push("/signUp");
+  };
+  const handleLoginPress = () => {
+    router.push("/userInformation");
+  };
+  const handleForgetPress = () => {
+    router.push("/forgetPassword");
+  };
   return (
     <View style={styles.container}>
       <View style={styles.section}>
-      <Text style={styles.title}>Login to your account</Text>
+        <Image
+          source={require("../../assets/images/logo/login-logo1.png")}
+          style={styles.image}
+          resizeMode="contain"
+        />
+        <Text style={styles.title}>Welcome Back</Text>
+        <Text style={styles.subTitle}>Login to your account</Text>
 
-      <TextInput
-        placeholder="Email or Mobile Number"
-        style={styles.input}
-        keyboardType="email-address"
-        autoCapitalize="none"
-      />
+        <TextField
+          label="Email or Mobile Number"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+        />
+        <PasswordField
+          label="Password"
+          value={password}
+          onChangeText={setPassword}
+        />
 
-      <TextInput
-        placeholder="Password"
-        style={styles.input}
-        secureTextEntry
-      />
+        <View style={styles.rowContainer}>
+          <TouchableOpacity
+            onPress={() => setRememberMe(!rememberMe)}
+            style={styles.rememberMeContainer}
+          >
+            <View
+              style={[styles.checkbox, rememberMe && styles.checkboxChecked]}
+            >
+              {rememberMe && <Text style={styles.checkmark}>✔</Text>}
+            </View>
 
-      <TouchableOpacity style={styles.loginButton}>
-        <Text style={styles.loginButtonText}>LOGIN</Text>
-      </TouchableOpacity>
+            <Text style={styles.rememberMeText}>Remember Me</Text>
+          </TouchableOpacity>
 
-      <TouchableOpacity >
-        <Text style={styles.linkText}>
-          Forgot your password? <Text style={styles.linkHighlight}>Reset here</Text>
-        </Text>
-      </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={styles.forgotPasswordText} onPress={handleForgetPress}>
+              Forgot Password?
+            </Text>
+          </TouchableOpacity>
+        </View>
 
-      <TouchableOpacity >
-        <Text style={styles.linkText}>
-          Having trouble logging in? <Text style={styles.linkHighlight}>Get help</Text>
-        </Text>
-      </TouchableOpacity>
+        <Button title="LOGIN" onPress={handleLoginPress} />
+
+        <View style={styles.signupContainer}>
+          <Text style={styles.signupText}>Don’t have an account?</Text>
+          <TouchableOpacity>
+            <Text style={styles.signupLink} onPress={handleSignUpPress}>
+              {" "}
+              Sign up
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.helpContainer}>
+          <Text style={styles.signupText}>Having trouble logging in?</Text>
+          <TouchableOpacity>
+            <Text style={styles.signupLink}> Get help</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-
     </View>
   );
 };
@@ -49,44 +93,79 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
   },
-  section:{
-padding:25,
-marginTop:40
+  section: {
+    padding: 30,
+    marginTop: 70,
+  },
+  image: {
+    width: 100,
+    height: 100,
+    alignSelf: "center",
+    marginTop: 20,
   },
   title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 24,
-    color: '#1a1a1a',
+    fontSize: 32,
+    fontWeight: "bold",
+    marginVertical: 3,
+    color: "#00000",
+    textAlign: "center",
   },
-  input: {
+  subTitle: {
+    fontSize: 15,
+    fontWeight: "bold",
+    marginBottom: 24,
+    color: "#585959",
+    textAlign: "center",
+  },
+  signupContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  helpContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: 15,
+  },
+  signupText: {
+    color: "#555",
+  },
+  signupLink: {
+    color: "#7881FC",
+    fontWeight: "bold",
+  },
+  rowContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 18,
+  },
+  checkmark: {
+    color: "#fff",
+    fontSize: 12,
+  },
+  checkboxChecked: {
+    backgroundColor: "#7881FC",
+  },
+  forgotPasswordText: {
+    color: "#7881FC",
+    fontWeight: "600",
+  },
+  rememberMeContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  checkbox: {
+    width: 20,
+    height: 20,
     borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 6,
-    padding: 12,
-    fontSize: 16,
-    marginBottom: 16,
+    borderColor: "#7881FC",
+    borderRadius: 4,
+    marginRight: 8,
+    justifyContent: "center",
+    alignItems: "center",
   },
-  loginButton: {
-    backgroundColor: '#ff3f6c',
-    padding: 16,
-    borderRadius: 6,
-    alignItems: 'center',
-    marginBottom: 24,
-  },
-  loginButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-  linkText: {
+  rememberMeText: {
+    color: "#333",
     fontSize: 14,
-    textAlign: 'center',
-    color: '#333',
-    marginBottom: 8,
-  },
-  linkHighlight: {
-    color: '#ff3f6c',
-    fontWeight: 'bold',
   },
 });

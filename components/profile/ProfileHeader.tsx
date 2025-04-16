@@ -1,24 +1,18 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-
-import LoginModal from "../auth/LoginSignModal";
+import { useRouter } from "expo-router";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function ProfileHeader() {
-  const [modalVisible, setModalVisible] = useState(false);
-
-  const openModal = () => {
-    setModalVisible(true);
-  };
-
-  const closeModal = () => {
-    setModalVisible(false);
+  const router = useRouter();
+  const handleLoginPress = () => {
+    router.push("/login");
   };
 
   return (
     <View>
       <View style={styles.headerContainer}>
         <View style={styles.header} />
-
         <View style={styles.contentContainer}>
           <View style={styles.rowContainer}>
             <View style={styles.avatarContainer}>
@@ -27,15 +21,22 @@ export default function ProfileHeader() {
                 style={styles.avatarImage}
               />
             </View>
-
-            <TouchableOpacity style={styles.loginButton} onPress={openModal}>
-              <Text style={styles.loginText}>LOG IN/SIGN UP</Text>
+            <TouchableOpacity
+              style={styles.loginButton}
+              onPress={handleLoginPress}
+            >
+              <LinearGradient
+                colors={["#7881FC", "#E330FF"]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                style={styles.gradientButton}
+              >
+                <Text style={styles.loginText}>LOG IN/SIGN UP</Text>
+              </LinearGradient>
             </TouchableOpacity>
           </View>
         </View>
       </View>
-
-      <LoginModal visible={modalVisible} onClose={closeModal} />
     </View>
   );
 }
@@ -83,12 +84,14 @@ const styles = StyleSheet.create({
   },
   loginButton: {
     marginTop: 75,
-    backgroundColor: "#ff4d6d",
+    width: "62%",
+  },
+  gradientButton: {
     paddingVertical: 12,
     paddingHorizontal: 20,
-    borderRadius: 2,
     alignItems: "center",
-    width: "62%",
+    justifyContent: "center",
+    borderRadius:5
   },
   loginText: {
     color: "#fff",
