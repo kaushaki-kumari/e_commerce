@@ -1,16 +1,26 @@
 import PasswordField from "@/components/common/PasswordField";
 import TextField from "@/components/common/TextField";
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  ScrollView,
+} from "react-native";
 import { Button } from "@/components/common/Button";
 import { useRouter } from "expo-router";
-import { useFieldValidation } from "@/utils/useFieldValidation";
+import { useFieldValidation } from "@/hooks/useFieldValidation";
 
 const SignUpScreen: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [termsAccepted, setTermsAccepted] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+    termsAccepted: false,
+  });
+
   const {
     errors,
     handleEmailValidation,
@@ -19,23 +29,33 @@ const SignUpScreen: React.FC = () => {
   } = useFieldValidation();
   const router = useRouter();
 
+  const handleChange = (field: string, value: string | boolean) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [field]: value,
+    }));
+  };
+
   const handleEmailChange = (text: string) => {
-    setEmail(text);
+    handleChange("email", text);
     handleEmailValidation(text);
   };
 
   const handlePasswordChange = (text: string) => {
-    setPassword(text);
+    handleChange("password", text);
     handlePasswordValidation(text);
-
-    if (confirmPassword) {
-      handlePasswordMatch(text, confirmPassword);
+    if (formData.confirmPassword) {
+      handlePasswordMatch(text, formData.confirmPassword);
     }
   };
 
   const handleConfirmPasswordChange = (text: string) => {
-    setConfirmPassword(text);
-    handlePasswordMatch(password, text);
+    handleChange("confirmPassword", text);
+    handlePasswordMatch(formData.password, text);
+  };
+
+  const handleTermsChange = () => {
+    handleChange("termsAccepted", !formData.termsAccepted);
   };
 
   const handleLoginPress = () => {
@@ -43,16 +63,17 @@ const SignUpScreen: React.FC = () => {
   };
 
   const handleSignUp = () => {
-    handleEmailValidation(email);
-    handlePasswordValidation(password);
-    handlePasswordMatch(password, confirmPassword);
+    handleEmailValidation(formData.email);
+    handlePasswordValidation(formData.password);
+    handlePasswordMatch(formData.password, formData.confirmPassword);
 
     const hasErrors = !!(
       errors.email ||
       errors.password ||
       errors.confirmPassword
     );
-    const allFieldsFilled = email && password && confirmPassword;
+    const allFieldsFilled =
+      formData.email && formData.password && formData.confirmPassword;
 
     if (!hasErrors && allFieldsFilled) {
       router.push("/login");
@@ -60,7 +81,11 @@ const SignUpScreen: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={styles.scrollContent}
+      keyboardShouldPersistTaps="handled"
+    >
       <View style={styles.section}>
         <Image
           source={require("../../assets/images/logo/login-logo1.png")}
@@ -74,7 +99,7 @@ const SignUpScreen: React.FC = () => {
 
         <TextField
           label="Enter Your Email"
-          value={email}
+          value={formData.email}
           onChangeText={handleEmailChange}
           keyboardType="email-address"
           error={errors.email}
@@ -82,26 +107,29 @@ const SignUpScreen: React.FC = () => {
 
         <PasswordField
           label="Password"
-          value={password}
+          value={formData.password}
           onChangeText={handlePasswordChange}
           error={errors.password}
         />
 
         <PasswordField
           label="Confirm Password"
-          value={confirmPassword}
+          value={formData.confirmPassword}
           onChangeText={handleConfirmPasswordChange}
           error={errors.confirmPassword}
         />
 
         <TouchableOpacity
           style={styles.termsContainer}
-          onPress={() => setTermsAccepted(!termsAccepted)}
+          onPress={handleTermsChange}
         >
           <View
-            style={[styles.checkbox, termsAccepted && styles.checkboxChecked]}
+            style={[
+              styles.checkbox,
+              formData.termsAccepted && styles.checkboxChecked,
+            ]}
           >
-            {termsAccepted && <Text style={styles.checkmark}>✔</Text>}
+            {formData.termsAccepted && <Text style={styles.checkmark}>✔</Text>}
           </View>
           <Text style={styles.termsText}>
             By continuing, you confirm that you are above 18 years of age, and
@@ -113,8 +141,8 @@ const SignUpScreen: React.FC = () => {
         <Button
           title="SIGN UP"
           onPress={handleSignUp}
-          disabled={!termsAccepted}
-          style={!termsAccepted ? styles.disabledButton : {}}
+          disabled={!formData.termsAccepted}
+          style={!formData.termsAccepted ? styles.disabledButton : {}}
         />
 
         <View style={styles.signupContainer}>
@@ -124,7 +152,7 @@ const SignUpScreen: React.FC = () => {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -135,9 +163,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
   },
+  scrollContent: {
+    flexGrow: 1,
+  },
   section: {
     padding: 30,
-    marginTop: 70,
+    paddingTop: 70,
   },
   image: {
     width: 100,

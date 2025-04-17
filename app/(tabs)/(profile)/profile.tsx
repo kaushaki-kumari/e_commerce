@@ -8,9 +8,7 @@ import {
   BackHandler,
 } from "react-native";
 import { useState } from "react";
-import ProfileHeader from "../../components/profile/ProfileHeader";
-import ProfileOption from "../../components/profile/ProfileOption";
-import FooterLinks from "../../components/profile/FooterLinks";
+
 import {
   AntDesign,
   FontAwesome5,
@@ -22,11 +20,22 @@ import AboutUs from "@/components/profile/AboutUs";
 import TermsOfUs from "@/components/profile/TermsOfUs";
 import PrivacyPolicy from "@/components/profile/PrivacyPolicy";
 import Grievance from "@/components/profile/Grievance";
+import ProfileHeader from "@/components/profile/ProfileHeader";
+import ProfileOption from "@/components/profile/ProfileOption";
+import FooterLinks from "@/components/profile/FooterLinks";
+import { useRouter } from "expo-router";
 
 export default function ProfileScreen() {
   const [selectedSection, setSelectedSection] = useState("Profile");
-
+  const router = useRouter();
   useEffect(() => {
+    const isMainProfile = selectedSection === "Profile";
+    if (isMainProfile) {
+      router.setParams({ hideTabBar: 'false' });
+    } else {
+      router.setParams({ hideTabBar: 'true' });
+    }
+    
     const backHandler = BackHandler.addEventListener(
       "hardwareBackPress",
       () => {

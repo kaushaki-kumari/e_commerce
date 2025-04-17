@@ -53,15 +53,16 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 25,
-    fontWeight: "bold",
-    marginTop: 20,
-    marginBottom: 10,
+    fontFamily:'helveticaRoundedBold',
+    marginTop: 10,
+    marginBottom: 5,
     color: "#444",
   },
   subtitle: {
     fontSize: 16,
     color: "#393a3b",
     marginBottom: 10,
+    fontFamily:'Helvetica',
   },
   button: {
     paddingVertical: 8,
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#123458",
     fontSize: 14,
-    fontWeight: "bold",
+    fontFamily:'HelveticaBold'
   },
   answer: {
     fontSize: 14,

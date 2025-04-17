@@ -42,13 +42,14 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
   label: {
-    fontWeight: 'bold',
     color: 'black',
     fontSize: 16,
+    fontFamily:'helveticaRoundedBold'
   },
   subtitle: {
     marginTop: 3,
     color: '#7d7c7c',
     fontSize: 13,
+    fontFamily:'helveticaOblique'
   },
 });

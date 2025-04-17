@@ -113,13 +113,6 @@ export default function ForgetPassword() {
             onPress={handleSubmit}
             style={{ borderRadius: 50, width: "80%", marginTop: 25 }}
           />
-
-          <View style={styles.socialIcons}>
-            <Text style={styles.icon}>🟣</Text>
-            <Text style={styles.icon}>🔵</Text>
-            <Text style={styles.icon}>🔴</Text>
-          </View>
-
           <View style={styles.signupContainer}>
             <Text style={styles.signupText}>Create a new account</Text>
             <TouchableOpacity>
@@ -192,13 +185,6 @@ const styles = StyleSheet.create({
   sendText: {
     color: "#fff",
     fontWeight: "600",
-  },
-  socialIcons: {
-    flexDirection: "row",
-    gap: 10,
-  },
-  icon: {
-    fontSize: 20,
   },
   signupContainer: {
     flexDirection: "row",

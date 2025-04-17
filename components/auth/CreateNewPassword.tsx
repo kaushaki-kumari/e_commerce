@@ -6,7 +6,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { Button } from "@/components/common/Button";
-import { useFieldValidation } from "@/utils/useFieldValidation";
+import { useFieldValidation } from "@/hooks/useFieldValidation";
 import { useRouter } from "expo-router";
 import PasswordField from "../common/PasswordField";
 

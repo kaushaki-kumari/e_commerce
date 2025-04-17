@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontSize: 15,
-    fontWeight: "bold",
+    fontFamily:'HelveticaBold',
     color: "#333",
     flexShrink: 1,
   },

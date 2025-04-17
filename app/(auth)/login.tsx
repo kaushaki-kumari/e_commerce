@@ -2,19 +2,18 @@ import PasswordField from "@/components/common/PasswordField";
 import TextField from "@/components/common/TextField";
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
-import {Button} from "@/components/common/Button";
+import { Button } from "@/components/common/Button";
 import { useRouter } from "expo-router";
-import { useFieldValidation } from "@/utils/useFieldValidation";
+import { useFieldValidation } from "@/hooks/useFieldValidation";
 
 const LoginScreen: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
   const [rememberMe, setRememberMe] = useState(false);
-  const {
-    errors,
-    handleEmailValidation,
-    handlePasswordValidation,
-  } = useFieldValidation();
+  const { errors, handleEmailValidation, handleLoginPasswordValidation } =
+    useFieldValidation();
   const router = useRouter();
 
   const handleSignUpPress = () => {
@@ -22,10 +21,10 @@ const LoginScreen: React.FC = () => {
   };
 
   const handleLoginPress = () => {
-    handleEmailValidation(email);
-    handlePasswordValidation(password);
+    handleEmailValidation(formData.email);
+    handleLoginPasswordValidation(formData.password);
     const hasErrors = !!(errors.email || errors.password);
-    const allFieldsFilled = email && password;
+    const allFieldsFilled = formData.email && formData.password;
 
     if (!hasErrors && allFieldsFilled) {
       router.push("/userInformation");
@@ -37,13 +36,13 @@ const LoginScreen: React.FC = () => {
   };
 
   const handleEmailChange = (text: string) => {
-    setEmail(text);
+    setFormData((prev) => ({ ...prev, email: text }));
     handleEmailValidation(text);
   };
 
   const handlePasswordChange = (text: string) => {
-    setPassword(text);
-    handlePasswordValidation(text);
+    setFormData((prev) => ({ ...prev, password: text }));
+    handleLoginPasswordValidation(text);
   };
 
   return (
@@ -59,7 +58,7 @@ const LoginScreen: React.FC = () => {
 
         <TextField
           label="Enter your Email"
-          value={email}
+          value={formData.email}
           onChangeText={handleEmailChange}
           keyboardType="email-address"
           error={errors.email}
@@ -67,7 +66,7 @@ const LoginScreen: React.FC = () => {
 
         <PasswordField
           label="Password"
-          value={password}
+          value={formData.password}
           onChangeText={handlePasswordChange}
           error={errors.password}
         />

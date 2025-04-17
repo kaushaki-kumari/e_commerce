@@ -55,7 +55,7 @@ export const useFieldValidation = () => {
 
   const handlePasswordValidation = (
     password: string,
-    errorMessage: string = "Password must be 8 characters with uppercase, number & symbol"
+    errorMessage: string = "Password must be 8 characters with uppercase, number & symbol",
   ) => {
     if (!password.trim()) {
       setErrors((prev) => ({
@@ -96,11 +96,24 @@ export const useFieldValidation = () => {
     }
   };
 
+  const handleLoginPasswordValidation = (password: string) => {
+    if (!password.trim()) {
+      setErrors((prev) => ({
+        ...prev,
+        password: "Password is required",
+      }));
+    } else {
+      setErrors((prev) => ({ ...prev, password: "" }));
+    }
+  };
+  
+
   return { 
     errors, 
     handleFieldChange, 
     handleEmailValidation, 
     handlePasswordValidation, 
-    handlePasswordMatch 
+    handlePasswordMatch ,
+    handleLoginPasswordValidation
   };
 };

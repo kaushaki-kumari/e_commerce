@@ -11,17 +11,21 @@ import {
 import * as ImagePicker from "expo-image-picker";
 import TextField from "@/components/common/TextField";
 import { LinearGradient } from "expo-linear-gradient";
-import {Button} from "@/components/common/Button";
+import { Button } from "@/components/common/Button";
 import { FontAwesome } from "@expo/vector-icons";
+
 const { height } = Dimensions.get("window");
 
 const UserInformationScreen = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [gender, setGender] = useState<"male" | "female" | null>(null);
-  const [userType, setUserType] = useState<"user" | "seller" | null>(null);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [userData, setUserData] = useState({
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    gender: null as "male" | "female" | null,
+    userType: null as "user" | "seller" | null,
+    selectedImage: null as string | null,
+  });
+
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -31,23 +35,41 @@ const UserInformationScreen = () => {
     });
 
     if (!result.canceled && result.assets?.length > 0) {
-      setSelectedImage(result.assets[0].uri);
+      setUserData((prevData) => ({
+        ...prevData,
+        selectedImage: result.assets[0].uri,
+      }));
     }
   };
 
   const handleContinue = () => {
     alert("Continue pressed!");
+    console.log("User Data:", userData); 
+  };
+
+  const handleInputChange = (field: string, value: string) => {
+    setUserData((prevData) => ({
+      ...prevData,
+      [field]: value,
+    }));
+  };
+
+  const handleSelectionChange = (field: "gender" | "userType", value: any) => {
+    setUserData((prevData) => ({
+      ...prevData,
+      [field]: value,
+    }));
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <LinearGradient colors={["#7881FC", "#E330FF"]} style={styles.topCurve}>
-        <Text style={styles.accountText}>Account Details !</Text>
+        <Text style={styles.accountText}>Account Details!</Text>
       </LinearGradient>
 
       <TouchableOpacity onPress={pickImage} style={styles.avatarWrapper}>
-        {selectedImage ? (
-          <Image source={{ uri: selectedImage }} style={styles.avatar} />
+        {userData.selectedImage ? (
+          <Image source={{ uri: userData.selectedImage }} style={styles.avatar} />
         ) : (
           <View style={[styles.avatar, styles.iconWrapper]}>
             <FontAwesome name="user" size={50} color="#ccc" />
@@ -60,45 +82,45 @@ const UserInformationScreen = () => {
         <View style={{ flex: 1 }}>
           <TextField
             label="First Name *"
-            value={firstName}
-            onChangeText={setFirstName}
+            value={userData.firstName}
+            onChangeText={(value) => handleInputChange("firstName", value)}
           />
         </View>
 
         <View style={{ flex: 1 }}>
           <TextField
             label="Last Name *"
-            value={phoneNumber}
-            onChangeText={setPhoneNumber}
+            value={userData.lastName}
+            onChangeText={(value) => handleInputChange("lastName", value)}
           />
         </View>
       </View>
 
       <TextField
         label="Phone Number *"
-        value={lastName}
-        onChangeText={setLastName}
+        value={userData.phoneNumber}
+        onChangeText={(value) => handleInputChange("phoneNumber", value)}
       />
 
       <Text style={styles.label}>Select Gender</Text>
       <View style={styles.cardRow}>
         <TouchableOpacity
-          onPress={() => setGender("male")}
-          style={[styles.card, gender === "male" && styles.selectedCard]}
+          onPress={() => handleSelectionChange("gender", "male")}
+          style={[styles.card, userData.gender === "male" && styles.selectedCard]}
         >
           <Image
-            source={require("../../assets/images/images/gender-male.png")}
+           source={require("@/assets/images/images/gender-male.png")}
             style={styles.cardImage}
           />
           <Text style={styles.cardText}>Male</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => setGender("female")}
-          style={[styles.card, gender === "female" && styles.selectedCard]}
+          onPress={() => handleSelectionChange("gender", "female")}
+          style={[styles.card, userData.gender === "female" && styles.selectedCard]}
         >
           <Image
-            source={require("../../assets/images/images/gender-female.png")}
+            source={require("@/assets/images/images/gender-female.png")}
             style={styles.cardImage}
           />
           <Text style={styles.cardText}>Female</Text>
@@ -108,22 +130,22 @@ const UserInformationScreen = () => {
       <Text style={styles.label}>Select Role</Text>
       <View style={styles.cardRow}>
         <TouchableOpacity
-          onPress={() => setUserType("user")}
-          style={[styles.card, userType === "user" && styles.selectedCard]}
+          onPress={() => handleSelectionChange("userType", "user")}
+          style={[styles.card, userData.userType === "user" && styles.selectedCard]}
         >
           <Image
-            source={require("../../assets/images/images/user.png")}
+           source={require("@/assets/images/images/user.png")}
             style={styles.cardImage}
           />
           <Text style={styles.cardText}>User</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => setUserType("seller")}
-          style={[styles.card, userType === "seller" && styles.selectedCard]}
+          onPress={() => handleSelectionChange("userType", "seller")}
+          style={[styles.card, userData.userType === "seller" && styles.selectedCard]}
         >
           <Image
-            source={require("../../assets/images/images/seller.png")}
+           source={require("@/assets/images/images/seller.png")}
             style={styles.cardImage}
           />
           <Text style={styles.cardText}>Seller</Text>
@@ -144,6 +166,7 @@ const UserInformationScreen = () => {
 };
 
 export default UserInformationScreen;
+
 
 const styles = StyleSheet.create({
   container: {
@@ -243,9 +266,10 @@ const styles = StyleSheet.create({
   },
 
   cardText: {
-    fontWeight: "600",
+   
     fontSize: 14,
     color: "#333",
+    fontFamily: "HelveticaBold", 
   },
 
   dobPicker: {
@@ -264,6 +288,11 @@ const styles = StyleSheet.create({
   helpContainer: {
     flexDirection: "row",
     justifyContent: "center",
+    marginBottom:30,
+    marginTop:10,
+    borderBottomWidth: 1,
+    borderColor: "#eee",
+    borderStyle: "dotted",
   },
   helpText: {
     marginTop: -5,
@@ -274,5 +303,8 @@ const styles = StyleSheet.create({
     marginTop: -5,
     color: "#7881FC",
     fontWeight: "bold",
+   
   },
 });
+
+
