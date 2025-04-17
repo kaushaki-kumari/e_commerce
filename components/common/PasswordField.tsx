@@ -13,12 +13,14 @@ import { Ionicons } from "@expo/vector-icons";
 interface PasswordFieldProps extends TextInputProps {
   label?: string;
   value?: string;
+  error?: string;
 }
 
 const PasswordField: React.FC<PasswordFieldProps> = ({
   label,
   style,
   value,
+  error,
   onFocus,
   onBlur,
   ...props
@@ -46,6 +48,7 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
             styles.label,
             isFloating ? styles.labelFloating : styles.labelStatic,
             isFocused && styles.labelFocused,
+            error && styles.labelError, 
           ]}
         >
           {label}
@@ -57,6 +60,7 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
             styles.input,
             style,
             isFocused && styles.inputFocused,
+            error && styles.inputError, 
             label && { paddingTop: 22 },
           ]}
           secureTextEntry={!showPassword}
@@ -76,6 +80,7 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
           />
         </TouchableOpacity>
       </View>
+      {error && <Text style={styles.errorText}>{error}</Text>}
     </View>
   );
 };
@@ -108,8 +113,11 @@ const styles = StyleSheet.create({
     color: "#7881FC",
     fontWeight: "bold",
   },
+  labelError: {
+    color: "red", 
+  },
   inputWrapper: {
-    position: "relative",   
+    position: "relative",
   },
   input: {
     borderWidth: 1,
@@ -123,9 +131,17 @@ const styles = StyleSheet.create({
   inputFocused: {
     borderColor: "#7881FC",
   },
+  inputError: {
+    borderColor: "red", 
+  },
   icon: {
     position: "absolute",
     right: 15,
     top: 18,
+  },
+  errorText: {
+    color: "red",
+    fontSize: 12,
+    marginTop: 5,
   },
 });

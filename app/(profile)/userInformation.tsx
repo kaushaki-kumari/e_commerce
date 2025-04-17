@@ -11,7 +11,7 @@ import {
 import * as ImagePicker from "expo-image-picker";
 import TextField from "@/components/common/TextField";
 import { LinearGradient } from "expo-linear-gradient";
-import Button from "@/components/common/Button";
+import {Button} from "@/components/common/Button";
 import { FontAwesome } from "@expo/vector-icons";
 const { height } = Dimensions.get("window");
 
@@ -151,7 +151,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 24,
     paddingTop: height * 0.18,
-    flex: 1,
+    minHeight: '100%',
+  
   },
   topCurve: {
     position: "absolute",

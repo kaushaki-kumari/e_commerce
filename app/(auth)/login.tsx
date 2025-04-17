@@ -2,23 +2,50 @@ import PasswordField from "@/components/common/PasswordField";
 import TextField from "@/components/common/TextField";
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
-import Button from "@/components/common/Button";
+import {Button} from "@/components/common/Button";
 import { useRouter } from "expo-router";
+import { useFieldValidation } from "@/utils/useFieldValidation";
 
 const LoginScreen: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const {
+    errors,
+    handleEmailValidation,
+    handlePasswordValidation,
+  } = useFieldValidation();
   const router = useRouter();
+
   const handleSignUpPress = () => {
     router.push("/signUp");
   };
+
   const handleLoginPress = () => {
-    router.push("/userInformation");
+    handleEmailValidation(email);
+    handlePasswordValidation(password);
+    const hasErrors = !!(errors.email || errors.password);
+    const allFieldsFilled = email && password;
+
+    if (!hasErrors && allFieldsFilled) {
+      router.push("/userInformation");
+    }
   };
+
   const handleForgetPress = () => {
     router.push("/forgetPassword");
   };
+
+  const handleEmailChange = (text: string) => {
+    setEmail(text);
+    handleEmailValidation(text);
+  };
+
+  const handlePasswordChange = (text: string) => {
+    setPassword(text);
+    handlePasswordValidation(text);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.section}>
@@ -31,15 +58,18 @@ const LoginScreen: React.FC = () => {
         <Text style={styles.subTitle}>Login to your account</Text>
 
         <TextField
-          label="Email or Mobile Number"
+          label="Enter your Email"
           value={email}
-          onChangeText={setEmail}
+          onChangeText={handleEmailChange}
           keyboardType="email-address"
+          error={errors.email}
         />
+
         <PasswordField
           label="Password"
           value={password}
-          onChangeText={setPassword}
+          onChangeText={handlePasswordChange}
+          error={errors.password}
         />
 
         <View style={styles.rowContainer}>

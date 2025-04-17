@@ -1,5 +1,5 @@
 import CreateNewPassword from "@/components/auth/CreateNewPassword";
-import Button from "@/components/common/Button";
+import {Button} from "@/components/common/Button";
 import { useRouter } from "expo-router";
 import React, { useRef, useState, useEffect } from "react";
 import {

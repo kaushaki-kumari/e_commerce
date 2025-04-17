@@ -1,16 +1,45 @@
-import { View, Text, TextInput, Alert, StyleSheet, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+} from "react-native";
 import React, { useState } from "react";
-import Button from "../common/Button";
+import { Button } from "@/components/common/Button";
+import { useFieldValidation } from "@/utils/useFieldValidation";
+import { useRouter } from "expo-router";
+import PasswordField from "../common/PasswordField";
 
 export default function CreateNewPassword() {
+  const { errors, handlePasswordValidation, handlePasswordMatch } =
+    useFieldValidation();
+  const router = useRouter();
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const handlePasswordChange = (text: string) => {
+    setNewPassword(text);
+    handlePasswordValidation(text);
+
+    if (confirmPassword) {
+      handlePasswordMatch(text, confirmPassword);
+    }
+  };
+
+  const handleConfirmPasswordChange = (text: string) => {
+    setConfirmPassword(text);
+    handlePasswordMatch(newPassword, text);
+  };
+
   const handleSubmit = () => {
-    if (newPassword === confirmPassword) {
-      Alert.alert("Success", "Your password has been reset successfully");
-    } else {
-      Alert.alert("Error", "Passwords do not match. Please try again.");
+    handlePasswordValidation(newPassword);
+    handlePasswordMatch(newPassword, confirmPassword);
+
+    const hasErrors = !!(errors.password || errors.confirmPassword);
+    const allFieldsFilled = newPassword && confirmPassword;
+
+    if (!hasErrors && allFieldsFilled) {
+      router.push("/login");
     }
   };
 
@@ -31,32 +60,20 @@ export default function CreateNewPassword() {
       </Text>
 
       <View style={styles.inputGroup}>
-        <Text style={styles.label}>Enter New Password</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter new password"
-          secureTextEntry
+        <PasswordField
+          label="Enter New Password"
           value={newPassword}
-          onChangeText={setNewPassword}
+          onChangeText={handlePasswordChange}
+          error={errors.password}
         />
-      </View>
-
-      <View style={styles.inputGroup}>
-        <Text style={styles.label}>Confirm Password</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Re-enter password"
-          secureTextEntry
+        <PasswordField
+          label="Confirm Password"
           value={confirmPassword}
-          onChangeText={setConfirmPassword}
+          onChangeText={handleConfirmPasswordChange}
+          error={errors.confirmPassword}
         />
       </View>
-
-      <Button
-        title="Save"
-        onPress={handleSubmit}
-        style={{ borderRadius: 50, width: "80%", marginTop: 10 }}
-      />
+      <Button title="Save" onPress={handleSubmit} style={{ width: "80%" }} />
     </View>
   );
 }
@@ -84,7 +101,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 20,
   },
-
   image: {
     width: 80,
     height: 90,
@@ -99,20 +115,5 @@ const styles = StyleSheet.create({
   },
   inputGroup: {
     width: "80%",
-    marginBottom: 28,
-  },
-  label: {
-    fontSize: 16,
-    fontWeight: "600",
-    marginBottom: 10,
-    color: "#333",
-    marginLeft: 5,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 50,
-    paddingVertical: 12,
-    paddingHorizontal: 20,
   },
 });

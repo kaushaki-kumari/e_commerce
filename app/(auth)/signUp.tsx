@@ -2,26 +2,61 @@ import PasswordField from "@/components/common/PasswordField";
 import TextField from "@/components/common/TextField";
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
-import Button from "@/components/common/Button";
+import { Button } from "@/components/common/Button";
 import { useRouter } from "expo-router";
+import { useFieldValidation } from "@/utils/useFieldValidation";
 
-const signUpScreen: React.FC = () => {
+const SignUpScreen: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const {
+    errors,
+    handleEmailValidation,
+    handlePasswordValidation,
+    handlePasswordMatch,
+  } = useFieldValidation();
   const router = useRouter();
+
+  const handleEmailChange = (text: string) => {
+    setEmail(text);
+    handleEmailValidation(text);
+  };
+
+  const handlePasswordChange = (text: string) => {
+    setPassword(text);
+    handlePasswordValidation(text);
+
+    if (confirmPassword) {
+      handlePasswordMatch(text, confirmPassword);
+    }
+  };
+
+  const handleConfirmPasswordChange = (text: string) => {
+    setConfirmPassword(text);
+    handlePasswordMatch(password, text);
+  };
 
   const handleLoginPress = () => {
     router.push("/login");
   };
 
   const handleSignUp = () => {
-    if (!termsAccepted) {
-      alert("Please accept the Terms & Privacy Policy.");
-      return;
+    handleEmailValidation(email);
+    handlePasswordValidation(password);
+    handlePasswordMatch(password, confirmPassword);
+
+    const hasErrors = !!(
+      errors.email ||
+      errors.password ||
+      errors.confirmPassword
+    );
+    const allFieldsFilled = email && password && confirmPassword;
+
+    if (!hasErrors && allFieldsFilled) {
+      router.push("/login");
     }
-    alert("Signed up!");
   };
 
   return (
@@ -38,22 +73,25 @@ const signUpScreen: React.FC = () => {
         </Text>
 
         <TextField
-          label="Email or Mobile Number"
+          label="Enter Your Email"
           value={email}
-          onChangeText={setEmail}
+          onChangeText={handleEmailChange}
           keyboardType="email-address"
+          error={errors.email}
         />
 
         <PasswordField
           label="Password"
           value={password}
-          onChangeText={setPassword}
+          onChangeText={handlePasswordChange}
+          error={errors.password}
         />
 
         <PasswordField
           label="Confirm Password"
           value={confirmPassword}
-          onChangeText={setConfirmPassword}
+          onChangeText={handleConfirmPasswordChange}
+          error={errors.confirmPassword}
         />
 
         <TouchableOpacity
@@ -66,13 +104,18 @@ const signUpScreen: React.FC = () => {
             {termsAccepted && <Text style={styles.checkmark}>✔</Text>}
           </View>
           <Text style={styles.termsText}>
-            By continuing, you confirm that you are above 18 years of age , and you agree to our {" "}
-            <Text style={styles.link}>Terms of use</Text> and{" "}
+            By continuing, you confirm that you are above 18 years of age, and
+            you agree to our <Text style={styles.link}>Terms of use</Text> and{" "}
             <Text style={styles.link}>Privacy Policy</Text>.
           </Text>
         </TouchableOpacity>
 
-        <Button title="SIGN UP" onPress={handleSignUp} />
+        <Button
+          title="SIGN UP"
+          onPress={handleSignUp}
+          disabled={!termsAccepted}
+          style={!termsAccepted ? styles.disabledButton : {}}
+        />
 
         <View style={styles.signupContainer}>
           <Text style={styles.signupText}>Already have an account?</Text>
@@ -85,7 +128,7 @@ const signUpScreen: React.FC = () => {
   );
 };
 
-export default signUpScreen;
+export default SignUpScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -103,7 +146,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   title: {
-    fontSize: 30    ,
+    fontSize: 30,
     fontWeight: "bold",
     marginTop: 10,
     color: "#000",
@@ -157,5 +200,8 @@ const styles = StyleSheet.create({
   signupLink: {
     color: "#7881FC",
     fontWeight: "bold",
+  },
+  disabledButton: {
+    opacity: 0.5,
   },
 });

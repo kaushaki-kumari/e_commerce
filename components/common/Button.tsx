@@ -8,32 +8,48 @@ interface ButtonProps {
   gradient?: boolean;
   style?: ViewStyle;
   textStyle?: TextStyle;
+  disabled?: boolean; 
 }
 
-const Button: React.FC<ButtonProps> = ({ title, onPress, gradient = true, style, textStyle }) => {
+export const Button: React.FC<ButtonProps> = ({
+  title,
+  onPress,
+  gradient = true,
+  style,
+  textStyle,
+  disabled = false, 
+}) => {
   const content = (
-    <TouchableOpacity onPress={onPress} activeOpacity={0.8} style={[styles.button, style]}>
+    <TouchableOpacity
+      onPress={onPress}
+      activeOpacity={0.8}
+      style={[styles.button, style, disabled && styles.disabled]}
+      disabled={disabled}
+    >
       <Text style={[styles.text, textStyle]}>{title}</Text>
     </TouchableOpacity>
   );
 
   return gradient ? (
-    <LinearGradient
-      colors={["#7881FC", "#E330FF"]}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 0 }}
-      style={[styles.button, style]}
+    <TouchableOpacity
+      onPress={onPress}
+      activeOpacity={0.8}
+      disabled={disabled}
+      style={[style, disabled && styles.disabled]}
     >
-      <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
+      <LinearGradient
+        colors={["#7881FC", "#E330FF"]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+        style={[styles.button, disabled && styles.disabled]}
+      >
         <Text style={[styles.text, textStyle]}>{title}</Text>
-      </TouchableOpacity>
-    </LinearGradient>
+      </LinearGradient>
+    </TouchableOpacity>
   ) : (
     content
   );
 };
-
-export default Button;
 
 const styles = StyleSheet.create({
   button: {
@@ -41,11 +57,15 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 18,
+    marginBottom: 10,
+    width: "100%",
   },
   text: {
     color: "#fff",
     fontWeight: "bold",
     fontSize: 15,
+  },
+  disabled: {
+    opacity: 0.8,
   },
 });
