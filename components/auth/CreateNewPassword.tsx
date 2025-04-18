@@ -45,7 +45,7 @@ export default function CreateNewPassword() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Create New Password</Text>
+
 
       <View style={styles.imageWrapper}>
         <Image
@@ -54,9 +54,9 @@ export default function CreateNewPassword() {
           resizeMode="contain"
         />
       </View>
-
+      <Text style={styles.title}>Create New Password</Text>
       <Text style={styles.infoText}>
-        Your New Password Must Be Different from Previously Used Password.
+        Your new password must be different from previously used password.
       </Text>
 
       <View style={styles.inputGroup}>
@@ -73,7 +73,7 @@ export default function CreateNewPassword() {
           error={errors.confirmPassword}
         />
       </View>
-      <Button title="Save" onPress={handleSubmit} style={{ width: "80%" }} />
+      <Button title="Save" onPress={handleSubmit} style={{ width: "90%" }} />
     </View>
   );
 }
@@ -81,15 +81,13 @@ export default function CreateNewPassword() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 20,
     width: "100%",
     alignItems: "center",
+    marginTop:20
   },
   title: {
     fontSize: 24,
-    fontWeight: "600",
-    marginTop: 20,
-    marginBottom: 20,
+    fontFamily: "HelveticaBold",
     textAlign: "center",
   },
   imageWrapper: {
@@ -99,7 +97,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F8E6FB",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 20,
+    marginBottom: 10,
   },
   image: {
     width: 80,
@@ -107,13 +105,14 @@ const styles = StyleSheet.create({
   },
   infoText: {
     fontSize: 14,
-    color: "#444",
+    color: "#555",
     textAlign: "center",
     width: "80%",
     marginBottom: 20,
-    letterSpacing: 1.1,
+    fontFamily: "Helvetica",
+    lineHeight:20
   },
   inputGroup: {
-    width: "80%",
+    width: "90%",
   },
 });

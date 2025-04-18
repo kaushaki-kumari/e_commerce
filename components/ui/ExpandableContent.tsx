@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
     textAlign: "justify",
     fontSize: 14,
     color: "#666",
+    fontFamily:'Helvetica'
   },
 });
 

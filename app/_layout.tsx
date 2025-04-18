@@ -21,8 +21,9 @@ export default function RootLayout() {
     HelveticaBold: require("../assets/fonts/Helvetica/Helvetica-Bold.ttf"),
     Helvetica: require("../assets/fonts/Helvetica/Helvetica.ttf"),
     helveticaCompressed: require("../assets/fonts/Helvetica/helvetica-compressed.otf"),
-    helveticaOblique:require("../assets/fonts/Helvetica/Helvetica-Oblique.ttf"),
-    helveticaRoundedBold:require("../assets/fonts/Helvetica/helvetica-rounded-bold.otf")
+    helveticaOblique: require("../assets/fonts/Helvetica/Helvetica-Oblique.ttf"),
+    helveticaRoundedBold: require("../assets/fonts/Helvetica/helvetica-rounded-bold.otf"),
+    AbriFatfaceRegular: require("../assets/fonts/AbrilFatface-Regular.otf"),
   });
 
   useEffect(() => {
@@ -38,7 +39,7 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
