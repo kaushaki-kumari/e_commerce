@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     paddingVertical: 10,
     color: '#82807f',
-    fontFamily:'helveticaRoundedBold'
+    fontFamily:'HelveticaBold'
   },
 });
 

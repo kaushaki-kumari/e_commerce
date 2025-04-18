@@ -1,7 +1,7 @@
 import PasswordField from "@/components/common/PasswordField";
 import TextField from "@/components/common/TextField";
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView } from "react-native";
 import { Button } from "@/components/common/Button";
 import { useRouter } from "expo-router";
 import { useFieldValidation } from "@/hooks/useFieldValidation";
@@ -46,7 +46,7 @@ const LoginScreen: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.section}>
         <Image
           source={require("../../assets/images/logo/login-logo1.png")}
@@ -111,7 +111,7 @@ const LoginScreen: React.FC = () => {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -119,7 +119,7 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1, 
     backgroundColor: "#fff",
   },
   section: {

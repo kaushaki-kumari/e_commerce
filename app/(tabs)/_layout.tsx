@@ -1,5 +1,6 @@
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { Text } from "react-native";
 
 export default function TabLayout() {
   return (
@@ -24,18 +25,34 @@ export default function TabLayout() {
           shadowOffset: { width: 0, height: -3 },
           shadowOpacity: 0.1,
           shadowRadius: 5,
+          height: 60,
+          paddingTop:4
         },
-        tabBarLabelStyle: {
-          fontFamily: "helvetica", 
-          fontSize: 12,
-        },
+        tabBarLabel: ({ focused, color }) => (
+          <Text
+            style={{
+              fontFamily: focused ? "HelveticaBold" : "helvetica",
+              fontSize: 12,
+              color,
+             
+            }}
+          >
+            {route.name === "index"
+              ? "Home"
+              : route.name === "cart"
+              ? "Cart"
+              : route.name === "categories"
+              ? "Categories"
+              : "Setting"}
+          </Text>
+        ),
         headerShown: false,
       })}
     >
-      <Tabs.Screen name="index" options={{ title: "Home" }} />
-      <Tabs.Screen name="cart" options={{ title: "Cart" }} />
-      <Tabs.Screen name="categories" options={{ title: "Categories" }} />
-      <Tabs.Screen name="(profile)" options={{ title: "Setting" }} />
+      <Tabs.Screen name="index" />
+      <Tabs.Screen name="cart" />
+      <Tabs.Screen name="categories" />
+      <Tabs.Screen name="(profile)" />
     </Tabs>
   );
 }
