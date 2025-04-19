@@ -1,45 +1,58 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
-
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { Tabs } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import { Text } from "react-native";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ color, size }) => {
+          let iconName: any;
+          if (route.name === "index") iconName = "home";
+          if (route.name === "cart") iconName = "cart";
+          if (route.name === "categories") iconName = "grid";
+          if (route.name === "(profile)") iconName = "settings";
+
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: "#7881FC",
+        tabBarInactiveTintColor: "gray",
+        tabBarStyle: {
+          backgroundColor: "#fff",
+          borderTopWidth: 0,
+          elevation: 10,
+          shadowColor: "#000",
+          shadowOffset: { width: 0, height: -3 },
+          shadowOpacity: 0.1,
+          shadowRadius: 5,
+          height: 60,
+          paddingTop:4
+        },
+        tabBarLabel: ({ focused, color }) => (
+          <Text
+            style={{
+              fontFamily: focused ? "HelveticaBold" : "helvetica",
+              fontSize: 12,
+              color,
+             
+            }}
+          >
+            {route.name === "index"
+              ? "Home"
+              : route.name === "cart"
+              ? "Cart"
+              : route.name === "categories"
+              ? "Categories"
+              : "Setting"}
+          </Text>
+        ),
         headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
+      })}
+    >
+      <Tabs.Screen name="index" />
+      <Tabs.Screen name="cart" />
+      <Tabs.Screen name="categories" />
+      <Tabs.Screen name="(profile)" />
     </Tabs>
   );
 }
