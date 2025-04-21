@@ -49,7 +49,7 @@ export default function CreateNewPassword() {
 
       <View style={styles.imageWrapper}>
         <Image
-          source={require("../../assets/images/images/lock.png")}
+          source={require("../../assets/images/favicon.png")}
           style={styles.image}
           resizeMode="contain"
         />
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     width: 140,
     height: 140,
     borderRadius: 70,
-    backgroundColor: "#F8E6FB",
+    backgroundColor: "#CCDAF9",
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 10,

@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   labelFocused: {
-    color: "#7881FC",
+    color: "#0C4A6E",
     fontWeight: "bold",
   },
   labelError: {
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     paddingRight: 50,
   },
   inputFocused: {
-    borderColor: "#7881FC",
+    borderColor: "#0C4A6E",
   },
   inputError: {
     borderColor: "red", 

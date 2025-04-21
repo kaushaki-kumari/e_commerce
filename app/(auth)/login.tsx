@@ -1,10 +1,19 @@
 import PasswordField from "@/components/common/PasswordField";
 import TextField from "@/components/common/TextField";
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  ScrollView,
+} from "react-native";
 import { Button } from "@/components/common/Button";
 import { useRouter } from "expo-router";
 import { useFieldValidation } from "@/hooks/useFieldValidation";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { loginUser } from "@/store/auth/authSlice";
 
 const LoginScreen: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -12,22 +21,32 @@ const LoginScreen: React.FC = () => {
     password: "",
   });
   const [rememberMe, setRememberMe] = useState(false);
+  const { error, loading } = useAppSelector((state) => state.auth);
   const { errors, handleEmailValidation, handleLoginPasswordValidation } =
     useFieldValidation();
   const router = useRouter();
-
+  const dispatch = useAppDispatch();
   const handleSignUpPress = () => {
     router.push("/signUp");
   };
 
-  const handleLoginPress = () => {
+  const handleLoginPress = async () => {
     handleEmailValidation(formData.email);
     handleLoginPasswordValidation(formData.password);
     const hasErrors = !!(errors.email || errors.password);
     const allFieldsFilled = formData.email && formData.password;
 
     if (!hasErrors && allFieldsFilled) {
-      router.push("/userInformation");
+      const resultAction = await dispatch(
+        loginUser({
+          email: formData.email,
+          password: formData.password,
+        })
+      );
+
+      if (loginUser.fulfilled.match(resultAction)) {
+        router.push("/userInformation");
+      }
     }
   };
 
@@ -49,7 +68,7 @@ const LoginScreen: React.FC = () => {
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.section}>
         <Image
-          source={require("../../assets/images/logo/login-logo1.png")}
+          source={require("../../assets/images/favicon.png")}
           style={styles.image}
           resizeMode="contain"
         />
@@ -70,6 +89,7 @@ const LoginScreen: React.FC = () => {
           onChangeText={handlePasswordChange}
           error={errors.password}
         />
+        {error && <Text style={styles.apiError}>{error}</Text>}
 
         <View style={styles.rowContainer}>
           <TouchableOpacity
@@ -92,13 +112,12 @@ const LoginScreen: React.FC = () => {
           </TouchableOpacity>
         </View>
 
-        <Button title="LOGIN" onPress={handleLoginPress} />
+        <Button title="LOGIN" onPress={handleLoginPress} loading={loading} />
 
         <View style={styles.signupContainer}>
           <Text style={styles.signupText}>Don’t have an account?</Text>
           <TouchableOpacity>
             <Text style={styles.signupLink} onPress={handleSignUpPress}>
-              {" "}
               Sign up
             </Text>
           </TouchableOpacity>
@@ -119,7 +138,7 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1, 
+    flexGrow: 1,
     backgroundColor: "#fff",
   },
   section: {
@@ -159,7 +178,7 @@ const styles = StyleSheet.create({
     color: "#555",
   },
   signupLink: {
-    color: "#7881FC",
+    color: "#0C4A6E",
     fontWeight: "bold",
   },
   rowContainer: {
@@ -173,10 +192,10 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   checkboxChecked: {
-    backgroundColor: "#7881FC",
+    backgroundColor: "#0C4A6E",
   },
   forgotPasswordText: {
-    color: "#7881FC",
+    color: "#0C4A6E",
     fontWeight: "600",
   },
   rememberMeContainer: {
@@ -187,7 +206,7 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     borderWidth: 1,
-    borderColor: "#7881FC",
+    borderColor: "#0C4A6E",
     borderRadius: 4,
     marginRight: 8,
     justifyContent: "center",
@@ -196,5 +215,12 @@ const styles = StyleSheet.create({
   rememberMeText: {
     color: "#333",
     fontSize: 14,
+  },
+  apiError: {
+    color: "red",
+    fontSize: 13,
+    marginBottom: 10,
+    marginTop: -10,
+    textAlign: "left",
   },
 });

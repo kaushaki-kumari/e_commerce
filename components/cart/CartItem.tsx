@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   itemTitle: {
-    fontWeight: "600",
+    fontFamily:'HelveticaBold',
     fontSize: 16,
   },
   itemSize: {
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     borderRadius: 6,
-    backgroundColor: "#656bbf",
+    backgroundColor: "#1A1651",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -107,7 +107,8 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     borderRadius: 6,
-    backgroundColor: "#d3d3d3",
+    borderColor:'#1A1651',
+    borderWidth:1,
     justifyContent: "center",
     alignItems: "center",
   },

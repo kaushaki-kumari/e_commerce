@@ -63,7 +63,7 @@ const UserInformationScreen = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <LinearGradient colors={["#7881FC", "#E330FF"]} style={styles.topCurve}>
+      <LinearGradient colors={["#242555", "#1B7CA5"]} style={styles.topCurve}>
         <Text style={styles.accountText}>Account Details!</Text>
       </LinearGradient>
 
@@ -254,8 +254,8 @@ const styles = StyleSheet.create({
   },
 
   selectedCard: {
-    borderColor: "#7881FC",
-    backgroundColor: "#f0f4ff",
+    borderColor: "#232454",
+    backgroundColor: "#E8F6FF",
   },
 
   cardImage: {
@@ -266,9 +266,8 @@ const styles = StyleSheet.create({
   },
 
   cardText: {
-   
     fontSize: 14,
-    color: "#333",
+    color: "#1A1651",
     fontFamily: "HelveticaBold", 
   },
 
@@ -301,7 +300,7 @@ const styles = StyleSheet.create({
   },
   helpLink: {
     marginTop: -5,
-    color: "#7881FC",
+    color: "#232454",
     fontWeight: "bold",
    
   },

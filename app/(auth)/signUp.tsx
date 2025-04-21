@@ -1,6 +1,6 @@
 import PasswordField from "@/components/common/PasswordField";
 import TextField from "@/components/common/TextField";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -8,10 +8,13 @@ import {
   StyleSheet,
   Image,
   ScrollView,
+  Alert,
 } from "react-native";
 import { Button } from "@/components/common/Button";
 import { useRouter } from "expo-router";
 import { useFieldValidation } from "@/hooks/useFieldValidation";
+import { registerUser, resetRegistration } from "@/store/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 
 const SignUpScreen: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -27,7 +30,17 @@ const SignUpScreen: React.FC = () => {
     handlePasswordValidation,
     handlePasswordMatch,
   } = useFieldValidation();
+
   const router = useRouter();
+  const dispatch = useAppDispatch();
+  const { loading, error, registered } = useAppSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (registered) {
+      router.push("/login");
+      dispatch(resetRegistration());
+    }
+  }, [registered]);
 
   const handleChange = (field: string, value: string | boolean) => {
     setFormData((prevData) => ({
@@ -75,8 +88,13 @@ const SignUpScreen: React.FC = () => {
     const allFieldsFilled =
       formData.email && formData.password && formData.confirmPassword;
 
-    if (!hasErrors && allFieldsFilled) {
-      router.push("/login");
+    if (!hasErrors && allFieldsFilled && formData.termsAccepted) {
+      dispatch(
+        registerUser({
+          email: formData.email,
+          password: formData.password,
+        })
+      );
     }
   };
 
@@ -88,7 +106,7 @@ const SignUpScreen: React.FC = () => {
     >
       <View style={styles.section}>
         <Image
-          source={require("../../assets/images/logo/login-logo1.png")}
+          source={require("../../assets/images/favicon.png")}
           style={styles.image}
           resizeMode="contain"
         />
@@ -118,6 +136,7 @@ const SignUpScreen: React.FC = () => {
           onChangeText={handleConfirmPasswordChange}
           error={errors.confirmPassword}
         />
+        {error && <Text style={styles.apiError}>{error}</Text>}
 
         <TouchableOpacity
           style={styles.termsContainer}
@@ -139,10 +158,13 @@ const SignUpScreen: React.FC = () => {
         </TouchableOpacity>
 
         <Button
-          title="SIGN UP"
+          title="Sign Up"
           onPress={handleSignUp}
-          disabled={!formData.termsAccepted}
-          style={!formData.termsAccepted ? styles.disabledButton : {}}
+          disabled={!formData.termsAccepted || loading}
+          loading={loading}
+          style={
+            !formData.termsAccepted || loading ? styles.disabledButton : {}
+          }
         />
 
         <View style={styles.signupContainer}>
@@ -180,7 +202,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     marginTop: 10,
-    color: "#000",
+    color: "#0C4A6E",
     textAlign: "center",
   },
   subTitle: {
@@ -199,14 +221,14 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     borderWidth: 1,
-    borderColor: "#7881FC",
+    borderColor: "#0C4A6E",
     borderRadius: 4,
     marginRight: 8,
     justifyContent: "center",
     alignItems: "center",
   },
   checkboxChecked: {
-    backgroundColor: "#7881FC",
+    backgroundColor: "#0C4A6E",
   },
   checkmark: {
     color: "#fff",
@@ -218,7 +240,7 @@ const styles = StyleSheet.create({
     flexShrink: 1,
   },
   link: {
-    color: "#7881FC",
+    color: "#0C4A6E",
     fontWeight: "600",
   },
   signupContainer: {
@@ -229,10 +251,17 @@ const styles = StyleSheet.create({
     color: "#555",
   },
   signupLink: {
-    color: "#7881FC",
+    color: "#0C4A6E",
     fontWeight: "bold",
   },
   disabledButton: {
     opacity: 0.5,
+  },
+  apiError: {
+    color: "red",
+    fontSize: 13,
+    marginBottom: 10,
+    marginTop: -10,
+    textAlign: "left",
   },
 });

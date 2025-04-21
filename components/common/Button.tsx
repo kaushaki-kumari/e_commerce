@@ -1,58 +1,42 @@
 import React from "react";
-import { Text, TouchableOpacity, StyleSheet, ViewStyle, TextStyle } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import { Text, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, ActivityIndicator } from "react-native";
 
 interface ButtonProps {
   title: string;
   onPress: () => void;
-  gradient?: boolean;
   style?: ViewStyle;
   textStyle?: TextStyle;
-  disabled?: boolean; 
+  disabled?: boolean;
+  loading?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({
   title,
   onPress,
-  gradient = true,
   style,
   textStyle,
-  disabled = false, 
+  disabled = false,
+  loading = false,
 }) => {
-  const content = (
+  return (
     <TouchableOpacity
       onPress={onPress}
       activeOpacity={0.8}
       style={[styles.button, style, disabled && styles.disabled]}
       disabled={disabled}
     >
-      <Text style={[styles.text, textStyle]}>{title}</Text>
-    </TouchableOpacity>
-  );
-
-  return gradient ? (
-    <TouchableOpacity
-      onPress={onPress}
-      activeOpacity={0.8}
-      disabled={disabled}
-      style={[style, disabled && styles.disabled]}
-    >
-      <LinearGradient
-        colors={["#7881FC", "#E330FF"]}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
-        style={[styles.button, disabled && styles.disabled]}
-      >
+      {loading ? (
+        <ActivityIndicator size="small" color="#fff" />
+      ) : (
         <Text style={[styles.text, textStyle]}>{title}</Text>
-      </LinearGradient>
+      )}
     </TouchableOpacity>
-  ) : (
-    content
   );
 };
 
 const styles = StyleSheet.create({
   button: {
+    backgroundColor: "#1E2637",
     padding: 14,
     borderRadius: 6,
     alignItems: "center",
@@ -66,6 +50,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   disabled: {
-    opacity: 0.8,
+    opacity: 0.6,
   },
 });

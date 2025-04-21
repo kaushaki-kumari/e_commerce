@@ -44,7 +44,7 @@ export default function ForgetPassword() {
       setStep("email");
       setOtp(new Array(6).fill(""));
       setTimer(30);
-      setOtpError(""); // Clear OTP error when going back
+      setOtpError(""); 
     } else {
       router.back();
     }
@@ -113,7 +113,7 @@ export default function ForgetPassword() {
       {step === "email" && (
         <>
           <Image
-            source={require("../../assets/images/logo/verificationLogo.png")}
+            source={require("../../assets/images/favicon.png")}
             style={styles.logo}
             resizeMode="contain"
           />
@@ -145,7 +145,7 @@ export default function ForgetPassword() {
       {step === "otp" && (
         <>
           <Image
-            source={require("../../assets/images/logo/verificationLogo.png")}
+            source={require("../../assets/images/favicon.png")}
             style={styles.logo}
             resizeMode="contain"
           />
@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   logo: {
-    width: 150,
+    width: 120,
     height: 150,
   },
   title: {
@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#eee",
   },
   confirmButton: {
-    backgroundColor: "#7881FC",
+    backgroundColor: "#1E2637",
   },
   cancelText: {
     color: "#333",

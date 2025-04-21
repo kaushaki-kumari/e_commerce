@@ -28,6 +28,7 @@ export default function TabLayout() {
           height: 60,
           paddingTop:4
         },
+        contentStyle: { backgroundColor: "#fff" },
         tabBarLabel: ({ focused, color }) => (
           <Text
             style={{

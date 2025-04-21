@@ -180,13 +180,13 @@ const Cart: React.FC = () => {
                     style={[styles.button, styles.cancelButton]}
                     onPress={() => setModalVisible(false)}
                   >
-                    <Text style={styles.buttonText}>Cancel</Text>
+                    <Text style={styles.cancelText}>Cancel</Text>
                   </Pressable>
                   <Pressable
                     style={[styles.button, styles.removeButton]}
                     onPress={handleConfirmDelete}
                   >
-                    <Text style={styles.buttonText}>Yes, Remove</Text>
+                    <Text style={styles.removeText}>Yes, Remove</Text>
                   </Pressable>
                 </View>
               </>
@@ -216,6 +216,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: "#eee",
     borderStyle: "dotted",
+    color:'#1A1651'
   },
   modalOverlay: {
     flex: 1,
@@ -226,7 +227,6 @@ const styles = StyleSheet.create({
   modalContainer: {
     width: "100%",
     backgroundColor: "#fff",
-    borderRadius: 10,
     padding: 20,
     alignItems: "center",
     elevation: 10,
@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
   },
   modalPrice: {
     fontSize: 16,
-    color: "#555",
+    color: "#1A1651",
   },
   modalButtonContainer: {
     flexDirection: "row",
@@ -269,13 +269,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   cancelButton: {
-    backgroundColor: "#ddd",
+    borderColor:'#1A1651',
+    borderWidth:1,
   },
   removeButton: {
-    backgroundColor: "#7881FC",
+    backgroundColor: "#1A1651",
   },
-  buttonText: {
-    color: "#fff",
-    fontWeight: "600",
+  cancelText:{
+    color:"#1A1651",
+    fontFamily:'Helvetica',
   },
+  removeText:{
+    color:'#fff',
+    fontFamily:'Helvetica',
+  }
+
 });

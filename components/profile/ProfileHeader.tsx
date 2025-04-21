@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
-import { LinearGradient } from "expo-linear-gradient";
 
 export default function ProfileHeader() {
   const router = useRouter();
+
   const handleLoginPress = () => {
     router.push("/login");
   };
@@ -25,14 +25,9 @@ export default function ProfileHeader() {
               style={styles.loginButton}
               onPress={handleLoginPress}
             >
-              <LinearGradient
-                colors={["#7881FC", "#E330FF"]}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                style={styles.gradientButton}
-              >
+              <View style={styles.solidButton}>
                 <Text style={styles.loginText}>LOG IN/SIGN UP</Text>
-              </LinearGradient>
+              </View>
             </TouchableOpacity>
           </View>
         </View>
@@ -63,12 +58,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
-  avatarImage: {
-    width: "55%",
-    height: "55%",
-    resizeMode: "cover",
-    borderRadius: 5,
-  },
   avatarContainer: {
     width: 120,
     height: 125,
@@ -79,19 +68,23 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  avatarIcon: {
-    fontSize: 35,
+  avatarImage: {
+    width: "55%",
+    height: "55%",
+    resizeMode: "cover",
+    borderRadius: 5,
   },
   loginButton: {
     marginTop: 75,
     width: "62%",
   },
-  gradientButton: {
+  solidButton: {
+    backgroundColor: "#1E2637",
     paddingVertical: 12,
     paddingHorizontal: 20,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius:5
+    borderRadius: 5,
   },
   loginText: {
     color: "#fff",

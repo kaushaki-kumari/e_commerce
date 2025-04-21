@@ -30,12 +30,12 @@ const AboutUs = () => {
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.header}>
         <Image
-          source={require("@/assets/images/logo/about-usLogo.png")}
+          source={require("@/assets/images/favicon.png")}
           style={styles.logo}
         />
-        <Text style={styles.title}>Get to Know Myntra</Text>
+        <Text style={styles.title}>Get to Know Innovative</Text>
         <Text style={styles.subtitle}>
-          Discover the values and mission behind Myntra. Join us on our fashion journey.
+          Discover the values and mission behind Innovative. Join us on our fashion journey.
         </Text>
       </View>
 
@@ -55,7 +55,7 @@ const AboutUs = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#f7f9fc",
+    backgroundColor: "#fff",
   },
   header: {
     backgroundColor: "#ffffff",
@@ -95,15 +95,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   section: {
-    backgroundColor: "#ffffff",
-    paddingVertical: 20,
-    paddingHorizontal: 25,
+  
     borderRadius: 12,
     marginBottom: 20,
-    shadowColor: "#ddd",
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 4,
   },
 });
 
