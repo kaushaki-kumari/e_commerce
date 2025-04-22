@@ -93,28 +93,21 @@ const CategoryGrid: React.FC<CategoryGridProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 10,
-  },
-  sectionTitle: {
-    fontSize: 16,
-    fontWeight: "600",
-    marginBottom: 12,
-    paddingHorizontal: 5,
-    color: "#1E2637",
+    marginVertical: 4,
   },
   categoriesContainer: {
-    paddingVertical: 8,
+    paddingVertical: 5,
     paddingHorizontal: 5,
   },
   categoryItem: {
     alignItems: "center",
-    marginRight: 16,
-    width: 90,
+    marginRight: 12,
+    width: 80,
   },
   imageContainer: {
-    width: 80,
-    height: 80,
-    borderRadius: 10,
+    width: 75,
+    height: 75,
+    borderRadius: 20,
     overflow: "hidden",
     borderWidth: 1,
     borderColor: "#f0f0f0",
@@ -123,7 +116,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   activeImageContainer: {
-    borderColor: "#7881FC",
+    borderColor: "#1E2637",
     borderWidth: 2,
   },
   categoryImage: {
@@ -139,7 +132,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   activeTitle: {
-    color: "#7881FC",
+    color: "#1E2637",
     fontWeight: "700",
   },
 });

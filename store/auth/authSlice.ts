@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
 interface AuthState {
@@ -7,6 +7,11 @@ interface AuthState {
   registered: boolean;
   isAuthenticated: boolean;
   user: any | null;
+  sendCodeLoading: boolean;
+  verifyCodeLoading: boolean;
+  resetPasswordLoading: boolean;
+  resetEmail: string | null;
+  resetCode: string | null;
 }
 
 const initialState: AuthState = {
@@ -15,6 +20,11 @@ const initialState: AuthState = {
   registered: false,
   isAuthenticated: false,
   user: null,
+  sendCodeLoading: false,
+  verifyCodeLoading: false,
+  resetPasswordLoading: false,
+  resetEmail: null,
+  resetCode: null
 };
 
 const apiUrl = process.env.EXPO_PUBLIC_API_URL;
@@ -26,13 +36,12 @@ export const registerUser = createAsyncThunk(
     { rejectWithValue }
   ) => {
     try {
-      const response = await axios.post(`${apiUrl}/register`, {
+      const response = await axios.post(`${apiUrl}/auth/register`, {
         email,
         password,
       });
       return response.data;
     } catch (error: any) {
-      console.log("Registration error:", error);
       return rejectWithValue(
         error.response?.data?.message || "Registration failed"
       );
@@ -47,14 +56,77 @@ export const loginUser = createAsyncThunk(
     { rejectWithValue }
   ) => {
     try {
-      const response = await axios.post(`${apiUrl}/login`, {
+      const response = await axios.post(`${apiUrl}/auth/login`, {
         email,
         password,
       });
       return response.data;
     } catch (error: any) {
-      console.log("Login error:", error.response?.data || error.message);
       return rejectWithValue(error.response?.data?.message || "Login failed");
+    }
+  }
+);
+
+export const sendEmailCode = createAsyncThunk(
+  "auth/sendEmailCode",
+  async (email: string, { rejectWithValue }) => {
+    try {
+      const res = await axios.post(`${apiUrl}/auth/send-email-code`, { email });
+      return res.data;
+    } catch (err: any) {
+      return rejectWithValue(
+        err.response?.data?.message || "Failed to send code"
+      );
+    }
+  }
+);
+
+export const verifyEmailCode = createAsyncThunk(
+  "auth/verifyEmailCode",
+  async (
+    { email, code }: { email: string; code: string },
+    { rejectWithValue }
+  ) => {
+    try {
+      const res = await axios.post(`${apiUrl}/auth/verify-email-code`, {
+        email,
+        code,
+      });
+      return res.data;
+    } catch (err: any) {
+      return rejectWithValue(err.response?.data?.message || "Invalid OTP");
+    }
+  }
+);
+
+export const resetPassword = createAsyncThunk(
+  "auth/resetPassword",
+  async (
+    {
+      email,
+      code,
+      password,
+      password_confirmation,
+    }: {
+      email: string;
+      code: string;
+      password: string;
+      password_confirmation: string;
+    },
+    { rejectWithValue }
+  ) => {
+    try {
+      const response = await axios.post(`${apiUrl}/auth/reset-password`, {
+        email,
+        code,
+        password,
+        password_confirmation,
+      });
+      return response.data;
+    } catch (error: any) {
+      return rejectWithValue(
+        error.response?.data?.message || "Password reset failed"
+      );
     }
   }
 );
@@ -72,6 +144,10 @@ const authSlice = createSlice({
     logoutUser: (state) => {
       state.isAuthenticated = false;
       state.user = null;
+    },
+    setResetCredentials: (state, action: PayloadAction<{ email: string, code: string }>) => {
+      state.resetEmail = action.payload.email;
+      state.resetCode = action.payload.code;
     },
   },
   extraReducers: (builder) => {
@@ -100,9 +176,42 @@ const authSlice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
+      })
+      .addCase(sendEmailCode.pending, (state) => {
+        state.sendCodeLoading = true;
+        state.error = null;
+      })
+      .addCase(sendEmailCode.fulfilled, (state) => {
+        state.sendCodeLoading = false;
+      })
+      .addCase(sendEmailCode.rejected, (state, action) => {
+        state.sendCodeLoading = false;
+        state.error = action.payload as string;
+      })
+      .addCase(verifyEmailCode.pending, (state) => {
+        state.verifyCodeLoading = true;
+        state.error = null;
+      })
+      .addCase(verifyEmailCode.fulfilled, (state) => {
+        state.verifyCodeLoading = false;
+      })
+      .addCase(verifyEmailCode.rejected, (state, action) => {
+        state.verifyCodeLoading = false;
+        state.error = action.payload as string;
+      })
+      .addCase(resetPassword.pending, (state) => {
+        state.resetPasswordLoading = true;
+        state.error = null;
+      })
+      .addCase(resetPassword.fulfilled, (state) => {
+        state.resetPasswordLoading = false;
+      })
+      .addCase(resetPassword.rejected, (state, action) => {
+        state.resetPasswordLoading = false;
+        state.error = action.payload as string;
       });
   },
 });
 
-export const { clearAuthError, resetRegistration } = authSlice.actions;
+export const { clearAuthError, resetRegistration ,setResetCredentials } = authSlice.actions;
 export default authSlice.reducer;

@@ -13,7 +13,7 @@ import { Button } from "@/components/common/Button";
 import { useRouter } from "expo-router";
 import { useFieldValidation } from "@/hooks/useFieldValidation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { loginUser } from "@/store/auth/authSlice";
+import { clearAuthError, loginUser } from "@/store/auth/authSlice";
 
 const LoginScreen: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -28,6 +28,7 @@ const LoginScreen: React.FC = () => {
   const dispatch = useAppDispatch();
   const handleSignUpPress = () => {
     router.push("/signUp");
+    dispatch(clearAuthError());
   };
 
   const handleLoginPress = async () => {
@@ -52,6 +53,7 @@ const LoginScreen: React.FC = () => {
 
   const handleForgetPress = () => {
     router.push("/forgetPassword");
+    dispatch(clearAuthError());
   };
 
   const handleEmailChange = (text: string) => {

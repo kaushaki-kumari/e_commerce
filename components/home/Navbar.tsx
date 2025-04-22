@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
 
 interface NavbarProps {
   tabs: string[];
@@ -9,20 +10,30 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ tabs, activeTab, setActiveTab }) => {
+  const handleTabPress = (tab: string) => {
+    if (tab === "Categories") {
+      router.push("/categories");
+    } else {
+      setActiveTab(tab);
+    }
+  };
+
   return (
     <View style={styles.navbar}>
       {tabs.map((tab) => (
         <TouchableOpacity
           key={tab}
-          onPress={() => setActiveTab(tab)}
+          onPress={() => handleTabPress(tab)}
           style={styles.navItemWrapper}
         >
           {tab === "Categories" ? (
-            <Ionicons
-              name="grid-outline"
-              size={20}
-              color={activeTab === tab ? "#7881FC" : "#333"}
-            />
+            <View style={styles.categoryTab}>
+              <Ionicons
+                name="grid-outline"
+                size={20}
+                color="#fff"
+              />
+            </View>
           ) : (
             <Text
               style={[
@@ -55,19 +66,27 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "600",
     color: "#333",
-    fontFamily:'Helvetica'
+    fontFamily: "Helvetica",
   },
   activeLine: {
     marginTop: 4,
     height: 2,
     width: "100%",
-    backgroundColor: "#7881FC",
+    backgroundColor: "#1E2637",
     borderRadius: 1,
   },
   activeNavItemText: {
-    color: "#7881FC",
+    color: "#1E2637",
     fontFamily: "HelveticaBold",
   },
+  categoryTab:{
+    backgroundColor:'#1E2637',
+    padding:3,
+    borderRadius:8,
+    borderWidth:1,
+    borderColor:'#fff',
+    elevation:3
+  }
 });
 
 export default Navbar;

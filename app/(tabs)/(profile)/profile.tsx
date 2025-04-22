@@ -29,13 +29,6 @@ export default function ProfileScreen() {
   const [selectedSection, setSelectedSection] = useState("Profile");
   const router = useRouter();
   useEffect(() => {
-    const isMainProfile = selectedSection === "Profile";
-    if (isMainProfile) {
-      router.setParams({ hideTabBar: 'false' });
-    } else {
-      router.setParams({ hideTabBar: 'true' });
-    }
-    
     const backHandler = BackHandler.addEventListener(
       "hardwareBackPress",
       () => {
@@ -106,10 +99,17 @@ export default function ProfileScreen() {
       <View style={styles.topBar}>
         <TouchableOpacity
           style={styles.backButton}
-          onPress={() => setSelectedSection("Profile")}
+          onPress={() => {
+            if (selectedSection !== "Profile") {
+              setSelectedSection("Profile");
+            } else {
+              router.back();
+            }
+          }}
         >
-          <AntDesign name="arrowleft" size={20} color="black" />
+          <AntDesign name="arrowleft" size={18} color="black" />
         </TouchableOpacity>
+
         <Text style={styles.headerTitle}>{selectedSection}</Text>
       </View>
 
@@ -120,12 +120,12 @@ export default function ProfileScreen() {
 
 const styles = StyleSheet.create({
   backButton: {
-    marginRight: 10,
+    marginRight: 8,
   },
   headerTitle: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "bold",
-    color: "#7d7c7c",
+    color: "#1E2637",
     fontFamily: "Arial",
   },
   container: {

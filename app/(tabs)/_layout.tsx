@@ -1,21 +1,32 @@
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-import { Text } from "react-native";
+import { Image, Text } from "react-native";
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size }) => {
+        tabBarIcon: ({ color, size, focused }) => {
+          if (route.name === "index") {
+            return (
+              <Image
+                source={require("@/assets/images/favicon.png")}
+                style={{
+                  width: 28,
+                  height: 28,
+                  resizeMode: "contain",
+                }}
+              />
+            );
+          }
+
           let iconName: any;
-          if (route.name === "index") iconName = "home";
-          if (route.name === "cart") iconName = "cart";
-          if (route.name === "categories") iconName = "grid";
-          if (route.name === "(profile)") iconName = "settings";
+          if (route.name === "cart") iconName = focused ? "cart" : "cart-outline";
+          if (route.name === "(profile)") iconName = focused ? "settings" : "settings-outline";
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: "#7881FC",
+        tabBarActiveTintColor: "#1E2637",
         tabBarInactiveTintColor: "gray",
         tabBarStyle: {
           backgroundColor: "#fff",
@@ -26,7 +37,7 @@ export default function TabLayout() {
           shadowOpacity: 0.1,
           shadowRadius: 5,
           height: 60,
-          paddingTop:4
+          paddingTop: 4,
         },
         contentStyle: { backgroundColor: "#fff" },
         tabBarLabel: ({ focused, color }) => (
@@ -35,15 +46,12 @@ export default function TabLayout() {
               fontFamily: focused ? "HelveticaBold" : "helvetica",
               fontSize: 12,
               color,
-             
             }}
           >
             {route.name === "index"
               ? "Home"
               : route.name === "cart"
               ? "Cart"
-              : route.name === "categories"
-              ? "Categories"
               : "Setting"}
           </Text>
         ),
@@ -52,7 +60,6 @@ export default function TabLayout() {
     >
       <Tabs.Screen name="index" />
       <Tabs.Screen name="cart" />
-      <Tabs.Screen name="categories" />
       <Tabs.Screen name="(profile)" />
     </Tabs>
   );

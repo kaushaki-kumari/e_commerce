@@ -130,39 +130,6 @@
                 "id": "babyCare",
                 "title": "Baby Care",
                 "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9qlkuVeEs2oPU1fXwfgAKjdeL8UO7XWE2cg&s"
-            },
-            {
-                "id": "childfootwear",
-                "title": "Footwear",
-                "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQcQWxfGM6UZpRraO2YZAF1UP_MQoyRnrPSA&s"
-            }
-        ],
-        "Categories": [
-            {
-                "id": "fashion",
-                "title": "Fashion",
-                "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9CO7rRk0PnxLRjlfvXW1G284KN3D7XJBnzw&s",
-                "isActive": true
-            },
-            {
-                "id": "electronics",
-                "title": "Electronics",
-                "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZqQvlM3yeg4TCxJmgvj894U7lNI9cc4wAxA&s"
-            },
-            {
-                "id": "home",
-                "title": "Home",
-                "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTfAw5ezEer8fevmWNFajmO1pgDkqu1p6Slw&s"
-            },
-            {
-                "id": "beauty",
-                "title": "Beauty",
-                "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR71hJIjJH5Kp5M-_CgaoxpjOM3c4nNy701IQ&s"
-            },
-            {
-                "id": "sports",
-                "title": "Sports",
-                "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1zL-LpQVQN6DBg0GdNIPcW4WqjNZU-58hVw&s"
             }
         ]
     },
@@ -384,7 +351,8 @@
             "categories": [
                 "beauty",
                 "women",
-                "womenbeauty"
+                "womenbeauty",
+                "childfootwear"
             ]
         },
         {

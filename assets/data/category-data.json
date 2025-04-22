@@ -1,0 +1,1164 @@
+{
+  "trendingNow": {
+    "spotlight": [
+      {
+        "id": "SPOT001",
+        "title": "New on innovative",
+        "imageUrl": "https://cdn4.vectorstock.com/i/1000x1000/84/63/whats-new-symbol-special-offer-sign-vector-34368463.jpg"
+      },
+      {
+        "id": "SPOT002",
+        "title": "Spring Summer",
+        "imageUrl": "https://via.placeholder.com/200?text=Spotlight2"
+      },
+      {
+        "id": "SPOT003",
+        "title": "Easter Sapecial",
+        "imageUrl": "https://via.placeholder.com/200?text=Spotlight3"
+      },
+      {
+        "id": "SPOT004",
+        "title": "New Year Festive Edit",
+        "imageUrl": "https://via.placeholder.com/200?text=Spotlight4"
+      },
+      {
+        "id": "SPOT005",
+        "title": "Festive Edit",
+        "imageUrl": "https://via.placeholder.com/200?text=Spotlight5"
+      },
+      {
+        "id": "SPOT006",
+        "title": "Days Of Summer",
+        "imageUrl": "https://via.placeholder.com/200?text=Spotlight6"
+      },
+      {
+        "id": "SPOT007",
+        "title": "Wedding Diaries",
+        "imageUrl": "https://via.placeholder.com/200?text=Spotlight7"
+      },
+      {
+        "id": "SPOT008",
+        "title": "The Edit",
+        "imageUrl": "https://via.placeholder.com/200?text=Spotlight8"
+      },
+      {
+        "id": "SPOT009",
+        "title": "Trendnxt",
+        "imageUrl": "https://via.placeholder.com/200?text=Spotlight9"
+      },
+      {
+        "id": "SPOT010",
+        "title": "Comics Verse",
+        "imageUrl": "https://via.placeholder.com/200?text=Spotlight10"
+      },
+      {
+        "id": "SPOT011",
+        "title": "Innovative Fashion League",
+        "imageUrl": "https://via.placeholder.com/200?text=Spotlight11"
+      },
+      {
+        "id": "SPOT012",
+        "title": "Back to School",
+        "imageUrl": "https://via.placeholder.com/200?text=Spotlight12"
+      }
+    ],
+    "trendingStores": [
+      {
+        "id": "STORE001",
+        "title": "Innovative Unique",
+        "imageUrl": "https://via.placeholder.com/200?text=Store1"
+      },
+      {
+        "id": "STORE002",
+        "title": "Ringing Stars",
+        "imageUrl": "https://via.placeholder.com/200?text=Store2"
+      },
+      {
+        "id": "STORE003",
+        "title": "Luxe",
+        "imageUrl": "https://via.placeholder.com/200?text=Store3"
+      },
+      {
+        "id": "STORE004",
+        "title": "Try New",
+        "imageUrl": "https://via.placeholder.com/200?text=Store4"
+      },
+      {
+        "id": "STORE005",
+        "title": "Rising Stars Beauty Edit",
+        "imageUrl": "https://via.placeholder.com/200?text=Store5"
+      },
+      {
+        "id": "STORE006",
+        "title": "Inno",
+        "imageUrl": "https://via.placeholder.com/200?text=Store6"
+      },
+      {
+        "id": "STORE007",
+        "title": "Gifting Store",
+        "imageUrl": "https://via.placeholder.com/200?text=Store7"
+      },
+      {
+        "id": "STORE008",
+        "title": "Innovative Sneaker Club",
+        "imageUrl": "https://via.placeholder.com/200?text=Store8"
+      },
+      {
+        "id": "STORE009",
+        "title": "India club",
+        "imageUrl": "https://via.placeholder.com/200?text=Store9"
+      },
+      {
+        "id": "STORE010",
+        "title": "Personal Loan",
+        "imageUrl": "https://via.placeholder.com/200?text=Store10"
+      },
+      {
+        "id": "STORE011",
+        "title": "Myntra Street",
+        "imageUrl": "https://via.placeholder.com/200?text=Store11"
+      },
+      {
+        "id": "STORE012",
+        "title": "Indie Work",
+        "imageUrl": "https://via.placeholder.com/200?text=Store12"
+      }
+    ]
+  },
+  "mensWear": {
+    "casualWear": [
+      {
+        "id": "MEN_CAS001",
+        "title": "Shirt",
+        "imageUrl": "https://via.placeholder.com/200?text=MenCasual1"
+      },
+      {
+        "id": "MEN_CAS002",
+        "title": "Tshirt",
+        "imageUrl": "https://via.placeholder.com/200?text=MenCasual2"
+      },
+      {
+        "id": "MEN_CAS003",
+        "title": "Jeans",
+        "imageUrl": "https://via.placeholder.com/200?text=MenCasual3"
+      },
+      {
+        "id": "MEN_CAS004",
+        "title": "Trousers",
+        "imageUrl": "https://via.placeholder.com/200?text=MenCasual4"
+      },
+      {
+        "id": "MEN_CAS005",
+        "title": "Shorts",
+        "imageUrl": "https://via.placeholder.com/200?text=MenCasual5"
+      },
+      {
+        "id": "MEN_CAS006",
+        "title": "Track Pants",
+        "imageUrl": "https://via.placeholder.com/200?text=MenCasual6"
+      },
+      {
+        "id": "MEN_CAS007",
+        "title": "Jackets",
+        "imageUrl": "https://via.placeholder.com/200?text=MenCasual7"
+      },
+      {
+        "id": "MEN_CAS008",
+        "title": "Sweatshirt",
+        "imageUrl": "https://via.placeholder.com/200?text=MenCasual8"
+      },
+      {
+        "id": "MEN_CAS009",
+        "title": "Sweaters",
+        "imageUrl": "https://via.placeholder.com/200?text=MenCasual9"
+      }
+    ],
+    "workWear": [
+      {
+        "id": "MEN_CAS010",
+        "title": "Formal Shirts",
+        "imageUrl": "https://via.placeholder.com/200?text=MenCasual10"
+      },
+      {
+        "id": "MEN_CAS011",
+        "title": "Blazers",
+        "imageUrl": "https://via.placeholder.com/200?text=MenCasual11"
+      },
+      {
+        "id": "MEN_CAS012",
+        "title": "Formal Trousers",
+        "imageUrl": "https://via.placeholder.com/200?text=MenCasual12"
+      },
+      {
+        "id": "MEN_CAS013",
+        "title": "Coats",
+        "imageUrl": "https://via.placeholder.com/200?text=MenCasual13"
+      },
+      {
+        "id": "MEN_CAS014",
+        "title": "Ties",
+        "imageUrl": "https://via.placeholder.com/200?text=MenCasual14"
+      },
+      {
+        "id": "MEN_CAS015",
+        "title": "Formal Shoes",
+        "imageUrl": "https://via.placeholder.com/200?text=MenCasual15"
+      }
+    ],
+    "occasionWear": [
+      {
+        "id": "MEN_OCC001",
+        "title": "Kurtas & Kurta Sets",
+        "imageUrl": "https://via.placeholder.com/200?text=MenOccasion1"
+      },
+      {
+        "id": "MEN_OCC002",
+        "title": "Nehru Jackets",
+        "imageUrl": "https://via.placeholder.com/200?text=MenOccasion2"
+      },
+      {
+        "id": "MEN_OCC003",
+        "title": "Sherwani",
+        "imageUrl": "https://via.placeholder.com/200?text=MenOccasion3"
+      },
+      {
+        "id": "MEN_OCC004",
+        "title": "Kurta Sets",
+        "imageUrl": "https://via.placeholder.com/200?text=MenOccasion4"
+      },
+      {
+        "id": "MEN_OCC005",
+        "title": "Ethenic Pajamas",
+        "imageUrl": "https://via.placeholder.com/200?text=MenOccasion5"
+      },
+      {
+        "id": "MEN_OCC006",
+        "title": "Dhoti Pants",
+        "imageUrl": "https://via.placeholder.com/200?text=MenOccasion6"
+      },
+      {
+        "id": "MEN_OCC007",
+        "title": "Blazers",
+        "imageUrl": "https://via.placeholder.com/200?text=MenOccasion7"
+      },
+      {
+        "id": "MEN_OCC008",
+        "title": "Suits",
+        "imageUrl": "https://via.placeholder.com/200?text=MenOccasion8"
+      },
+      {
+        "id": "MEN_OCC009",
+        "title": "Men Ethenic Alley",
+        "imageUrl": "https://via.placeholder.com/200?text=MenOccasion9"
+      }
+    ],
+    "sportsWear": [
+      {
+        "id": "MEN_SPT001",
+        "title": "Tshirts",
+        "imageUrl": "https://via.placeholder.com/200?text=MenSports1"
+      },
+      {
+        "id": "MEN_SPT002",
+        "title": "TrackPants",
+        "imageUrl": "https://via.placeholder.com/200?text=MenSports2"
+      },
+      {
+        "id": "MEN_SPT003",
+        "title": "Jackets",
+        "imageUrl": "https://via.placeholder.com/200?text=MenSports3"
+      },
+      {
+        "id": "MEN_SPT004",
+        "title": "Shorts",
+        "imageUrl": "https://via.placeholder.com/200?text=MenSports4"
+      },
+      {
+        "id": "MEN_SPT005",
+        "title": "Sweatshirts",
+        "imageUrl": "https://via.placeholder.com/200?text=MenSports5"
+      },
+      {
+        "id": "MEN_SPT006",
+        "title": "Tracksuits",
+        "imageUrl": "https://via.placeholder.com/200?text=MenSports6"
+      }
+    ],
+    "genZFashion": [
+      {
+        "id": "MEN_GENZ001",
+        "title": "organized Tees",
+        "imageUrl": "https://via.placeholder.com/200?text=MenGenZ1"
+      },
+      {
+        "id": "MEN_GENZ002",
+        "title": "Oversized Shirts",
+        "imageUrl": "https://via.placeholder.com/200?text=MenGenZ2"
+      },
+      {
+        "id": "MEN_GENZ003",
+        "title": "Casual Trousers",
+        "imageUrl": "https://via.placeholder.com/200?text=MenGenZ3"
+      },
+      {
+        "id": "MEN_GENZ004",
+        "title": "Casual Shorts",
+        "imageUrl": "https://via.placeholder.com/200?text=MenGenZ4"
+      },
+      {
+        "id": "MEN_GENZ005",
+        "title": "Printed Tees",
+        "imageUrl": "https://via.placeholder.com/200?text=MenGenZ5"
+      },
+      {
+        "id": "MEN_GENZ006",
+        "title": "Half Sleeve Shirts",
+        "imageUrl": "https://via.placeholder.com/200?text=MenGenZ6"
+      },
+      {
+        "id": "MEN_GENZ007",
+        "title": "Back Printed Tees",
+        "imageUrl": "https://via.placeholder.com/200?text=MenGenZ7"
+      },
+      {
+        "id": "MEN_GENZ008",
+        "title": "Printed Shirts",
+        "imageUrl": "https://via.placeholder.com/200?text=MenGenZ8"
+      },
+      {
+        "id": "MEN_GENZ009",
+        "title": "Faded Jeans",
+        "imageUrl": "https://via.placeholder.com/200?text=MenGenZ9"
+      },
+      {
+        "id": "MEN_GENZ010",
+        "title": "Polo T-shirt",
+        "imageUrl": "https://via.placeholder.com/200?text=MenGenZ10"
+      },
+      {
+        "id": "MEN_GENZ011",
+        "title": "Stripes & Checks",
+        "imageUrl": "https://via.placeholder.com/200?text=MenGenZ11"
+      },
+      {
+        "id": "MEN_GENZ012",
+        "title": "Track Pants",
+        "imageUrl": "https://via.placeholder.com/200?text=MenGenZ12"
+      },
+      {
+        "id": "MEN_GENZ013",
+        "title": "Cargo",
+        "imageUrl": "https://via.placeholder.com/200?text=MenGenZ13"
+      }
+    ]
+  },
+  "womensWear": {
+    "westernWear": [
+      {
+        "id": "WOMEN_WST001",
+        "title": "Dresses",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenWestern1"
+      },
+      {
+        "id": "WOMEN_WST002",
+        "title": "Tops",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenWestern2"
+      },
+      {
+        "id": "WOMEN_WST003",
+        "title": "Jeans",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenWestern3"
+      },
+      {
+        "id": "WOMEN_WST004",
+        "title": "Trousers",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenWestern4"
+      },
+      {
+        "id": "WOMEN_WST005",
+        "title": "T-Shirts",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenWestern5"
+      },
+      {
+        "id": "WOMEN_WST006",
+        "title": "Shirts",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenWestern6"
+      },
+      {
+        "id": "WOMEN_WST007",
+        "title": "Co-ords",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenWestern7"
+      },
+      {
+        "id": "WOMEN_WST008",
+        "title": "Skirt & Shorts",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenWestern8"
+      },
+      {
+        "id": "WOMEN_WST009",
+        "title": "Jumpsuits",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenWestern9"
+      },
+      {
+        "id": "WOMEN_WST010",
+        "title": "Western Avenue",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenWestern10"
+      }
+    ],
+    "ethnicWear": [
+      {
+        "id": "WOMEN_ETH001",
+        "title": "Kurta Sets",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenEthnic1"
+      },
+      {
+        "id": "WOMEN_ETH002",
+        "title": "Kurtas",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenEthnic2"
+      },
+      {
+        "id": "WOMEN_ETH003",
+        "title": "Sarees",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenEthnic3"
+      },
+      {
+        "id": "WOMEN_ETH004",
+        "title": "Ethenic Dresses",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenEthnic4"
+      },
+      {
+        "id": "WOMEN_ETH005",
+        "title": "Fusionwear",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenEthnic5"
+      },
+      {
+        "id": "WOMEN_ETH006",
+        "title": "Ethenic Tops",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenEthnic6"
+      },
+      {
+        "id": "WOMEN_ETH007",
+        "title": "Lehenga Choli",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenEthnic7"
+      },
+      {
+        "id": "WOMEN_ETH008",
+        "title": "Co-ords",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenEthnic8"
+      },
+      {
+        "id": "WOMEN_ETH009",
+        "title": "Ethenic Alley",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenEthnic9"
+      }
+    ],
+    "genZFashion": [
+      {
+        "id": "WOMEN_GENZ001",
+        "title": "Tie-Dye Crop Top",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZ1"
+      },
+      {
+        "id": "WOMEN_GENZ002",
+        "title": "Mom Jeans",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZ2"
+      },
+      {
+        "id": "WOMEN_GENZ003",
+        "title": "Chunky Boots",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZ3"
+      },
+      {
+        "id": "WOMEN_GENZ004",
+        "title": "Oversized Hoodie",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZ4"
+      },
+      {
+        "id": "WOMEN_GENZ005",
+        "title": "Plaid Skirt",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZ5"
+      },
+      {
+        "id": "WOMEN_GENZ006",
+        "title": "Statement Earrings",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZ6"
+      },
+      {
+        "id": "WOMEN_GENZ007",
+        "title": "Cargo Pants",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZ7"
+      },
+      {
+        "id": "WOMEN_GENZ008",
+        "title": "Graphic Tee",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZ8"
+      },
+      {
+        "id": "WOMEN_GENZ009",
+        "title": "Beret",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZ9"
+      },
+      {
+        "id": "WOMEN_GENZ010",
+        "title": "Denim Overall",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZ10"
+      },
+      {
+        "id": "WOMEN_GENZ011",
+        "title": "Faux Fur Jacket",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZ11"
+      },
+      {
+        "id": "WOMEN_GENZ012",
+        "title": "Slip Dress",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZ12"
+      },
+      {
+        "id": "WOMEN_GENZ013",
+        "title": "Chunky Necklace",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZ13"
+      },
+      {
+        "id": "WOMEN_GENZ014",
+        "title": "Bike Shorts",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZ14"
+      },
+      {
+        "id": "WOMEN_GENZ015",
+        "title": "Vinyl Skirt",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZ15"
+      },
+      {
+        "id": "WOMEN_GENZ016",
+        "title": "Platform Sneakers",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZ16"
+      },
+      {
+        "id": "WOMEN_GENZ017",
+        "title": "Neon Crop Top",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZ17"
+      },
+      {
+        "id": "WOMEN_GENZ018",
+        "title": "Mesh Top",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZ18"
+      },
+      {
+        "id": "WOMEN_GENZ019",
+        "title": "Tennis Skirt",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZ19"
+      },
+      {
+        "id": "WOMEN_GENZ020",
+        "title": "Bucket Bag",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZ20"
+      },
+      {
+        "id": "WOMEN_GENZ021",
+        "title": "Printed Leggings",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZ21"
+      },
+      {
+        "id": "WOMEN_GENZ022",
+        "title": "Retro Sunglasses",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZ22"
+      }
+    ],
+    "genzFootwear": [
+      {
+        "id": "WOMEN_GENZ_FOOT001",
+        "title": "Chunky Sneakers",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZFoot1"
+      },
+      {
+        "id": "WOMEN_GENZ_FOOT002",
+        "title": "Platform Boots",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZFoot2"
+      },
+      {
+        "id": "WOMEN_GENZ_FOOT003",
+        "title": "Neon Sandals",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZFoot3"
+      },
+      {
+        "id": "WOMEN_GENZ_FOOT004",
+        "title": "Holographic Sneakers",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZFoot4"
+      },
+      {
+        "id": "WOMEN_GENZ_FOOT005",
+        "title": "Ankle Strap Heels",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZFoot5"
+      },
+      {
+        "id": "WOMEN_GENZ_FOOT006",
+        "title": "Retro Trainers",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenGenZFoot6"
+      }
+    ]
+  },
+  "kidsWear": {
+    "infants": [
+      {
+        "id": "KID_INF001",
+        "title": "Onesie",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsInfant1"
+      },
+      {
+        "id": "KID_INF002",
+        "title": "Baby Romper",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsInfant2"
+      },
+      {
+        "id": "KID_INF003",
+        "title": "Soft Booties",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsInfant3"
+      },
+      {
+        "id": "KID_INF004",
+        "title": "Cotton Bodysuit",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsInfant4"
+      },
+      {
+        "id": "KID_INF005",
+        "title": "Bib Set",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsInfant5"
+      },
+      {
+        "id": "KID_INF006",
+        "title": "Sleepsuit",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsInfant6"
+      },
+      {
+        "id": "KID_INF007",
+        "title": "Knit Cap",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsInfant7"
+      },
+      {
+        "id": "KID_INF008",
+        "title": "Swaddle Blanket",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsInfant8"
+      },
+      {
+        "id": "KID_INF009",
+        "title": "Hooded Towel",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsInfant9"
+      }
+    ],
+    "girls": [
+      {
+        "id": "KID_GIRL001",
+        "title": "Floral Dress",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsGirl1"
+      },
+      {
+        "id": "KID_GIRL002",
+        "title": "Denim Skirt",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsGirl2"
+      },
+      {
+        "id": "KID_GIRL003",
+        "title": "Graphic Tee",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsGirl3"
+      },
+      {
+        "id": "KID_GIRL004",
+        "title": "Leggings",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsGirl4"
+      },
+      {
+        "id": "KID_GIRL005",
+        "title": "Cardigan",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsGirl5"
+      },
+      {
+        "id": "KID_GIRL006",
+        "title": "Party Dress",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsGirl6"
+      },
+      {
+        "id": "KID_GIRL007",
+        "title": "Headband",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsGirl7"
+      },
+      {
+        "id": "KID_GIRL008",
+        "title": "Jacket",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsGirl8"
+      },
+      {
+        "id": "KID_GIRL009",
+        "title": "Sweatshirt",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsGirl9"
+      }
+    ],
+    "boys": [
+      {
+        "id": "KID_BOY001",
+        "title": "Polo Shirt",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsBoy1"
+      },
+      {
+        "id": "KID_BOY002",
+        "title": "Cargo Shorts",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsBoy2"
+      },
+      {
+        "id": "KID_BOY003",
+        "title": "Hoodie",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsBoy3"
+      },
+      {
+        "id": "KID_BOY004",
+        "title": "Denim Jeans",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsBoy4"
+      },
+      {
+        "id": "KID_BOY005",
+        "title": "Graphic Tee",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsBoy5"
+      },
+      {
+        "id": "KID_BOY006",
+        "title": "Jacket",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsBoy6"
+      },
+      {
+        "id": "KID_BOY007",
+        "title": "Cap",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsBoy7"
+      },
+      {
+        "id": "KID_BOY008",
+        "title": "Sweatpants",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsBoy8"
+      },
+      {
+        "id": "KID_BOY009",
+        "title": "Shirt",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsBoy9"
+      }
+    ],
+    "teens": [
+      {
+        "id": "KID_TEEN001",
+        "title": "Oversized Hoodie",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsTeen1"
+      },
+      {
+        "id": "KID_TEEN002",
+        "title": "Ripped Jeans",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsTeen2"
+      },
+      {
+        "id": "KID_TEEN003",
+        "title": "Graphic Tee",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsTeen3"
+      },
+      {
+        "id": "KID_TEEN004",
+        "title": "Sneakers",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsTeen4"
+      },
+      {
+        "id": "KID_TEEN005",
+        "title": "Backpack",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsTeen5"
+      },
+      {
+        "id": "KID_TEEN006",
+        "title": "Jogger Pants",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsTeen6"
+      }
+    ],
+    "footwear": [
+      {
+        "id": "KID_FOOT001",
+        "title": "Kids Sneakers",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsFootwear1"
+      },
+      {
+        "id": "KID_FOOT002",
+        "title": "Kids Sandals",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsFootwear2"
+      },
+      {
+        "id": "KID_FOOT003",
+        "title": "Kids Boots",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsFootwear3"
+      },
+      {
+        "id": "KID_FOOT004",
+        "title": "Kids Slippers",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsFootwear4"
+      },
+      {
+        "id": "KID_FOOT005",
+        "title": "Kids Sports Shoes",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsFootwear5"
+      },
+      {
+        "id": "KID_FOOT006",
+        "title": "Kids Light-Up Shoes",
+        "imageUrl": "https://via.placeholder.com/200?text=KidsFootwear6"
+      }
+    ]
+  },
+  "mensFootwear": {
+    "general": [
+      {
+        "id": "MEN_FOOT001",
+        "title": "Casual Sneakers",
+        "imageUrl": "https://via.placeholder.com/200?text=MenFootwear1"
+      },
+      {
+        "id": "MEN_FOOT002",
+        "title": "Formal Shoes",
+        "imageUrl": "https://via.placeholder.com/200?text=MenFootwear2"
+      },
+      {
+        "id": "MEN_FOOT003",
+        "title": "Running Shoes",
+        "imageUrl": "https://via.placeholder.com/200?text=MenFootwear3"
+      },
+      {
+        "id": "MEN_FOOT004",
+        "title": "Loafers",
+        "imageUrl": "https://via.placeholder.com/200?text=MenFootwear4"
+      },
+      {
+        "id": "MEN_FOOT005",
+        "title": "Boots",
+        "imageUrl": "https://via.placeholder.com/200?text=MenFootwear5"
+      },
+      {
+        "id": "MEN_FOOT006",
+        "title": "Sandals",
+        "imageUrl": "https://via.placeholder.com/200?text=MenFootwear6"
+      }
+    ],
+    "genzFootwear": [
+      {
+        "id": "MEN_GENZ_FOOT001",
+        "title": "Chunky Sneakers",
+        "imageUrl": "https://via.placeholder.com/200?text=MenGenZFoot1"
+      },
+      {
+        "id": "MEN_GENZ_FOOT002",
+        "title": "High-Top Trainers",
+        "imageUrl": "https://via.placeholder.com/200?text=MenGenZFoot2"
+      },
+      {
+        "id": "MEN_GENZ_FOOT003",
+        "title": "Retro Sneakers",
+        "imageUrl": "https://via.placeholder.com/200?text=MenGenZFoot3"
+      }
+    ]
+  },
+  "beautyAndGrooming": {
+    "grooming": [
+      {
+        "id": "BEAUTY_GROOM001",
+        "title": "Beard Oil",
+        "imageUrl": "https://via.placeholder.com/200?text=Grooming1"
+      },
+      {
+        "id": "BEAUTY_GROOM002",
+        "title": "Shaving Cream",
+        "imageUrl": "https://via.placeholder.com/200?text=Grooming2"
+      },
+      {
+        "id": "BEAUTY_GROOM003",
+        "title": "Hair Gel",
+        "imageUrl": "https://via.placeholder.com/200?text=Grooming3"
+      }
+    ],
+    "fragrances": [
+      {
+        "id": "BEAUTY_FRAG001",
+        "title": "Eau de Parfum",
+        "imageUrl": "https://via.placeholder.com/200?text=Fragrance1"
+      },
+      {
+        "id": "BEAUTY_FRAG002",
+        "title": "Eau de Toilette",
+        "imageUrl": "https://via.placeholder.com/200?text=Fragrance2"
+      },
+      {
+        "id": "BEAUTY_FRAG003",
+        "title": "Body Mist",
+        "imageUrl": "https://via.placeholder.com/200?text=Fragrance3"
+      }
+    ],
+    "hairCare": [
+      {
+        "id": "BEAUTY_HAIR001",
+        "title": "Shampoo",
+        "imageUrl": "https://via.placeholder.com/200?text=HairCare1"
+      },
+      {
+        "id": "BEAUTY_HAIR002",
+        "title": "Conditioner",
+        "imageUrl": "https://via.placeholder.com/200?text=HairCare2"
+      },
+      {
+        "id": "BEAUTY_HAIR003",
+        "title": "Hair Mask",
+        "imageUrl": "https://via.placeholder.com/200?text=HairCare3"
+      },
+      {
+        "id": "BEAUTY_HAIR004",
+        "title": "Hair Oil",
+        "imageUrl": "https://via.placeholder.com/200?text=HairCare4"
+      },
+      {
+        "id": "BEAUTY_HAIR005",
+        "title": "Dry Shampoo",
+        "imageUrl": "https://via.placeholder.com/200?text=HairCare5"
+      },
+      {
+        "id": "BEAUTY_HAIR006",
+        "title": "Hair Serum",
+        "imageUrl": "https://via.placeholder.com/200?text=HairCare6"
+      }
+    ],
+    "skincare": [
+      {
+        "id": "BEAUTY_SKIN001",
+        "title": "Face Cleanser",
+        "imageUrl": "https://via.placeholder.com/200?text=Skincare1"
+      },
+      {
+        "id": "BEAUTY_SKIN002",
+        "title": "Moisturizer",
+        "imageUrl": "https://via.placeholder.com/200?text=Skincare2"
+      },
+      {
+        "id": "BEAUTY_SKIN003",
+        "title": "Sunscreen",
+        "imageUrl": "https://via.placeholder.com/200?text=Skincare3"
+      },
+      {
+        "id": "BEAUTY_SKIN004",
+        "title": "Face Mask",
+        "imageUrl": "https://via.placeholder.com/200?text=Skincare4"
+      },
+      {
+        "id": "BEAUTY_SKIN005",
+        "title": "Toner",
+        "imageUrl": "https://via.placeholder.com/200?text=Skincare5"
+      },
+      {
+        "id": "BEAUTY_SKIN006",
+        "title": "Serum",
+        "imageUrl": "https://via.placeholder.com/200?text=Skincare6"
+      },
+      {
+        "id": "BEAUTY_SKIN007",
+        "title": "Eye Cream",
+        "imageUrl": "https://via.placeholder.com/200?text=Skincare7"
+      },
+      {
+        "id": "BEAUTY_SKIN008",
+        "title": "Lip Balm",
+        "imageUrl": "https://via.placeholder.com/200?text=Skincare8"
+      },
+      {
+        "id": "BEAUTY_SKIN009",
+        "title": "Exfoliator",
+        "imageUrl": "https://via.placeholder.com/200?text=Skincare9"
+      }
+    ],
+    "makeup": [
+      {
+        "id": "BEAUTY_MAKEUP001",
+        "title": "Foundation",
+        "imageUrl": "https://via.placeholder.com/200?text=Makeup1"
+      },
+      {
+        "id": "BEAUTY_MAKEUP002",
+        "title": "Lipstick",
+        "imageUrl": "https://via.placeholder.com/200?text=Makeup2"
+      },
+      {
+        "id": "BEAUTY_MAKEUP003",
+        "title": "Mascara",
+        "imageUrl": "https://via.placeholder.com/200?text=Makeup3"
+      },
+      {
+        "id": "BEAUTY_MAKEUP004",
+        "title": "Eyeshadow Palette",
+        "imageUrl": "https://via.placeholder.com/200?text=Makeup4"
+      },
+      {
+        "id": "BEAUTY_MAKEUP005",
+        "title": "Blush",
+        "imageUrl": "https://via.placeholder.com/200?text=Makeup5"
+      },
+      {
+        "id": "BEAUTY_MAKEUP006",
+        "title": "Eyeliner",
+        "imageUrl": "https://via.placeholder.com/200?text=Makeup6"
+      },
+      {
+        "id": "BEAUTY_MAKEUP007",
+        "title": "Highlighter",
+        "imageUrl": "https://via.placeholder.com/200?text=Makeup7"
+      },
+      {
+        "id": "BEAUTY_MAKEUP008",
+        "title": "Lip Gloss",
+        "imageUrl": "https://via.placeholder.com/200?text=Makeup8"
+      }
+    ]
+  },
+  "homeAndLiving": {
+    "kitchenAndDining": [
+      {
+        "id": "HOME_KITCHEN001",
+        "title": "Cookware Set",
+        "imageUrl": "https://via.placeholder.com/200?text=Kitchen1"
+      },
+      {
+        "id": "HOME_KITCHEN002",
+        "title": "Dinnerware",
+        "imageUrl": "https://via.placeholder.com/200?text=Kitchen2"
+      },
+      {
+        "id": "HOME_KITCHEN003",
+        "title": "Cutlery Set",
+        "imageUrl": "https://via.placeholder.com/200?text=Kitchen3"
+      },
+      {
+        "id": "HOME_KITCHEN004",
+        "title": "Glassware",
+        "imageUrl": "https://via.placeholder.com/200?text=Kitchen4"
+      },
+      {
+        "id": "HOME_KITCHEN005",
+        "title": "Mixing Bowls",
+        "imageUrl": "https://via.placeholder.com/200?text=Kitchen5"
+      },
+      {
+        "id": "HOME_KITCHEN006",
+        "title": "Kitchen Towels",
+        "imageUrl": "https://via.placeholder.com/200?text=Kitchen6"
+      }
+    ],
+    "homeDecor": [
+      {
+        "id": "HOME_DECOR001",
+        "title": "Wall Art",
+        "imageUrl": "https://via.placeholder.com/200?text=Decor1"
+      },
+      {
+        "id": "HOME_DECOR002",
+        "title": "Decorative Vase",
+        "imageUrl": "https://via.placeholder.com/200?text=Decor2"
+      },
+      {
+        "id": "HOME_DECOR003",
+        "title": "Candle Holder",
+        "imageUrl": "https://via.placeholder.com/200?text=Decor3"
+      },
+      {
+        "id": "HOME_DECOR004",
+        "title": "Photo Frame",
+        "imageUrl": "https://via.placeholder.com/200?text=Decor4"
+      },
+      {
+        "id": "HOME_DECOR005",
+        "title": "Throw Pillow",
+        "imageUrl": "https://via.placeholder.com/200?text=Decor5"
+      },
+      {
+        "id": "HOME_DECOR006",
+        "title": "Table Lamp",
+        "imageUrl": "https://via.placeholder.com/200?text=Decor6"
+      }
+    ],
+    "bathAndBedding": [
+      {
+        "id": "HOME_BATH001",
+        "title": "Bed Sheet Set",
+        "imageUrl": "https://via.placeholder.com/200?text=BathBed1"
+      },
+      {
+        "id": "HOME_BATH002",
+        "title": "Comforter",
+        "imageUrl": "https://via.placeholder.com/200?text=BathBed2"
+      },
+      {
+        "id": "HOME_BATH003",
+        "title": "Bath Towel",
+        "imageUrl": "https://via.placeholder.com/200?text=BathBed3"
+      },
+      {
+        "id": "HOME_BATH004",
+        "title": "Pillowcase",
+        "imageUrl": "https://via.placeholder.com/200?text=BathBed4"
+      },
+      {
+        "id": "HOME_BATH005",
+        "title": "Shower Curtain",
+        "imageUrl": "https://via.placeholder.com/200?text=BathBed5"
+      },
+      {
+        "id": "HOME_BATH006",
+        "title": "Bath Mat",
+        "imageUrl": "https://via.placeholder.com/200?text=BathBed6"
+      }
+    ]
+  },
+  "accessories": {
+    "mensAccessories": [
+      {
+        "id": "ACC_MEN001",
+        "title": "Leather Belt",
+        "imageUrl": "https://via.placeholder.com/200?text=MenAcc1"
+      },
+      {
+        "id": "ACC_MEN002",
+        "title": "Watch",
+        "imageUrl": "https://via.placeholder.com/200?text=MenAcc2"
+      },
+      {
+        "id": "ACC_MEN003",
+        "title": "Sunglasses",
+        "imageUrl": "https://via.placeholder.com/200?text=MenAcc3"
+      },
+      {
+        "id": "ACC_MEN004",
+        "title": "Wallet",
+        "imageUrl": "https://via.placeholder.com/200?text=MenAcc4"
+      },
+      {
+        "id": "ACC_MEN005",
+        "title": "Tie",
+        "imageUrl": "https://via.placeholder.com/200?text=MenAcc5"
+      },
+      {
+        "id": "ACC_MEN006",
+        "title": "Cufflinks",
+        "imageUrl": "https://via.placeholder.com/200?text=MenAcc6"
+      }
+    ],
+    "womensAccessories": [
+      {
+        "id": "ACC_WOMEN001",
+        "title": "Handbag",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenAcc1"
+      },
+      {
+        "id": "ACC_WOMEN002",
+        "title": "Statement Necklace",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenAcc2"
+      },
+      {
+        "id": "ACC_WOMEN003",
+        "title": "Earrings",
+        "imageUrl": "https://via.placeholder.com/200?text=WomenAcc3"
+      }
+    ]
+  }
+}

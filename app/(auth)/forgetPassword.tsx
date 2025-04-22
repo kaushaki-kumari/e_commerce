@@ -7,25 +7,33 @@ import {
   TouchableOpacity,
   Image,
   Keyboard,
+  ActivityIndicator,
 } from "react-native";
 import { useRouter } from "expo-router";
 import CreateNewPassword from "@/components/auth/CreateNewPassword";
 import TextField from "@/components/common/TextField";
 import { useFieldValidation } from "@/hooks/useFieldValidation";
+import {
+  clearAuthError,
+  sendEmailCode,
+  verifyEmailCode,
+  setResetCredentials,
+} from "@/store/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 
 export default function ForgetPassword() {
   const router = useRouter();
   const { errors, handleEmailValidation } = useFieldValidation();
   const [step, setStep] = useState<"email" | "otp" | "password">("email");
   const [email, setEmail] = useState("");
-
   const [otp, setOtp] = useState(new Array(6).fill(""));
   const inputsRef = useRef<Array<TextInput | null>>([]);
-
+  const dispatch = useAppDispatch();
   const [timer, setTimer] = useState(30);
   const [otpError, setOtpError] = useState("");
-
-  const otpNumber = "080524";
+  const { error, sendCodeLoading, verifyCodeLoading } = useAppSelector(
+    (state) => state.auth
+  );
 
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
@@ -44,23 +52,32 @@ export default function ForgetPassword() {
       setStep("email");
       setOtp(new Array(6).fill(""));
       setTimer(30);
-      setOtpError(""); 
+      setOtpError("");
     } else {
       router.back();
     }
+    dispatch(clearAuthError());
   };
 
   const onEmailChange = (text: string) => {
     setEmail(text);
     handleEmailValidation(text);
+    if (error) {
+      dispatch(clearAuthError());
+    }
   };
 
-  const handleConfirmEmail = () => {
+  const handleConfirmEmail = async () => {
     handleEmailValidation(email);
     if (!email.trim()) return;
     if (errors.email) return;
 
-    setStep("otp");
+    try {
+      await dispatch(sendEmailCode(email)).unwrap();
+      setStep("otp");
+    } catch (error) {
+      console.error("Failed to send email code", error);
+    }
   };
 
   const handleChangeOtp = (text: string, index: number) => {
@@ -78,6 +95,10 @@ export default function ForgetPassword() {
       newOtp[index] = "";
       setOtp(newOtp);
     }
+    if (otpError || error) {
+      setOtpError("");
+      dispatch(clearAuthError());
+    }
   };
 
   const handleKeyPress = (e: any, index: number) => {
@@ -86,21 +107,27 @@ export default function ForgetPassword() {
     }
   };
 
-  const handleResend = () => {
+  const handleResend = async () => {
     if (timer === 0) {
-      console.log("Resending OTP...");
-      setTimer(30);
+      try {
+        await dispatch(sendEmailCode(email)).unwrap();
+        setTimer(30);
+        setOtp(new Array(6).fill(""));
+      } catch (err) {
+        console.error("Failed to resend OTP:", err);
+      }
     }
   };
 
-  const handleVerifyOtp = () => {
-    const enteredOtp = otp.join("");
+  const handleVerifyOtp = async () => {
+    const enteredOtp = otp.join("").trim();
     if (enteredOtp.length === 6) {
-      if (enteredOtp === otpNumber) {
-        console.log("OTP verified:", enteredOtp);
+      try {
+        await dispatch(verifyEmailCode({ email, code: enteredOtp })).unwrap();
+        dispatch(setResetCredentials({ email, code: enteredOtp }));
         setStep("password");
-      } else {
-        setOtpError("Invalid OTP");
+      } catch (err) {
+        setOtpError(err as string);
         setOtp(new Array(6).fill(""));
       }
     } else {
@@ -122,7 +149,7 @@ export default function ForgetPassword() {
             label="Enter your Email"
             onChangeText={onEmailChange}
             keyboardType="email-address"
-            error={errors.email}
+            error={errors.email || error || undefined}
             value={email}
           />
           <View style={styles.buttonContainer}>
@@ -135,8 +162,13 @@ export default function ForgetPassword() {
             <TouchableOpacity
               style={[styles.button, styles.confirmButton]}
               onPress={handleConfirmEmail}
+              disabled={sendCodeLoading}
             >
-              <Text style={styles.confirmText}>Confirm</Text>
+              {sendCodeLoading ? (
+                <ActivityIndicator size="small" color="#fff" />
+              ) : (
+                <Text style={styles.confirmText}>Confirm</Text>
+              )}
             </TouchableOpacity>
           </View>
         </>
@@ -178,10 +210,17 @@ export default function ForgetPassword() {
               style={[styles.resendLink, timer > 0 && styles.disabledResend]}
               onPress={timer === 0 ? handleResend : undefined}
             >
-              Resend
+              {sendCodeLoading ? (
+                <ActivityIndicator size={12} color="#ddd" />
+              ) : (
+                <Text>Resend</Text>
+              )}
             </Text>
           </Text>
-          {otpError && <Text style={styles.errorMessage}>{otpError}</Text>}
+          {(otpError || error) && (
+            <Text style={styles.errorMessage}>{otpError || error}</Text>
+          )}
+
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               style={[styles.button, styles.cancelButton]}
@@ -192,8 +231,13 @@ export default function ForgetPassword() {
             <TouchableOpacity
               style={[styles.button, styles.confirmButton]}
               onPress={handleVerifyOtp}
+              disabled={verifyCodeLoading}
             >
-              <Text style={styles.confirmText}>Verify</Text>
+              {verifyCodeLoading ? (
+                <ActivityIndicator size="small" color="#fff" />
+              ) : (
+                <Text style={styles.confirmText}>Verify</Text>
+              )}
             </TouchableOpacity>
           </View>
         </>
@@ -245,7 +289,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     width: "100%",
     gap: 15,
-    marginTop:20
+    marginTop: 20,
   },
   button: {
     flex: 1,
@@ -295,8 +339,8 @@ const styles = StyleSheet.create({
     borderColor: "red",
   },
   resendText: {
-    fontSize: 12,
-    marginTop:25,
+    fontSize: 15,
+    marginVertical: 25,
     color: "gray",
   },
   resendLink: {
@@ -309,6 +353,6 @@ const styles = StyleSheet.create({
   errorMessage: {
     color: "red",
     fontSize: 14,
-    marginTop:10
+    marginTop: 10,
   },
 });

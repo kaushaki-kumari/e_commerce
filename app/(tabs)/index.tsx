@@ -9,6 +9,7 @@ import {
   StatusBar,
   FlatList,
   ScrollView,
+  Image,
 } from "react-native";
 import {
   Ionicons,
@@ -116,15 +117,14 @@ const HomeScreen: React.FC = () => {
             <FontAwesome6 name="location-dot" size={14} color="#1E2637" />
             <Text style={styles.addressText}>Add Delivery Address</Text>
           </View>
-          <MaterialIcons name="keyboard-arrow-down" size={24} color="#333" />
+          <MaterialIcons name="keyboard-arrow-down" size={24} color="#1E2637" />
         </View>
         <View style={styles.searchContainer}>
           <View style={styles.searchInputContainer}>
-            <Ionicons
-              name="search-outline"
-              size={18}
-              color="#999"
-              style={styles.searchIcon}
+            <Image
+              source={require("../../assets/images/favicon.png")}
+              style={styles.logo}
+              resizeMode="contain"
             />
             <TextInput
               placeholder="Search products..."
@@ -133,7 +133,11 @@ const HomeScreen: React.FC = () => {
               value={searchQuery}
               onChangeText={setSearchQuery}
             />
+            <TouchableOpacity>
+              <Ionicons name="search" size={20} color="#999" />
+            </TouchableOpacity>
           </View>
+
           <TouchableOpacity
             style={styles.iconButton}
             onPress={handleUserIconPress}
@@ -156,11 +160,12 @@ const HomeScreen: React.FC = () => {
         </View>
 
         <Navbar tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
-
-        <CategoryGrid
-          activeTab={activeTab}
-          onCategorySelect={handleCategorySelect}
-        />
+        {activeTab !== "Categories" && (
+          <CategoryGrid
+            activeTab={activeTab}
+            onCategorySelect={handleCategorySelect}
+          />
+        )}
 
         <FlatList
           data={getFilteredProducts()}
@@ -182,7 +187,7 @@ const HomeScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#f5fbff",
     paddingTop: 15,
   },
   contentWrapper: {
@@ -220,16 +225,27 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: 10,
     backgroundColor: "#fff",
+    justifyContent: "space-between",
   },
-  searchIcon: {
+
+  logo: {
+    width: 20,
+    height: 20,
+    resizeMode: "contain",
     marginRight: 8,
   },
+
   searchInput: {
     flex: 1,
     height: 40,
     fontSize: 12,
     color: "#333",
   },
+
+  searchIconRight: {
+    paddingLeft: 8,
+  },
+
   iconButton: {
     marginLeft: 15,
   },

@@ -9,13 +9,21 @@ import { Button } from "@/components/common/Button";
 import { useFieldValidation } from "@/hooks/useFieldValidation";
 import { useRouter } from "expo-router";
 import PasswordField from "../common/PasswordField";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { resetPassword } from "@/store/auth/authSlice";
 
 export default function CreateNewPassword() {
   const { errors, handlePasswordValidation, handlePasswordMatch } =
     useFieldValidation();
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const { email, code } = useAppSelector((state) => ({
+    email: state.auth.resetEmail || "",
+    code: state.auth.resetCode || "",
+  }));
+  const { resetPasswordLoading, error } = useAppSelector((state) => state.auth);
 
   const handlePasswordChange = (text: string) => {
     setNewPassword(text);
@@ -31,22 +39,32 @@ export default function CreateNewPassword() {
     handlePasswordMatch(newPassword, text);
   };
 
-  const handleSubmit = () => {
-    handlePasswordValidation(newPassword);
-    handlePasswordMatch(newPassword, confirmPassword);
-
-    const hasErrors = !!(errors.password || errors.confirmPassword);
-    const allFieldsFilled = newPassword && confirmPassword;
-
-    if (!hasErrors && allFieldsFilled) {
+  const handleSubmit = async () => {
+    console.log('Password reset payload:', {
+      email,
+      code,
+      password: newPassword,
+      password_confirmation: confirmPassword
+    });
+  
+    try {
+     await dispatch(
+        resetPassword({
+          email: email.trim(),
+          code: code.toString().trim(),
+          password: newPassword,
+          password_confirmation: confirmPassword,
+        })
+      )
+      .unwrap();
       router.push("/login");
+    } catch (err) {
+      console.error('Reset failed:', err);
     }
   };
 
   return (
     <View style={styles.container}>
-
-
       <View style={styles.imageWrapper}>
         <Image
           source={require("../../assets/images/favicon.png")}
@@ -73,7 +91,7 @@ export default function CreateNewPassword() {
           error={errors.confirmPassword}
         />
       </View>
-      <Button title="Save" onPress={handleSubmit} style={{ width: "90%" }} />
+      <Button title="Save" onPress={handleSubmit} style={{ width: "90%" }} loading={resetPasswordLoading}/>
     </View>
   );
 }
