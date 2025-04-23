@@ -73,7 +73,6 @@ const CategoryGrid: React.FC<CategoryGridProps> = ({
               <Image 
                 source={{ uri: category.imageUrl }} 
                 style={styles.categoryImage}
-                onError={(e) => console.log(`Image load error for ${category.title}:`, e.nativeEvent.error)}
               />
             </View>
             <Text
@@ -97,7 +96,7 @@ const styles = StyleSheet.create({
   },
   categoriesContainer: {
     paddingVertical: 5,
-    paddingHorizontal: 5,
+    paddingHorizontal: 10,
   },
   categoryItem: {
     alignItems: "center",

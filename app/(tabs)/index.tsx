@@ -10,6 +10,7 @@ import {
   FlatList,
   ScrollView,
   Image,
+  Platform,
 } from "react-native";
 import {
   Ionicons,
@@ -22,6 +23,8 @@ import { router } from "expo-router";
 import data from "../../assets/data/products.json";
 import Navbar from "@/components/home/Navbar";
 import CategoryGrid from "@/components/home/CategoryGrid";
+import ImageSlider from "@/components/home/ImageSlider";
+import bannerData from "../../assets/data/banner.json";
 
 interface Product {
   id: string;
@@ -104,6 +107,18 @@ const HomeScreen: React.FC = () => {
     />
   );
 
+  const ListHeader = () => (
+    <>
+      {activeTab !== "Categories" && (
+        <CategoryGrid
+          activeTab={activeTab}
+          onCategorySelect={handleCategorySelect}
+        />
+      )}
+      <ImageSlider slides={bannerData} />
+    </>
+  );
+
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.contentWrapper}>
@@ -160,23 +175,15 @@ const HomeScreen: React.FC = () => {
         </View>
 
         <Navbar tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
-        {activeTab !== "Categories" && (
-          <CategoryGrid
-            activeTab={activeTab}
-            onCategorySelect={handleCategorySelect}
-          />
-        )}
 
         <FlatList
           data={getFilteredProducts()}
           numColumns={2}
           keyExtractor={(item) => item.id}
           renderItem={renderItem}
-          contentContainerStyle={{ paddingVertical: 10 }}
-          columnWrapperStyle={{
-            justifyContent: "space-between",
-            marginBottom: 16,
-          }}
+          ListHeaderComponent={ListHeader}
+          contentContainerStyle={styles.flatListContent}
+          columnWrapperStyle={styles.columnWrapper}
           showsVerticalScrollIndicator={false}
         />
       </SafeAreaView>
@@ -188,17 +195,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f5fbff",
-    paddingTop: 15,
   },
   contentWrapper: {
     flex: 1,
-    paddingHorizontal: 16,
-    paddingTop: StatusBar.currentHeight || 40,
+    paddingHorizontal: Platform.OS === "ios" ? 20 : 16,
+    paddingTop: Platform.OS === "ios" ? 20 : StatusBar.currentHeight || 40,
   },
   addressContainer: {
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 12,
+    marginHorizontal: Platform.OS === "ios" ? 5 : 0,
   },
   addressTextContainer: {
     flexDirection: "row",
@@ -215,6 +222,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 12,
+    marginHorizontal: Platform.OS === "ios" ? 5 : 0,
   },
   searchInputContainer: {
     flex: 1,
@@ -248,6 +256,14 @@ const styles = StyleSheet.create({
 
   iconButton: {
     marginLeft: 15,
+  },
+  flatListContent: {
+    paddingVertical: 10,
+    paddingHorizontal: 5,
+  },
+  columnWrapper: {
+    justifyContent: "space-between",
+    marginBottom: 16,
   },
 });
 

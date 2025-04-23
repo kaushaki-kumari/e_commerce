@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  SafeAreaView,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 
@@ -19,35 +25,33 @@ const Navbar: React.FC<NavbarProps> = ({ tabs, activeTab, setActiveTab }) => {
   };
 
   return (
-    <View style={styles.navbar}>
-      {tabs.map((tab) => (
-        <TouchableOpacity
-          key={tab}
-          onPress={() => handleTabPress(tab)}
-          style={styles.navItemWrapper}
-        >
-          {tab === "Categories" ? (
-            <View style={styles.categoryTab}>
-              <Ionicons
-                name="grid-outline"
-                size={20}
-                color="#fff"
-              />
-            </View>
-          ) : (
-            <Text
-              style={[
-                styles.navItemText,
-                activeTab === tab && styles.activeNavItemText,
-              ]}
-            >
-              {tab}
-            </Text>
-          )}
-          {activeTab === tab && <View style={styles.activeLine} />}
-        </TouchableOpacity>
-      ))}
-    </View>
+    <SafeAreaView>
+      <View style={styles.navbar}>
+        {tabs.map((tab) => (
+          <TouchableOpacity
+            key={tab}
+            onPress={() => handleTabPress(tab)}
+            style={styles.navItemWrapper}
+          >
+            {tab === "Categories" ? (
+              <View style={styles.categoryTab}>
+                <Ionicons name="grid-outline" size={20} color="#fff" />
+              </View>
+            ) : (
+              <Text
+                style={[
+                  styles.navItemText,
+                  activeTab === tab && styles.activeNavItemText,
+                ]}
+              >
+                {tab}
+              </Text>
+            )}
+            {activeTab === tab && <View style={styles.activeLine} />}
+          </TouchableOpacity>
+        ))}
+      </View>
+    </SafeAreaView>
   );
 };
 
@@ -79,14 +83,14 @@ const styles = StyleSheet.create({
     color: "#1E2637",
     fontFamily: "HelveticaBold",
   },
-  categoryTab:{
-    backgroundColor:'#1E2637',
-    padding:3,
-    borderRadius:8,
-    borderWidth:1,
-    borderColor:'#fff',
-    elevation:3
-  }
+  categoryTab: {
+    backgroundColor: "#1E2637",
+    padding: 3,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#fff",
+    elevation: 3,
+  },
 });
 
 export default Navbar;

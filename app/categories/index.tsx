@@ -9,10 +9,12 @@ import {
   SafeAreaView,
   FlatList,
   BackHandler,
+  Platform,
+  StatusBar,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
-import categoriesData from "../assets/data/category-data.json";
+import categoriesData from "../../assets/data/category-data.json";
 
 interface CategoryItem {
   id: string;
@@ -41,7 +43,7 @@ const CategoriesScreen: React.FC = () => {
       id: "trending",
       title: "Trending Now",
       imageUrl:
-        "https://img.freepik.com/premium-vector/trending-now-vector-banner-social-media-template_78946-685.jpg",
+        "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQBxhOCxZs3zo0Qlpn72vIlhWjTG8alq0AU7un_MUXWiuWwJCtD",
     },
     {
       id: "men",
@@ -62,7 +64,7 @@ const CategoriesScreen: React.FC = () => {
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt6qGDwhaA9ubQKppLzzDKQqaYa5qzlu5NV6cjCHAYhdWYau3etT4WjH6rJpncc2UAc5w&usqp=CAU",
     },
     {
-      id: "mensFootwear",
+      id: "footwear",
       title: "Footwear",
       imageUrl:
         "https://m.media-amazon.com/images/I/31sI-rxlmWL._AC_UY1000_.jpg",
@@ -115,13 +117,16 @@ const CategoriesScreen: React.FC = () => {
       genzFootwear,
     },
     kidsWear: { infants, girls, boys, teens, footwear: kidsFootwear },
-    mensFootwear: {
-      general: mensFootwearGeneral,
+    footwear: {
+      womensFootwear: womensfootwear,
+      mensFootwear: mensfootwear,
       genzFootwear: mensGenzFootwear,
     },
     beautyAndGrooming: { grooming, fragrances, hairCare, skincare, makeup },
     homeAndLiving: { kitchenAndDining, homeDecor, bathAndBedding },
     accessories: { mensAccessories, womensAccessories },
+    gadgets: { gadGet },
+    jewellery: { jewellery },
   } = categoriesData;
 
   const [selectedCategory, setSelectedCategory] = useState<string | null>(
@@ -157,10 +162,15 @@ const CategoriesScreen: React.FC = () => {
       ]}
       onPress={() => setSelectedCategory(item.id)}
     >
-      <Image
-        source={{ uri: item.imageUrl }}
-        style={styles.sidebarImage}
-      />
+      <View style={styles.sidebarItemInner}>
+        <View
+          style={[
+            styles.sidebarBorder,
+            selectedCategory === item.id && styles.selectedSidebarBorder,
+          ]}
+        />
+        <Image source={{ uri: item.imageUrl }} style={styles.sidebarImage} />
+      </View>
       <Text
         style={[
           styles.sidebarText,
@@ -175,10 +185,7 @@ const CategoriesScreen: React.FC = () => {
   const renderSpotlightItem = ({ item }: { item: SpotlightItem }) => (
     <TouchableOpacity style={styles.spotlightItem}>
       <View style={styles.spotlightImageContainer}>
-        <Image
-          source={{ uri: item.imageUrl }}
-          style={styles.spotlightImage}
-        />
+        <Image source={{ uri: item.imageUrl }} style={styles.spotlightImage} />
       </View>
       <Text style={styles.spotlightTitle}>{item.title}</Text>
     </TouchableOpacity>
@@ -273,10 +280,11 @@ const CategoriesScreen: React.FC = () => {
               {renderGridSection("Footwear", kidsFootwear)}
             </>
           )}
-          {selectedCategory === "mensFootwear" && (
+          {selectedCategory === "footwear" && (
             <>
-              {renderGridSection("General Footwear", mensFootwearGeneral)}
-              {renderGridSection("Gen Z Footwear", mensGenzFootwear)}
+              {renderGridSection("Women's Footwear", womensfootwear)}
+              {renderGridSection("GenZ Men's Footwear", mensfootwear)}
+              {renderGridSection("GenZ Women's Footwear", mensGenzFootwear)}
             </>
           )}
           {selectedCategory === "beautyAndGrooming" && (
@@ -301,6 +309,12 @@ const CategoriesScreen: React.FC = () => {
               {renderGridSection("Women's Accessories", womensAccessories)}
             </>
           )}
+          {selectedCategory === "gadgets" && (
+            <>{renderGridSection("Gadgets", gadGet)}</>
+          )}
+          {selectedCategory === "jewellery" && (
+            <>{renderGridSection("Jewellery", jewellery)}</>
+          )}
         </ScrollView>
       </View>
     </SafeAreaView>
@@ -311,6 +325,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   header: {
     flexDirection: "row",
@@ -318,14 +333,13 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 16,
     paddingVertical: 10,
-    marginTop: 50,
   },
   backButton: {
     padding: 5,
   },
   headerContain: {
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
   },
   headerTitle: {
     fontSize: 16,
@@ -366,18 +380,28 @@ const styles = StyleSheet.create({
   sidebarItem: {
     alignItems: "center",
     paddingVertical: 10,
-    paddingHorizontal: 5,
-    borderLeftWidth: 4,
-    borderLeftColor: "transparent",
+    paddingHorizontal: 10,
+  },
+  sidebarItemInner: {
+    position: "relative",
+    flexDirection: "row",
+  },
+  sidebarBorder: {
+    position: "absolute",
+    left: -18,
+    width: 6,
+    height: 45,
+    backgroundColor: "transparent",
+  },
+  selectedSidebarBorder: {
+    backgroundColor: "#1E2637",
   },
   selectedSidebarItem: {
-    borderLeftColor: "#1E2637",
     backgroundColor: "#fff",
-   
   },
-  sidebarImage: { 
-    width: 60,
-    height: 50,
+  sidebarImage: {
+    width: 55,
+    height: 45,
     borderRadius: 10,
     resizeMode: "cover",
   },
@@ -399,18 +423,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   section: {
-    marginBottom: 25,
+    marginBottom: 5,
   },
   sectionTitle: {
-    fontSize: 16,
-    fontFamily:'HelveticaBold',
+    fontSize: 15,
+    fontFamily: "HelveticaBold",
     marginVertical: 10,
     color: "#1E2637",
   },
   spotlightGrid: {
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "space-between",
+    // justifyContent: "space-between",
   },
   spotlightItemWrapper: {
     width: "33%",

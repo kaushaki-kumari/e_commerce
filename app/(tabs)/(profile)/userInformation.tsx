@@ -22,7 +22,6 @@ const UserInformationScreen = () => {
     lastName: "",
     phoneNumber: "",
     gender: null as "male" | "female" | null,
-    userType: null as "user" | "seller" | null,
     selectedImage: null as string | null,
   });
 
@@ -44,7 +43,7 @@ const UserInformationScreen = () => {
 
   const handleContinue = () => {
     alert("Continue pressed!");
-    console.log("User Data:", userData); 
+    console.log("User Data:", userData);
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -54,7 +53,7 @@ const UserInformationScreen = () => {
     }));
   };
 
-  const handleSelectionChange = (field: "gender" | "userType", value: any) => {
+  const handleSelectionChange = (field: "gender", value: "male" | "female") => {
     setUserData((prevData) => ({
       ...prevData,
       [field]: value,
@@ -69,7 +68,10 @@ const UserInformationScreen = () => {
 
       <TouchableOpacity onPress={pickImage} style={styles.avatarWrapper}>
         {userData.selectedImage ? (
-          <Image source={{ uri: userData.selectedImage }} style={styles.avatar} />
+          <Image
+            source={{ uri: userData.selectedImage }}
+            style={styles.avatar}
+          />
         ) : (
           <View style={[styles.avatar, styles.iconWrapper]}>
             <FontAwesome name="user" size={50} color="#ccc" />
@@ -106,10 +108,13 @@ const UserInformationScreen = () => {
       <View style={styles.cardRow}>
         <TouchableOpacity
           onPress={() => handleSelectionChange("gender", "male")}
-          style={[styles.card, userData.gender === "male" && styles.selectedCard]}
+          style={[
+            styles.card,
+            userData.gender === "male" && styles.selectedCard,
+          ]}
         >
           <Image
-           source={require("@/assets/images/images/gender-male.png")}
+            source={require("@/assets/images/images/gender-male.png")}
             style={styles.cardImage}
           />
           <Text style={styles.cardText}>Male</Text>
@@ -117,38 +122,16 @@ const UserInformationScreen = () => {
 
         <TouchableOpacity
           onPress={() => handleSelectionChange("gender", "female")}
-          style={[styles.card, userData.gender === "female" && styles.selectedCard]}
+          style={[
+            styles.card,
+            userData.gender === "female" && styles.selectedCard,
+          ]}
         >
           <Image
             source={require("@/assets/images/images/gender-female.png")}
             style={styles.cardImage}
           />
           <Text style={styles.cardText}>Female</Text>
-        </TouchableOpacity>
-      </View>
-
-      <Text style={styles.label}>Select Role</Text>
-      <View style={styles.cardRow}>
-        <TouchableOpacity
-          onPress={() => handleSelectionChange("userType", "user")}
-          style={[styles.card, userData.userType === "user" && styles.selectedCard]}
-        >
-          <Image
-           source={require("@/assets/images/images/user.png")}
-            style={styles.cardImage}
-          />
-          <Text style={styles.cardText}>User</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => handleSelectionChange("userType", "seller")}
-          style={[styles.card, userData.userType === "seller" && styles.selectedCard]}
-        >
-          <Image
-           source={require("@/assets/images/images/seller.png")}
-            style={styles.cardImage}
-          />
-          <Text style={styles.cardText}>Seller</Text>
         </TouchableOpacity>
       </View>
 
@@ -167,15 +150,13 @@ const UserInformationScreen = () => {
 
 export default UserInformationScreen;
 
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     alignItems: "center",
     paddingHorizontal: 24,
     paddingTop: height * 0.18,
-    minHeight: '100%',
-  
+    minHeight: "100%",
   },
   topCurve: {
     position: "absolute",
@@ -268,7 +249,7 @@ const styles = StyleSheet.create({
   cardText: {
     fontSize: 14,
     color: "#1A1651",
-    fontFamily: "HelveticaBold", 
+    fontFamily: "HelveticaBold",
   },
 
   dobPicker: {
@@ -287,8 +268,8 @@ const styles = StyleSheet.create({
   helpContainer: {
     flexDirection: "row",
     justifyContent: "center",
-    marginBottom:30,
-    marginTop:10,
+    marginBottom: 30,
+    marginTop: 10,
     borderBottomWidth: 1,
     borderColor: "#eee",
     borderStyle: "dotted",
@@ -302,8 +283,5 @@ const styles = StyleSheet.create({
     marginTop: -5,
     color: "#232454",
     fontWeight: "bold",
-   
   },
 });
-
-

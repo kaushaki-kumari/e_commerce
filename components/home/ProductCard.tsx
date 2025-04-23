@@ -112,9 +112,9 @@ export default ProductCard;
 
 const styles = StyleSheet.create({
   card: {
-    width: Dimensions.get("window").width / 2 - 22,
+    width: Dimensions.get("window").width / 2 - 25,
     backgroundColor: "#fff",
-    borderRadius: 5,
+    borderRadius: 8,
     overflow: "hidden",
   },
   imageWrapper: {
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
   },
   cardImage: {
     width: "100%",
-    height: 300,
+    height: 240,
     resizeMode: "cover",
   },
   likeButton: {
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     height:43,
     paddingHorizontal: 12,
     paddingTop: 10,
-    lineHeight: 15,
+    lineHeight: 18,
   },
   starContainer: {
     flexDirection: "row",
