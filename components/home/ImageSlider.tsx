@@ -30,7 +30,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ slides }) => {
   const scrollViewRef = useRef<ScrollView>(null);
 
   const handleScroll = (event: any) => {
-    const slideWidth = width - 40;
+    const slideWidth = width - 10;
     const offset = event.nativeEvent.contentOffset.x;
     const activeIndex = Math.round(offset / slideWidth);
     setActiveIndex(activeIndex);
@@ -67,6 +67,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ slides }) => {
         showsHorizontalScrollIndicator={false}
         onScroll={handleScroll}
         scrollEventThrottle={16}
+        contentContainerStyle={{ alignItems: 'center' }}
         style={styles.scrollView}
       >
         {slides.map((slide, index) => (
@@ -122,6 +123,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     overflow: 'hidden',
     position: 'relative',
+
   },
   image: {
     width: '100%',
@@ -193,7 +195,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 10,
     bottom: '8%',
-    marginTop: -20,
     width: 30,
     height: 30,
     borderRadius: 15,

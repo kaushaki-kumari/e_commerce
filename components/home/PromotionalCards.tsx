@@ -1,0 +1,290 @@
+import {
+  AntDesign,
+  Entypo,
+  FontAwesome,
+  Ionicons,
+  Octicons,
+} from "@expo/vector-icons";
+import React from "react";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+  Dimensions,
+} from "react-native";
+
+interface PromotionalCard {
+  id: string;
+  title: string;
+  imageUrl: string;
+  linkTo?: string;
+}
+
+interface PromotionalCardsProps {
+  cards: PromotionalCard[];
+  onCardPress?: (card: PromotionalCard) => void;
+}
+
+const { width } = Dimensions.get("window");
+const cardWidth = width / 3 - 40;
+
+const PromotionalCards: React.FC<PromotionalCardsProps> = ({
+  cards,
+  onCardPress,
+}) => {
+  const firstColumnCards = cards.slice(0, 2);
+  const remainingCards = cards.slice(2);
+
+  return (
+    <View style={styles.container}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContainer}
+      >
+        <View style={styles.firstColumn}>
+          {/* Static "Best Sellers" card */}
+          <TouchableOpacity style={styles.largeCard} activeOpacity={0.8}>
+            <Image
+              source={{ uri: "https://example.com/images/best-sellers.jpg" }}
+              style={styles.cardImage}
+            />
+            <View style={styles.bestSellerOverlay}>
+              <View>
+                <Text style={styles.bestSellerTitle}>Best</Text>
+                <Text style={styles.bestSellerTitle}>Sellers</Text>
+              </View>
+              <Image
+                source={require("../../assets/images/images/star-badge.png")}
+                style={styles.starBadge}
+              />
+            </View>
+          </TouchableOpacity>
+
+          <View style={styles.subRow}>
+            {firstColumnCards.map((card, index) => (
+              <TouchableOpacity
+                key={card.id || `subRow-${index}`}
+                style={styles.card}
+                activeOpacity={0.8}
+              >
+                <View style={styles.cardContent}>
+                  <Text style={styles.cardTitle}>
+                    {card.title}
+                    <AntDesign name="right" size={8} color="#7a7a7a" />
+                  </Text>
+                  <Image
+                    source={{ uri: card.imageUrl }}
+                    style={styles.cardImage}
+                  />
+                </View>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
+
+        {Array.from({ length: Math.ceil(remainingCards.length / 2) }).map(
+          (_, colIndex) => (
+            <View key={`col-${colIndex}`} style={styles.column}>
+              {remainingCards[colIndex * 2] && (
+                <TouchableOpacity style={styles.card} activeOpacity={0.8}>
+                  <View style={styles.cardContent}>
+                    <Text style={styles.cardTitle}>
+                      {remainingCards[colIndex * 2].title}
+                      <AntDesign name="right" size={8} color="#7a7a7a" />
+                    </Text>
+                    <Image
+                      source={{ uri: remainingCards[colIndex * 2].imageUrl }}
+                      style={styles.cardImage}
+                    />
+                  </View>
+                </TouchableOpacity>
+              )}
+
+              {remainingCards[colIndex * 2 + 1] && (
+                <TouchableOpacity style={styles.card} activeOpacity={0.8}>
+                  <View style={styles.cardContent}>
+                    <Text style={styles.cardTitle}>
+                      {remainingCards[colIndex * 2 + 1].title}
+                      <AntDesign name="right" size={8} color="#7a7a7a" />
+                    </Text>
+                    <Image
+                      source={{
+                        uri: remainingCards[colIndex * 2 + 1].imageUrl,
+                      }}
+                      style={styles.cardImage}
+                    />
+                  </View>
+                </TouchableOpacity>
+              )}
+            </View>
+          )
+        )}
+      </ScrollView>
+
+      {/* Shipping info banner */}
+      <View style={styles.shippingInfoContainer}>
+        <View style={styles.sparkleLeft}>
+          <Ionicons name="star-sharp" size={24} color="#F7CD03" />
+        </View>
+
+        <View style={styles.infoItem}>
+          <Octicons name="verified" size={18} color="#1B1650" />
+          <View style={styles.infoTextContainer}>
+            <Text style={styles.infoTitle}>100%</Text>
+            <Text style={styles.infoSubtitle}>Original Products</Text>
+          </View>
+        </View>
+
+        <View style={styles.divider} />
+        <View style={styles.infoItem}>
+          <Entypo name="box" size={18} color="#1B1650" />
+          <View style={styles.infoTextContainer}>
+            <Text style={styles.infoTitle}>Free Shipping</Text>
+            <Text style={styles.infoSubtitle}>On All Orders</Text>
+          </View>
+        </View>
+
+        <View style={styles.divider} />
+        <View style={styles.infoItem}>
+          <FontAwesome name="rupee" size={18} color="#1B1650" />
+          <View style={styles.infoTextContainer}>
+            <Text style={styles.infoTitle}>Easy Returns</Text>
+            <Text style={styles.infoSubtitle}>And Refunds</Text>
+          </View>
+        </View>
+
+        <View style={styles.sparkleRight}>
+          <Ionicons name="star-sharp" size={24} color="#F7CD03" />
+        </View>
+      </View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    marginBottom: 15,
+  },
+  scrollContainer: {
+  },
+  firstColumn: {
+    width: cardWidth * 2 + 10,
+    marginRight: 5,
+  },
+  subRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  column: {
+    width: cardWidth,
+    marginRight: 5,
+  },
+  largeCard: {
+    height: 95,
+    borderRadius: 15,
+    marginBottom: 5,
+    overflow: "hidden",
+    backgroundColor: "#f1f0ff",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  card: {
+    width: cardWidth,
+    height: 95,
+    borderRadius: 15,
+    marginBottom: 5,
+    overflow: "hidden",
+    backgroundColor: "#f8f2ea",
+  },
+  cardContent: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "space-between",
+  },
+  cardImage: {
+    width: "80%",
+    height: 70,
+    resizeMode: "contain",
+    alignSelf: "center",
+  },
+  cardTitle: {
+    color: "#333",
+    fontWeight: "600",
+    fontSize: 12,
+    paddingLeft: 10,
+    paddingTop: 5,
+    textAlign: "left",
+  },
+  bestSellerOverlay: {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 15,
+  },
+  bestSellerTitle: {
+    color: "#1B1650",
+    fontWeight: "800",
+    fontSize: 24,
+    lineHeight: 24,
+  },
+  starBadge: {
+    width: 90,
+    marginTop: 5,
+    resizeMode: "contain",
+  },
+  shippingInfoContainer: {
+    flexDirection: "row",
+    backgroundColor: "#e6ffe6",
+    borderRadius: 15,
+    padding: 10,
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 10,
+    marginHorizontal: 10,
+    position: "relative",
+    borderWidth: 1,
+    borderColor: "#eee",
+  },
+  infoItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 5,
+  },
+  infoTextContainer: {
+    flexDirection: "column",
+  },
+  infoTitle: {
+    fontSize: 12,
+    fontWeight: "bold",
+    color: "#333",
+  },
+  infoSubtitle: {
+    fontSize: 10,
+    color: "#666",
+  },
+  divider: {
+    width: 1,
+    height: "90%",
+    backgroundColor: "#ddd",
+    marginHorizontal: 5,
+  },
+  sparkleLeft: {
+    position: "absolute",
+    left: -10,
+    top: -10,
+  },
+  sparkleRight: {
+    position: "absolute",
+    right: -10,
+    bottom: -10,
+  },
+});
+
+export default PromotionalCards;

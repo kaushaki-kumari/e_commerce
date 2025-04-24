@@ -24,7 +24,7 @@ const initialState: AuthState = {
   verifyCodeLoading: false,
   resetPasswordLoading: false,
   resetEmail: null,
-  resetCode: null
+  resetCode: null,
 };
 
 const apiUrl = process.env.EXPO_PUBLIC_API_URL;
@@ -32,18 +32,31 @@ console.log("apiurl", apiUrl);
 export const registerUser = createAsyncThunk(
   "auth/register",
   async (
-    { email, password }: { email: string; password: string },
+    {
+      email,
+      password,
+      password_confirmation,
+    }: { email: string; password: string; password_confirmation: string },
     { rejectWithValue }
   ) => {
     try {
       const response = await axios.post(`${apiUrl}/auth/register`, {
         email,
         password,
+        password_confirmation,
       });
       return response.data;
     } catch (error: any) {
+      if (error.response?.data?.errors) {
+        const errorData = error.response.data.errors;
+        for (const field in errorData) {
+          if (errorData[field]) {
+            return rejectWithValue(errorData[field]);
+          }
+        }
+      }
       return rejectWithValue(
-        error.response?.data?.message || "Registration failed"
+        error.response?.data?.message || error.message || "Registration failed"
       );
     }
   }
@@ -62,7 +75,17 @@ export const loginUser = createAsyncThunk(
       });
       return response.data;
     } catch (error: any) {
-      return rejectWithValue(error.response?.data?.message || "Login failed");
+      if (error.response?.data?.errors) {
+        const errorData = error.response.data.errors;
+        for (const field in errorData) {
+          if (errorData[field]) {
+            return rejectWithValue(errorData[field]);
+          }
+        }
+      }
+      return rejectWithValue(
+        error.response?.data?.message || error.message || "Login Failed"
+      );
     }
   }
 );
@@ -145,7 +168,10 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       state.user = null;
     },
-    setResetCredentials: (state, action: PayloadAction<{ email: string, code: string }>) => {
+    setResetCredentials: (
+      state,
+      action: PayloadAction<{ email: string; code: string }>
+    ) => {
       state.resetEmail = action.payload.email;
       state.resetCode = action.payload.code;
     },
@@ -213,5 +239,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { clearAuthError, resetRegistration ,setResetCredentials } = authSlice.actions;
+export const { clearAuthError, resetRegistration, setResetCredentials } =
+  authSlice.actions;
 export default authSlice.reducer;

@@ -1,12 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
+import LoginModal from "@/app/(auth)/loginModal";
+import SignUpModal from "@/app/(auth)/signUpModal";
 
-export default function ProfileHeader() {
+const ProfileHeader: React.FC = () => {
   const router = useRouter();
+  const [loginModalVisible, setLoginModalVisible] = useState<boolean>(false);
+  const [signupModalVisible, setSignupModalVisible] = useState<boolean>(false);
 
-  const handleLoginPress = () => {
-    router.push("/login");
+  const handleLoginPress = (): void => {
+    setLoginModalVisible(true);
+  };
+
+  const closeLoginModal = (): void => {
+    setLoginModalVisible(false);
+  };
+
+  const closeSignupModal = (): void => {
+    setSignupModalVisible(false);
+  };
+
+  const openSignupModal = (): void => {
+    setLoginModalVisible(false); 
+    setSignupModalVisible(true);
+  };
+
+  const openLoginModal = (): void => {
+    setSignupModalVisible(false); 
+    setLoginModalVisible(true); 
   };
 
   return (
@@ -32,9 +54,21 @@ export default function ProfileHeader() {
           </View>
         </View>
       </View>
+      
+      <LoginModal 
+        visible={loginModalVisible} 
+        onClose={closeLoginModal}
+        onSignupPress={openSignupModal} 
+      />
+      
+      <SignUpModal 
+        visible={signupModalVisible} 
+        onClose={closeSignupModal}
+        onLoginPress={openLoginModal}
+      />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   headerContainer: {
@@ -92,3 +126,5 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
 });
+
+export default ProfileHeader;

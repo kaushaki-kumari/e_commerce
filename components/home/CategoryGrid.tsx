@@ -95,13 +95,11 @@ const styles = StyleSheet.create({
     marginVertical: 4,
   },
   categoriesContainer: {
-    paddingVertical: 5,
-    paddingHorizontal: 10,
+    paddingVertical: 2,
   },
   categoryItem: {
     alignItems: "center",
-    marginRight: 12,
-    width: 80,
+    width: 85,
   },
   imageContainer: {
     width: 75,

@@ -74,7 +74,7 @@ export default TextField;
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginBottom: 24,
+    marginBottom: 18,
     width: "100%",
   },
   container: {
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     borderRadius: 6,
     paddingHorizontal: 12,
-    paddingVertical: Platform.OS === "ios" ? 14 : 8,
+    paddingVertical: Platform.OS === "ios" ? 13 : 8,
     fontSize: 16,
   },
   inputFocused: {

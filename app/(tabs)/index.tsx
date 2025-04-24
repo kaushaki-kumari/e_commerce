@@ -25,6 +25,8 @@ import Navbar from "@/components/home/Navbar";
 import CategoryGrid from "@/components/home/CategoryGrid";
 import ImageSlider from "@/components/home/ImageSlider";
 import bannerData from "../../assets/data/banner.json";
+import PromotionalCards from "@/components/home/PromotionalCards";
+import promotionalData from "../../assets/data/promotionalData.json";
 
 interface Product {
   id: string;
@@ -116,6 +118,7 @@ const HomeScreen: React.FC = () => {
         />
       )}
       <ImageSlider slides={bannerData} />
+      <PromotionalCards cards={promotionalData.promotionalCards} />
     </>
   );
 
@@ -204,7 +207,7 @@ const styles = StyleSheet.create({
   addressContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 12,
+    marginVertical: 1,
     marginHorizontal: Platform.OS === "ios" ? 5 : 0,
   },
   addressTextContainer: {
@@ -259,7 +262,6 @@ const styles = StyleSheet.create({
   },
   flatListContent: {
     paddingVertical: 10,
-    paddingHorizontal: 5,
   },
   columnWrapper: {
     justifyContent: "space-between",

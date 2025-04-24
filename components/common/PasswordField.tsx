@@ -89,8 +89,9 @@ export default PasswordField;
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 24,
+    marginBottom: 18,
     position: "relative",
+    width: "100%",
   },
   label: {
     position: "absolute",

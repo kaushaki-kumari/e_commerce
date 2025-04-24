@@ -106,6 +106,10 @@ export const useFieldValidation = () => {
       setErrors((prev) => ({ ...prev, password: "" }));
     }
   };
+
+  const resetErrors = () => {
+    setErrors({});
+  };
   
 
   return { 
@@ -114,6 +118,7 @@ export const useFieldValidation = () => {
     handleEmailValidation, 
     handlePasswordValidation, 
     handlePasswordMatch ,
-    handleLoginPasswordValidation
+    handleLoginPasswordValidation,
+    resetErrors
   };
 };
