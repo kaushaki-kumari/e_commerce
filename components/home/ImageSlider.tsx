@@ -11,6 +11,7 @@ import {
 import { FontAwesome6 } from "@expo/vector-icons";
 
 const { width } = Dimensions.get('window');
+const SLIDER_WIDTH = width - 40;
 
 interface SlideItem {
   id: string;
@@ -30,15 +31,14 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ slides }) => {
   const scrollViewRef = useRef<ScrollView>(null);
 
   const handleScroll = (event: any) => {
-    const slideWidth = width - 10;
     const offset = event.nativeEvent.contentOffset.x;
-    const activeIndex = Math.round(offset / slideWidth);
+    const activeIndex = Math.floor(offset / SLIDER_WIDTH + 0.5); 
     setActiveIndex(activeIndex);
   };
 
   const goToSlide = (index: number) => {
     if (scrollViewRef.current) {
-      scrollViewRef.current.scrollTo({ x: (width - 40) * index, animated: true });
+      scrollViewRef.current.scrollTo({ x: SLIDER_WIDTH * index, animated: true });
     }
   };
 
@@ -50,7 +50,6 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ slides }) => {
     }
   };
 
- 
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
@@ -60,39 +59,43 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ slides }) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView
-        ref={scrollViewRef}
-        horizontal
-        pagingEnabled
-        showsHorizontalScrollIndicator={false}
-        onScroll={handleScroll}
-        scrollEventThrottle={16}
-        contentContainerStyle={{ alignItems: 'center' }}
-        style={styles.scrollView}
-      >
-        {slides.map((slide, index) => (
-          <View key={slide.id} style={styles.slide}>
-            <Image source={{ uri: slide.imageUrl }} style={styles.image} />
-            <View style={styles.textOverlay}>
-              {slide.brands && (
-                <View style={styles.brandContainer}>
-                  {slide.brands.map((brand, idx) => (
-                    <View key={idx} style={styles.brandBadge}>
-                      <Text style={styles.brandText}>{brand}</Text>
-                    </View>
-                  ))}
-                </View>
-              )}
-              <Text style={styles.title}>{slide.title}</Text>
-              <Text style={styles.subtitle}>{slide.subtitle}</Text>
-              <Text style={styles.price}>{slide.price}</Text>
+      <View style={styles.sliderContainer}>
+        <ScrollView
+          ref={scrollViewRef}
+          horizontal
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}
+          onScroll={handleScroll}
+          scrollEventThrottle={16}
+          decelerationRate="fast"
+          snapToInterval={SLIDER_WIDTH}
+          snapToAlignment="center"
+          contentContainerStyle={styles.scrollViewContent}
+        >
+          {slides.map((slide, index) => (
+            <View key={slide.id} style={styles.slide}>
+              <Image source={{ uri: slide.imageUrl }} style={styles.image} />
+              <View style={styles.textOverlay}>
+                {slide.brands && (
+                  <View style={styles.brandContainer}>
+                    {slide.brands.map((brand, idx) => (
+                      <View key={idx} style={styles.brandBadge}>
+                        <Text style={styles.brandText}>{brand}</Text>
+                      </View>
+                    ))}
+                  </View>
+                )}
+                <Text style={styles.title}>{slide.title}</Text>
+                <Text style={styles.subtitle}>{slide.subtitle}</Text>
+                <Text style={styles.price}>{slide.price}</Text>
+              </View>
+              <TouchableOpacity style={styles.nextButton} onPress={nextSlide}>
+                <FontAwesome6 name="chevron-right" size={16} color="#1B1650" />
+              </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.nextButton} onPress={nextSlide}>
-              <FontAwesome6 name="chevron-right" size={16} color="#1B1650" />
-            </TouchableOpacity>
-          </View>
-        ))}
-      </ScrollView>
+          ))}
+        </ScrollView>
+      </View>
       
       <View style={styles.pagination}>
         {slides.map((_, index) => (
@@ -113,17 +116,22 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ slides }) => {
 const styles = StyleSheet.create({
   container: {
     marginVertical: 16,
+    width: '100%',
+    alignItems: 'center',
   },
-  scrollView: {
-    width: width - 40,
+  sliderContainer: {
+    width: SLIDER_WIDTH,
+    overflow: 'hidden', 
+  },
+  scrollViewContent: {
+
   },
   slide: {
-    width: width - 40,
+    width: SLIDER_WIDTH,
     height: 220,
     borderRadius: 16,
     overflow: 'hidden',
     position: 'relative',
-
   },
   image: {
     width: '100%',

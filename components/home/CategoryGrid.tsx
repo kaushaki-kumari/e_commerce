@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   Text,
@@ -34,21 +34,28 @@ const CategoryGrid: React.FC<CategoryGridProps> = ({
   
   const activeCategories = productData.categories[matchedTab] || [];
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
-  
+  const prevTabRef = useRef<string>(activeTab);
+
   useEffect(() => {
-    const defaultCategory = activeCategories.find(cat => cat.isActive)?.id || null;
-    setSelectedCategoryId(defaultCategory);
-    if (defaultCategory) {
-      onCategorySelect(defaultCategory);
-    } else {
-      onCategorySelect("");
+    if (prevTabRef.current !== activeTab) {
+      const defaultCategory = activeCategories[0];
+      const defaultCategoryId = defaultCategory?.id || null;
+  
+      setSelectedCategoryId(defaultCategoryId);
+      onCategorySelect(defaultCategoryId || "");
+      prevTabRef.current = activeTab;
     }
   }, [activeTab, activeCategories]);
+  
 
   const handleCategoryPress = (categoryId: string) => {
-    const newSelectedId = selectedCategoryId === categoryId ? null : categoryId;
-    setSelectedCategoryId(newSelectedId);
-    onCategorySelect(newSelectedId || "");
+    if (selectedCategoryId === categoryId) {
+      setSelectedCategoryId(null);
+      onCategorySelect("");
+    } else {
+      setSelectedCategoryId(categoryId);
+      onCategorySelect(categoryId);
+    }
   };
 
   return (
@@ -58,33 +65,36 @@ const CategoryGrid: React.FC<CategoryGridProps> = ({
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.categoriesContainer}
       >
-        {activeCategories.map((category: CategoryItem) => (
-          <TouchableOpacity
-            key={category.id}
-            style={styles.categoryItem}
-            onPress={() => handleCategoryPress(category.id)}
-          >
-            <View
-              style={[
-                styles.imageContainer,
-                selectedCategoryId === category.id && styles.activeImageContainer,
-              ]}
+        {activeCategories.map((category: CategoryItem) => {
+          const isSelected = selectedCategoryId === category.id;
+          return (
+            <TouchableOpacity
+              key={category.id}
+              style={styles.categoryItem}
+              onPress={() => handleCategoryPress(category.id)}
             >
-              <Image 
-                source={{ uri: category.imageUrl }} 
-                style={styles.categoryImage}
-              />
-            </View>
-            <Text
-              style={[
-                styles.categoryTitle,
-                selectedCategoryId === category.id && styles.activeTitle,
-              ]}
-            >
-              {category.title}
-            </Text>
-          </TouchableOpacity>
-        ))}
+              <View
+                style={[
+                  styles.imageContainer,
+                  isSelected && styles.activeImageContainer,
+                ]}
+              >
+                <Image
+                  source={{ uri: category.imageUrl }}
+                  style={styles.categoryImage}
+                />
+              </View>
+              <Text
+                style={[
+                  styles.categoryTitle,
+                  isSelected && styles.activeTitle,
+                ]}
+              >
+                {category.title}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
       </ScrollView>
     </View>
   );

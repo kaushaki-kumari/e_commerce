@@ -31,7 +31,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const renderStars = () => {
     const stars = [];
     const fullStars = Math.floor(star);
-    const hasHalfStar = star - fullStars >= 0.5;
+    const hasHalfStar = star - fullStars >= 0.10;
     for (let i = 0; i < fullStars; i++) {
       stars.push(
         <FontAwesome
@@ -112,7 +112,7 @@ export default ProductCard;
 
 const styles = StyleSheet.create({
   card: {
-    width: Dimensions.get("window").width / 2 - 25,
+    width: Dimensions.get("window").width / 2 - 20,
     backgroundColor: "#fff",
     borderRadius: 8,
     overflow: "hidden",

@@ -29,7 +29,7 @@ interface PromotionalCardsProps {
 }
 
 const { width } = Dimensions.get("window");
-const cardWidth = width / 3 - 40;
+const cardWidth = width / 3 - 50;
 
 const PromotionalCards: React.FC<PromotionalCardsProps> = ({
   cards,
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   largeCard: {
-    height: 95,
+    height: 85,
     borderRadius: 15,
     marginBottom: 5,
     overflow: "hidden",
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
   },
   card: {
     width: cardWidth,
-    height: 95,
+    height: 85,
     borderRadius: 15,
     marginBottom: 5,
     overflow: "hidden",
@@ -206,9 +206,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   cardImage: {
-    width: "80%",
-    height: 70,
-    resizeMode: "contain",
+    width: '60%',
+    height: 60,
+    resizeMode: "cover",
     alignSelf: "center",
   },
   cardTitle: {
@@ -231,11 +231,11 @@ const styles = StyleSheet.create({
   bestSellerTitle: {
     color: "#1B1650",
     fontWeight: "800",
-    fontSize: 24,
+    fontSize: 20,
     lineHeight: 24,
   },
   starBadge: {
-    width: 90,
+    width: 70,
     marginTop: 5,
     resizeMode: "contain",
   },

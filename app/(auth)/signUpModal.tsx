@@ -7,7 +7,8 @@ import {
   Image,
   ScrollView,
   Modal,
-  Dimensions,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { Button } from "@/components/common/Button";
 import { useRouter } from "expo-router";
@@ -137,135 +138,148 @@ const SignUpModal: React.FC<SignUpModalProps> = ({
   }, [visible]);
 
   return (
-    <Modal
-      visible={visible}
-      animationType="slide"
-      transparent={true}
-      onRequestClose={onClose}
-    >
-      <View style={styles.modalContainer}>
-        <ScrollView
-          style={styles.container}
-          contentContainerStyle={styles.scrollContent}
-          keyboardShouldPersistTaps="handled"
-        >
-          <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-            <Ionicons name="close" size={24} color="#1E2637" />
-          </TouchableOpacity>
-
-          <View>
-            <Image
-              source={require("../../assets/images/logo-blue.png")}
-              style={styles.image}
-              resizeMode="contain"
-            />
-            <Text style={styles.subTitle}>
-              Sign up and shop your favourite brands, all in one place
-            </Text>
-
-            <TextField
-              label="Enter Your Email"
-              value={formData.email}
-              onChangeText={handleEmailChange}
-              keyboardType="email-address"
-              error={errors.email}
-            />
-
-            <PasswordField
-              label="Password"
-              value={formData.password}
-              onChangeText={handlePasswordChange}
-              error={errors.password}
-            />
-
-            <PasswordField
-              label="Confirm Password"
-              value={formData.confirmPassword}
-              onChangeText={handleConfirmPasswordChange}
-              error={errors.confirmPassword}
-            />
-            {error && <Text style={styles.apiError}>{error}</Text>}
-
-            <TouchableOpacity
-              style={styles.termsContainer}
-              onPress={handleTermsChange}
+    <Modal visible={visible} animationType="slide" transparent={true}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.modalContainer}
+      >
+        <View style={styles.backdropTouchable}>
+          <View style={styles.modalContent}>
+            <ScrollView
+              style={styles.container}
+              contentContainerStyle={styles.scrollContent}
+              keyboardShouldPersistTaps="handled"
+              showsVerticalScrollIndicator={false}
+              bounces={false}
             >
-              <View
-                style={[
-                  styles.checkbox,
-                  formData.termsAccepted && styles.checkboxChecked,
-                ]}
-              >
-                {formData.termsAccepted && (
-                  <Text style={styles.checkmark}>✔</Text>
-                )}
-              </View>
-              <Text style={styles.termsText}>
-                By continuing, you confirm that you are above 18 years of age,
-                and you agree to our{" "}
-                <Text style={styles.link}>Terms of use</Text> and{" "}
-                <Text style={styles.link}>Privacy Policy</Text>.
-              </Text>
-            </TouchableOpacity>
-
-            <Button
-              title="Sign Up"
-              onPress={handleSignUp}
-              disabled={!formData.termsAccepted || loading}
-              loading={loading}
-              style={
-                !formData.termsAccepted || loading ? styles.disabledButton : {}
-              }
-            />
-
-            <View style={styles.signupContainer}>
-              <Text style={styles.signupText}>Already have an account?</Text>
-              <TouchableOpacity onPress={onLoginPress}>
-                <Text style={styles.signupLink}> Login</Text>
+              <TouchableOpacity onPress={onClose} style={styles.closeButton}>
+                <Ionicons name="close" size={24} color="#1E2637" />
               </TouchableOpacity>
-            </View>
+
+              <View>
+                <Image
+                  source={require("../../assets/images/logo-blue.png")}
+                  style={styles.image}
+                  resizeMode="contain"
+                />
+                <Text style={styles.subTitle}>
+                  Sign up and shop your favourite brands, all in one place
+                </Text>
+
+                <TextField
+                  label="Enter Your Email"
+                  value={formData.email}
+                  onChangeText={handleEmailChange}
+                  keyboardType="email-address"
+                  error={errors.email}
+                />
+
+                <PasswordField
+                  label="Password"
+                  value={formData.password}
+                  onChangeText={handlePasswordChange}
+                  error={errors.password}
+                />
+
+                <PasswordField
+                  label="Confirm Password"
+                  value={formData.confirmPassword}
+                  onChangeText={handleConfirmPasswordChange}
+                  error={errors.confirmPassword}
+                />
+                {error && <Text style={styles.apiError}>{error}</Text>}
+
+                <TouchableOpacity
+                  style={styles.termsContainer}
+                  onPress={handleTermsChange}
+                >
+                  <View
+                    style={[
+                      styles.checkbox,
+                      formData.termsAccepted && styles.checkboxChecked,
+                    ]}
+                  >
+                    {formData.termsAccepted && (
+                      <Text style={styles.checkmark}>✔</Text>
+                    )}
+                  </View>
+                  <Text style={styles.termsText}>
+                    By continuing, you confirm that you are above 18 years of
+                    age, and you agree to our{" "}
+                    <Text style={styles.link}>Terms of use</Text> and{" "}
+                    <Text style={styles.link}>Privacy Policy</Text>.
+                  </Text>
+                </TouchableOpacity>
+
+                <Button
+                  title="Sign Up"
+                  onPress={handleSignUp}
+                  disabled={!formData.termsAccepted || loading}
+                  loading={loading}
+                  style={
+                    !formData.termsAccepted || loading
+                      ? styles.disabledButton
+                      : {}
+                  }
+                />
+
+                <View style={styles.signupContainer}>
+                  <Text style={styles.signupText}>
+                    Already have an account?
+                  </Text>
+                  <TouchableOpacity onPress={onLoginPress}>
+                    <Text style={styles.signupLink}> Login</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </ScrollView>
           </View>
-        </ScrollView>
-      </View>
+        </View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 };
 
-const { height: SCREEN_HEIGHT } = Dimensions.get("window");
-
 const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
-    justifyContent: "flex-end", 
+    justifyContent: "flex-end",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  backdropTouchable: {
+    flex: 1,
+    justifyContent: "flex-end",
+  },
+  modalContent: {
+    backgroundColor: "#fff",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    overflow: "hidden",
   },
   container: {
     width: "100%",
     backgroundColor: "#fff",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    maxHeight: SCREEN_HEIGHT * 0.65, 
   },
   scrollContent: {
     padding: 30,
-    paddingBottom: 40, 
+    paddingBottom: 30,
   },
   image: {
     width: "100%",
-    height: 60,
+    height: 55,
     marginBottom: 5,
   },
   subTitle: {
     fontSize: 13,
     fontWeight: "bold",
-    marginBottom: 24,
+    marginBottom: 12,
     color: "#585959",
     textAlign: "center",
   },
   termsContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 18,
+    marginBottom: 10,
   },
   checkbox: {
     width: 20,
@@ -285,7 +299,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   termsText: {
-    fontSize: 13,
+    fontSize: 12.5,
     color: "#333",
     flexShrink: 1,
   },
@@ -296,6 +310,7 @@ const styles = StyleSheet.create({
   signupContainer: {
     flexDirection: "row",
     justifyContent: "center",
+    marginBottom: 10,
   },
   signupText: {
     color: "#555",
@@ -310,15 +325,13 @@ const styles = StyleSheet.create({
   apiError: {
     color: "red",
     fontSize: 13,
-    marginBottom: 10,
-    marginTop: -40,
+    marginTop: -10,
     textAlign: "left",
   },
   closeButton: {
     position: "absolute",
-    top: 20,
-    right: 10,
-    zIndex: 10,
+    top: 15,
+    right: 15,
   },
   extraText: {
     fontSize: 13,

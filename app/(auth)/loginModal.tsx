@@ -175,13 +175,13 @@ const styles = StyleSheet.create({
 
   image: {
     width: "100%",
-    height: 60,
+    height: 55,
     marginBottom: 5,
   },
   subTitle: {
-    fontSize: 16,
+    fontSize: 15,
     color: "#555",
-    marginBottom: 15,
+    marginBottom: 12,
     textAlign: "center",
   },
   input: {
@@ -245,7 +245,6 @@ const styles = StyleSheet.create({
   signupContainer: {
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: 10,
   },
   signupText: {
     color: "#555",
@@ -257,12 +256,12 @@ const styles = StyleSheet.create({
   helpContainer: {
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: 10,
+    marginTop: 5,
   },
   closeButton: {
     position: "absolute",
-    top: 10,
-    right: 10,
+    top: 15,
+    right: 15,
   },
 });
 

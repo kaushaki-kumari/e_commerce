@@ -37,7 +37,7 @@ export const Button: React.FC<ButtonProps> = ({
 const styles = StyleSheet.create({
   button: {
     backgroundColor: "#1E2637",
-    padding: 14,
+    padding: 10,
     borderRadius: 6,
     alignItems: "center",
     justifyContent: "center",
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   text: {
     color: "#fff",
     fontWeight: "bold",
-    fontSize: 15,
+    fontSize: 14,
   },
   disabled: {
     opacity: 0.6,

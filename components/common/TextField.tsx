@@ -61,7 +61,7 @@ const TextField: React.FC<TextFieldProps> = ({
             style,
             isFocused && styles.inputFocused,
             error && styles.inputError,
-            label && { paddingTop: 22 },
+            label && { paddingTop: 12 },
           ]}
         />
       </View>
@@ -74,7 +74,7 @@ export default TextField;
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginBottom: 18,
+    marginBottom: 12,
     width: "100%",
   },
   container: {
@@ -86,11 +86,11 @@ const styles = StyleSheet.create({
     color: "#777",
     backgroundColor: "#fff",
     zIndex: 1,
-    paddingHorizontal: 4,
+    paddingHorizontal: 5,
   },
   labelStatic: {
-    top: 16,
-    fontSize: 13,
+    top: 12,
+    fontSize: 12,
   },
   labelFloating: {
     top: -8,
@@ -108,8 +108,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#ccc",
     borderRadius: 6,
-    paddingHorizontal: 12,
-    paddingVertical: Platform.OS === "ios" ? 13 : 8,
+    paddingVertical: Platform.OS === "ios" ? 8 : 5,
     fontSize: 16,
   },
   inputFocused: {

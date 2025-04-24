@@ -61,7 +61,7 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
             style,
             isFocused && styles.inputFocused,
             error && styles.inputError, 
-            label && { paddingTop: 22 },
+            label && { paddingTop: 12 },
           ]}
           secureTextEntry={!showPassword}
           value={value}
@@ -75,7 +75,7 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
         >
           <Ionicons
             name={showPassword ? "eye" : "eye-off"}
-            size={20}
+            size={18}
             color="#888"
           />
         </TouchableOpacity>
@@ -89,7 +89,7 @@ export default PasswordField;
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 18,
+    marginBottom: 12,
     position: "relative",
     width: "100%",
   },
@@ -102,8 +102,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
   },
   labelStatic: {
-    top: 18,
-    fontSize: 13,
+    top: 12,
+    fontSize: 12,
   },
   labelFloating: {
     top: -8,
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     borderRadius: 6,
     paddingHorizontal: 12,
-    paddingVertical: Platform.OS === "ios" ? 14 : 10,
+    paddingVertical: Platform.OS === "ios" ? 8 : 5,
     fontSize: 16,
     paddingRight: 50,
   },
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   icon: {
     position: "absolute",
     right: 15,
-    top: 18,
+    top: 12,
   },
   errorText: {
     color: "red",
