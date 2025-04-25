@@ -9,6 +9,9 @@ import {
   Text
 } from 'react-native';
 import { FontAwesome6 } from "@expo/vector-icons";
+import colors from '@/style/staticColors';
+import spacingStyles from '@/style/spacingStyles';
+import staticColors from '@/style/staticColors';
 
 const { width } = Dimensions.get('window');
 const SLIDER_WIDTH = width - 40;
@@ -115,7 +118,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ slides }) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 16,
+    ...spacingStyles.my15,
     width: '100%',
     alignItems: 'center',
   },
@@ -142,7 +145,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     left: 0,
-    padding: 16,
+    ...spacingStyles.p15,
     width: '100%',
   },
   brandContainer: {
@@ -151,27 +154,27 @@ const styles = StyleSheet.create({
   },
   brandBadge: {
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
-    paddingHorizontal: 10,
-    paddingVertical: 4,
+    ...spacingStyles.py5,
+   ...spacingStyles.px10,
     borderRadius: 5,
     marginRight: 6,
   },
   brandText: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#333',
+    color: staticColors.cardTitleColor,
   },
   title: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#fff',
+    color: colors.whiteColor,
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 3,
   },
   subtitle: {
     fontSize: 14,
-    color: '#fff',
+    color: colors.whiteColor,
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 3,
@@ -179,7 +182,7 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#fff',
+    color: colors.whiteColor,
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 3,
@@ -187,14 +190,14 @@ const styles = StyleSheet.create({
   pagination: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 16,
+    ...spacingStyles.mt10,
   },
   paginationDot: {
     width: 8,
     height: 8,
     borderRadius: 4,
     backgroundColor: '#D9D9D9',
-    marginHorizontal: 4,
+    ...spacingStyles.mx2
   },
   paginationDotActive: {
     backgroundColor: '#404B63',
@@ -206,7 +209,7 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 15,
-    backgroundColor: '#fff',
+    backgroundColor: colors.whiteColor,
     justifyContent: 'center',
     alignItems: 'center',
   },

@@ -1,6 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
 import ExpandableContent from "../ui/ExpandableContent";
+import colors from "@/style/staticColors";
+import textStyles from "@/style/textStyles";
+import spacingStyles from "@/style/spacingStyles";
 
 const aboutUsData = [
   {
@@ -35,7 +38,8 @@ const AboutUs = () => {
         />
         <Text style={styles.title}>Get to Know Innovative</Text>
         <Text style={styles.subtitle}>
-          Discover the values and mission behind Innovative. Join us on our fashion journey.
+          Discover the values and mission behind Innovative. Join us on our
+          fashion journey.
         </Text>
       </View>
 
@@ -55,16 +59,16 @@ const AboutUs = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
+    backgroundColor: colors.whiteColor,
   },
   header: {
-    backgroundColor: "#ffffff",
-    paddingVertical: 30,
+    backgroundColor: colors.whiteColor,
+    ...spacingStyles.py25,
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 25,
+    ...spacingStyles.mb20,
     borderBottomWidth: 1,
-    borderColor: "#e4e4e4",
+    borderColor: colors.lightColor,
     shadowColor: "#000",
     shadowOpacity: 0.1,
     shadowRadius: 10,
@@ -73,31 +77,25 @@ const styles = StyleSheet.create({
   logo: {
     width: 100,
     height: 100,
-  
   },
   title: {
-    fontSize: 28,
-    fontFamily:'AbriFatfaceRegular',
-    color: "#333",
+    ...textStyles.title,
+    fontFamily: "AbriFatfaceRegular",
     textAlign: "center",
-    marginBottom:5,
   },
   subtitle: {
+    ...textStyles.subtitle,
     fontSize: 14,
-    color: "#a5a4a6",
     textAlign: "center",
     lineHeight: 20,
-    marginBottom: 10,
-    fontFamily:'Helvetica',
-    paddingHorizontal:30
+    fontFamily: "Helvetica",
+    ...spacingStyles.px25,
   },
   content: {
-    paddingHorizontal: 20,
+    ...spacingStyles.px25,
   },
   section: {
-  
-    borderRadius: 12,
-    marginBottom: 20,
+    ...spacingStyles.mb25
   },
 });
 

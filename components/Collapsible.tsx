@@ -9,6 +9,9 @@ import {
   UIManager,
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+import colors from '@/style/staticColors';
+import textStyles from '@/style/textStyles';
+import spacingStyles from '@/style/spacingStyles';
 
 if (Platform.OS === 'android') {
   UIManager.setLayoutAnimationEnabledExperimental &&
@@ -31,12 +34,12 @@ export default function Collapsible({ title, children }: Props) {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.header} onPress={toggleExpand}>
-        <Text style={styles.title}>{title}</Text>
+        <Text>{title}</Text>
         <View style={styles.iconContainer}>
           <AntDesign
             name={expanded ? 'up' : 'down'}
             size={16}
-            color="#eee"
+            color={colors.lightColor}
           />
         </View>
       </TouchableOpacity>
@@ -47,28 +50,23 @@ export default function Collapsible({ title, children }: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 15,
+    ...spacingStyles.mb15,
     borderBottomWidth: 1,
-    borderColor: '#eee',
-    paddingBottom: 10,
+    borderColor: colors.lightColor,
+    ...spacingStyles.pb10
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  title: {
-    fontWeight: '600',
-    fontSize: 16,
-    color: '#333',
-    flex: 1, 
-  },
+ 
   iconContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     width: 20, 
   },
   content: {
-    paddingTop: 10,
+    ...spacingStyles.pt10
   },
 });

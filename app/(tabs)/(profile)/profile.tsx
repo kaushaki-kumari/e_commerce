@@ -24,10 +24,13 @@ import ProfileHeader from "@/components/profile/ProfileHeader";
 import ProfileOption from "@/components/profile/ProfileOption";
 import FooterLinks from "@/components/profile/FooterLinks";
 import { useRouter } from "expo-router";
-
+import colors from "@/style/staticColors";
+import spacingStyles from "@/style/spacingStyles";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 export default function ProfileScreen() {
   const [selectedSection, setSelectedSection] = useState("Profile");
   const router = useRouter();
+  const insets = useSafeAreaInsets(); 
   useEffect(() => {
     const backHandler = BackHandler.addEventListener(
       "hardwareBackPress",
@@ -52,17 +55,17 @@ export default function ProfileScreen() {
           <ProfileHeader />
           <View style={styles.optionsContainer}>
             <ProfileOption
-              icon={<FontAwesome5 name="box-open" size={24} color="#8a8a8a" />}
+              icon={<FontAwesome5 name="box-open" size={24} color={colors.textMuted} />}
               label="Orders"
               subtitle="Check your order status"
             />
             <ProfileOption
-              icon={<MaterialIcons name="help" size={24} color="#8a8a8a" />}
+              icon={<MaterialIcons name="help" size={24} color={colors.textMuted} />}
               label="Help Center"
               subtitle="Help regarding your recent purchases"
             />
             <ProfileOption
-              icon={<Ionicons name="heart-outline" size={24} color="#8a8a8a" />}
+              icon={<Ionicons name="heart-outline" size={24} color={colors.textMuted} />}
               label="Wishlist"
               subtitle="Your most loved styles"
             />
@@ -71,11 +74,11 @@ export default function ProfileScreen() {
                 <MaterialIcons
                   name="qr-code-scanner"
                   size={24}
-                  color="#8a8a8a"
+                  color={colors.textMuted}
                 />
               }
               label="Scan for coupon"
-              customStyle={{ marginVertical: 15 }}
+              customStyle={{ ...spacingStyles.my25}}
             />
           </View>
           <FooterLinks onLinkPress={(link) => setSelectedSection(link)} />
@@ -95,8 +98,8 @@ export default function ProfileScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.topBar}>
+    <View style={[styles.container]}>
+      <View style={[styles.topBar, { paddingTop: insets.top }]}>
         <TouchableOpacity
           style={styles.backButton}
           onPress={() => {
@@ -120,52 +123,39 @@ export default function ProfileScreen() {
 
 const styles = StyleSheet.create({
   backButton: {
-    marginRight: 8,
+    ...spacingStyles.mr10
   },
   headerTitle: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "#1E2637",
+    color: colors.primaryColor,
     fontFamily: "Arial",
   },
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: colors.whiteColor,
+    
   },
   optionsContainer: {
-    backgroundColor: "#f5f5f5",
+    backgroundColor: colors.backgroundSecondary,
   },
   versionText: {
     fontSize: 13,
     textAlign: "center",
-    color: "#616161",
-    paddingVertical: 50,
+    color: colors.textSecondary,
+    ...spacingStyles.py25
   },
   topBar: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 15,
-    backgroundColor: "white",
-    paddingTop: 45,
-    paddingBottom: 10,
+    ...spacingStyles.pl10,
+    backgroundColor: colors.whiteColor,
+    ...spacingStyles.py10,
     elevation: 4,
-    shadowColor: "#000",
+    shadowColor: colors.shadowColor,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
     zIndex: 10,
-  },
-  sectionContainer: {
-    padding: 20,
-    backgroundColor: "#fff",
-  },
-  sectionTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
-  sectionBody: {
-    fontSize: 14,
-    color: "#666",
   },
 });

@@ -1,3 +1,5 @@
+import colors from "@/style/staticColors";
+import spacingStyles from "@/style/spacingStyles";
 import React, { useState } from "react";
 import {
   TextInput,
@@ -74,7 +76,7 @@ export default TextField;
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginBottom: 12,
+    ...spacingStyles.mb10,
     width: "100%",
   },
   container: {
@@ -84,9 +86,9 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: 12,
     color: "#777",
-    backgroundColor: "#fff",
+    backgroundColor: colors.whiteColor,
     zIndex: 1,
-    paddingHorizontal: 5,
+   ...spacingStyles.px5
   },
   labelStatic: {
     top: 12,
@@ -108,8 +110,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#ccc",
     borderRadius: 6,
+    ...spacingStyles.p10,
     paddingVertical: Platform.OS === "ios" ? 8 : 5,
-    fontSize: 16,
+    fontSize: 14,
   },
   inputFocused: {
     borderColor: "#0C4A6E",
@@ -118,9 +121,10 @@ const styles = StyleSheet.create({
     borderColor: "#ff4d4f",
   },
   errorText: {
-    marginTop: 4,
-    marginLeft: 4,
+    ...spacingStyles.mt5,
+    ...spacingStyles.ml5,
     color: "#ff4d4f",
     fontSize: 13,
   },
 });
+  

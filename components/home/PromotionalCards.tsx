@@ -1,3 +1,5 @@
+import colors from "@/style/staticColors";
+import spacingStyles from "@/style/spacingStyles";
 import {
   AntDesign,
   Entypo,
@@ -15,6 +17,7 @@ import {
   ScrollView,
   Dimensions,
 } from "react-native";
+import staticColors from "@/style/staticColors";
 
 interface PromotionalCard {
   id: string;
@@ -167,13 +170,13 @@ const PromotionalCards: React.FC<PromotionalCardsProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 15,
+    ...spacingStyles.mb15
   },
   scrollContainer: {
   },
   firstColumn: {
     width: cardWidth * 2 + 10,
-    marginRight: 5,
+    ...spacingStyles.mr5
   },
   subRow: {
     flexDirection: "row",
@@ -181,12 +184,12 @@ const styles = StyleSheet.create({
   },
   column: {
     width: cardWidth,
-    marginRight: 5,
+    ...spacingStyles.mr5
   },
   largeCard: {
     height: 85,
     borderRadius: 15,
-    marginBottom: 5,
+    ...spacingStyles.mb5,
     overflow: "hidden",
     backgroundColor: "#f1f0ff",
     justifyContent: "center",
@@ -196,7 +199,7 @@ const styles = StyleSheet.create({
     width: cardWidth,
     height: 85,
     borderRadius: 15,
-    marginBottom: 5,
+    ...spacingStyles.mb5,
     overflow: "hidden",
     backgroundColor: "#f8f2ea",
   },
@@ -212,11 +215,11 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   cardTitle: {
-    color: "#333",
+    color: staticColors.cardTitleColor,
     fontWeight: "600",
     fontSize: 12,
-    paddingLeft: 10,
-    paddingTop: 5,
+    ...spacingStyles.pl10,
+    ...spacingStyles.pt5,
     textAlign: "left",
   },
   bestSellerOverlay: {
@@ -226,7 +229,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: 15,
+    ...spacingStyles.px15
   },
   bestSellerTitle: {
     color: "#1B1650",
@@ -236,21 +239,21 @@ const styles = StyleSheet.create({
   },
   starBadge: {
     width: 70,
-    marginTop: 5,
+    ...spacingStyles.mt5,
     resizeMode: "contain",
   },
   shippingInfoContainer: {
     flexDirection: "row",
     backgroundColor: "#e6ffe6",
     borderRadius: 15,
-    padding: 10,
+    ...spacingStyles.p10,
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 10,
-    marginHorizontal: 10,
+    ...spacingStyles.mt10,
+    ...spacingStyles.mx10,
     position: "relative",
     borderWidth: 1,
-    borderColor: "#eee",
+    borderColor: colors.lightColor,
   },
   infoItem: {
     flexDirection: "row",
@@ -263,7 +266,7 @@ const styles = StyleSheet.create({
   infoTitle: {
     fontSize: 12,
     fontWeight: "bold",
-    color: "#333",
+    color: staticColors.cardTitleColor,
   },
   infoSubtitle: {
     fontSize: 10,
@@ -273,7 +276,7 @@ const styles = StyleSheet.create({
     width: 1,
     height: "90%",
     backgroundColor: "#ddd",
-    marginHorizontal: 5,
+    ...spacingStyles.mx5
   },
   sparkleLeft: {
     position: "absolute",

@@ -1,6 +1,9 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { ReactNode } from 'react';
 import { Ionicons } from '@expo/vector-icons';
+import colors from '@/style/staticColors';
+import textStyles from '@/style/textStyles';
+import spacingStyles from '@/style/spacingStyles';
 
 interface Props {
   icon: ReactNode;
@@ -16,7 +19,7 @@ export default function ProfileOption({ icon, label, subtitle, customStyle }: Pr
         <View style={styles.iconWrapper}>{icon}</View>
         <View>
           <Text style={styles.label}>{label}</Text>
-          {subtitle ? <Text style={styles.subtitle}>{subtitle}</Text> : null}
+          {subtitle ? <Text style={styles.subTitle}>{subtitle}</Text> : null}
         </View>
       </View>
       <Ionicons name="chevron-forward" size={12} color="#8a8a8a" />
@@ -27,29 +30,28 @@ export default function ProfileOption({ icon, label, subtitle, customStyle }: Pr
 const styles = StyleSheet.create({
   option: {
     flexDirection: 'row',
-    padding: 16,
-    borderBottomColor: '#eee',
+    ...spacingStyles.p15,
+    borderBottomColor: colors.lightColor,
     borderBottomWidth: 1,
     alignItems: 'center',
-    backgroundColor: "#fff",
+    backgroundColor: colors.whiteColor,
     justifyContent: 'space-between',
   },
   leftSection: {
     flexDirection: 'row',
     alignItems: 'center',
+    gap:10
   },
   iconWrapper: {
-    marginRight: 12,
+    ...spacingStyles.mb10
   },
   label: {
     color: 'black',
-    fontSize: 16,
+    fontSize: 15,
     fontFamily:'helveticaRoundedBold'
   },
-  subtitle: {
-    marginTop: 3,
-    color: '#7d7c7c',
-    fontSize: 13,
-    fontFamily:'helveticaOblique'
-  },
+  subTitle:{
+    ...textStyles.subtitle,
+    fontSize:13,
+  }
 });

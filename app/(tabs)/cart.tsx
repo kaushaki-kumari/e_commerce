@@ -1,4 +1,6 @@
 import CartItem from "@/components/cart/CartItem";
+import colors from "@/style/staticColors";
+import spacingStyles from "@/style/spacingStyles";
 import React, { useState } from "react";
 import {
   View,
@@ -205,16 +207,16 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 60,
     paddingHorizontal: 16,
-    backgroundColor: "#fff",
+    backgroundColor:colors.whiteColor,
   },
   header: {
     fontSize: 22,
     fontWeight: "600",
-    marginBottom: 20,
+    ...spacingStyles.mb20,
     textAlign: "center",
     fontFamily: "HelveticaBold",
     borderBottomWidth: 1,
-    borderColor: "#eee",
+    borderColor: colors.lightColor,
     borderStyle: "dotted",
     color:'#1A1651'
   },
@@ -226,8 +228,8 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     width: "100%",
-    backgroundColor: "#fff",
-    padding: 20,
+    backgroundColor: colors.whiteColor,
+    ...spacingStyles.p20,
     alignItems: "center",
     elevation: 10,
     marginTop: "auto",
@@ -238,16 +240,16 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     borderRadius: 8,
-    marginBottom: 10,
+    ...spacingStyles.mb10
   },
   modalTitle: {
     fontSize: 18,
     fontWeight: "600",
     textAlign: "center",
-    marginBottom: 5,
+    ...spacingStyles.mb10
   },
   itemInfo: {
-    marginBottom: 20,
+    ...spacingStyles.mb20,
     flexDirection: "row",
     justifyContent: "space-between",
     gap: 20,
@@ -265,7 +267,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 12,
     borderRadius: 6,
-    marginHorizontal: 5,
+    ...spacingStyles.mx5,
     alignItems: "center",
   },
   cancelButton: {
@@ -280,7 +282,7 @@ const styles = StyleSheet.create({
     fontFamily:'Helvetica',
   },
   removeText:{
-    color:'#fff',
+    color:colors.whiteColor,
     fontFamily:'Helvetica',
   }
 

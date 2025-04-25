@@ -1,3 +1,5 @@
+import colors from '@/style/staticColors';
+import spacingStyles from '@/style/spacingStyles';
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
@@ -21,14 +23,14 @@ export default function FooterLinks({ onLinkPress }: FooterLinksProps) {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 6,
-    paddingHorizontal: 45,
-    paddingBottom: 10,
+    ...spacingStyles.mt5,
+    ...spacingStyles.px25,
+    ...spacingStyles.pb,
   },
   link: {
     fontSize: 12,
-    paddingVertical: 10,
-    color: '#82807f',
+    ...spacingStyles.p10,
+    color: colors.textMuted,
     fontFamily:'HelveticaBold'
   },
 });

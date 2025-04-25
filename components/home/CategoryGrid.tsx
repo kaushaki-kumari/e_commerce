@@ -8,6 +8,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import data from "@/assets/data/products.json";
+import colors from "@/style/staticColors";
+import spacingStyles from "@/style/spacingStyles";
 
 interface CategoryItem {
   id: string;
@@ -102,10 +104,10 @@ const CategoryGrid: React.FC<CategoryGridProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 4,
+    ...spacingStyles.mx5
   },
   categoriesContainer: {
-    paddingVertical: 2,
+    ...spacingStyles.py2
   },
   categoryItem: {
     alignItems: "center",
@@ -118,12 +120,12 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     borderWidth: 1,
     borderColor: "#f0f0f0",
-    backgroundColor: "#fff",
+    backgroundColor: colors.whiteColor,
     justifyContent: "center",
     alignItems: "center",
   },
   activeImageContainer: {
-    borderColor: "#1E2637",
+    borderColor: colors.primaryColor,
     borderWidth: 2,
   },
   categoryImage: {
@@ -133,13 +135,11 @@ const styles = StyleSheet.create({
   },
   categoryTitle: {
     fontSize: 12,
-    marginTop: 8,
+    ...spacingStyles.mt5,
     textAlign: "center",
-    color: "#333",
-    fontWeight: "500",
   },
   activeTitle: {
-    color: "#1E2637",
+    color: colors.primaryColor,
     fontWeight: "700",
   },
 });

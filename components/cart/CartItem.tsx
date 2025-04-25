@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import colors from "@/style/staticColors";
+import spacingStyles from "@/style/spacingStyles";
 
 type CartItemProps = {
   id: string;
@@ -66,13 +68,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderBottomColor: "#eee",
+    borderBottomColor: colors.lightColor,
   },
   itemImage: {
     width: 80,
     height: 85,
     borderRadius: 10,
-    marginRight: 12,
+    ...spacingStyles.mr10
   },
   itemInfo: {
     flex: 1,
@@ -83,12 +85,12 @@ const styles = StyleSheet.create({
   },
   itemSize: {
     color: "#888",
-    marginTop: 4,
+    ...spacingStyles.mt5,
   },
   itemPrice: {
     fontWeight: "bold",
     fontSize: 14,
-    marginTop: 4,
+    ...spacingStyles.mt5,
   },
   qtyContainer: {
     flexDirection: "row",
@@ -117,7 +119,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   deleteBtn: {
-    marginLeft: 10,
+    ...spacingStyles.ml10,
     padding: 4,
   },
 });

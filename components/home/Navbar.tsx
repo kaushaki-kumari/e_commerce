@@ -8,6 +8,9 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
+import colors from "@/style/staticColors";
+import spacingStyles from "@/style/spacingStyles";
+import staticColors from "@/style/staticColors";
 
 interface NavbarProps {
   tabs: string[];
@@ -59,9 +62,9 @@ const styles = StyleSheet.create({
   navbar: {
     flexDirection: "row",
     justifyContent: "space-around",
-    paddingVertical: 8,
+    ...spacingStyles.px10,
     borderBottomWidth: 1,
-    borderBottomColor: "#eee",
+    borderBottomColor: colors.lightColor,
   },
   navItemWrapper: {
     alignItems: "center",
@@ -69,26 +72,26 @@ const styles = StyleSheet.create({
   navItemText: {
     fontSize: 16,
     fontWeight: "600",
-    color: "#333",
+    color: staticColors.cardTitleColor,
     fontFamily: "Helvetica",
   },
   activeLine: {
-    marginTop: 4,
+    ...spacingStyles.mt5,
     height: 2,
     width: "100%",
-    backgroundColor: "#1E2637",
+    backgroundColor: colors.primaryColor,
     borderRadius: 1,
   },
   activeNavItemText: {
-    color: "#1E2637",
+    color: colors.primaryColor,
     fontFamily: "HelveticaBold",
   },
   categoryTab: {
-    backgroundColor: "#1E2637",
-    padding: 3,
+    backgroundColor: colors.primaryColor,
+   ...spacingStyles.p5,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: "#fff",
+    borderColor: colors.whiteColor,
     elevation: 3,
   },
 });

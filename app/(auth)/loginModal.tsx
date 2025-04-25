@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
+  TouchableWithoutFeedback,
 } from "react-native";
 import { useRouter } from "expo-router";
 import { useFieldValidation } from "@/hooks/useFieldValidation";
@@ -15,6 +16,9 @@ import TextField from "@/components/common/TextField";
 import PasswordField from "@/components/common/PasswordField";
 import { Button } from "@/components/common/Button";
 import { Ionicons } from "@expo/vector-icons";
+import colors from "@/style/staticColors";
+import textStyles from "@/style/textStyles";
+import spacingStyles from "@/style/spacingStyles";
 
 interface LoginModalProps {
   visible: boolean;
@@ -38,8 +42,12 @@ const LoginModal: React.FC<LoginModalProps> = ({
   });
   const [rememberMe, setRememberMe] = useState<boolean>(false);
   const { error, loading } = useAppSelector((state) => state.auth);
-  const { errors, handleEmailValidation, handleLoginPasswordValidation ,resetErrors} =
-    useFieldValidation();
+  const {
+    errors,
+    handleEmailValidation,
+    handleLoginPasswordValidation,
+    resetErrors,
+  } = useFieldValidation();
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -82,77 +90,92 @@ const LoginModal: React.FC<LoginModalProps> = ({
   useEffect(() => {
     if (!visible) {
       setFormData({ email: "", password: "" });
-      resetErrors()
+      resetErrors();
       dispatch(clearAuthError());
     }
   }, [visible]);
 
   return (
     <Modal visible={visible} animationType="slide" transparent={true}>
-      <View style={styles.overlay}>
-        <View style={styles.modalContent}>
-          <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-            <Ionicons name="close" size={24} color="#f1E2637" />
-          </TouchableOpacity>
+      <TouchableWithoutFeedback onPress={onClose}>
+        <View style={styles.overlay}>
+          <TouchableWithoutFeedback>
+            <View style={styles.modalContent}>
+              <TouchableOpacity onPress={onClose} style={styles.closeButton}>
+                <Ionicons name="close" size={24} color="#f1E2637" />
+              </TouchableOpacity>
 
-          <Image
-            source={require("../../assets/images/logo-blue.png")}
-            style={styles.image}
-            resizeMode="contain"
-          />
-          <Text style={styles.subTitle}>Login to your account</Text>
+              <Image
+                source={require("../../assets/images/logo-blue.png")}
+                style={styles.image}
+                resizeMode="contain"
+              />
+              <Text style={styles.subTitle}>Login to your account</Text>
 
-          <TextField
-            label="Enter your Email"
-            value={formData.email}
-            onChangeText={handleEmailChange}
-            keyboardType="email-address"
-            error={errors.email}
-          />
+              <TextField
+                label="Enter your Email"
+                value={formData.email}
+                onChangeText={handleEmailChange}
+                keyboardType="email-address"
+                error={errors.email}
+              />
 
-          <PasswordField
-            label="Password"
-            value={formData.password}
-            onChangeText={handlePasswordChange}
-            error={errors.password}
-          />
-          {error && <Text style={styles.apiError}>{error}</Text>}
+              <PasswordField
+                label="Password"
+                value={formData.password}
+                onChangeText={handlePasswordChange}
+                error={errors.password}
+              />
+              {error && <Text style={styles.apiError}>{error}</Text>}
 
-          <View style={styles.rowContainer}>
-            <TouchableOpacity
-              onPress={() => setRememberMe(!rememberMe)}
-              style={styles.rememberMeContainer}
-            >
-              <View
-                style={[styles.checkbox, rememberMe && styles.checkboxChecked]}
-              >
-                {rememberMe && <Text style={styles.checkmark}>✔</Text>}
+              <View style={styles.rowContainer}>
+                <TouchableOpacity
+                  onPress={() => setRememberMe(!rememberMe)}
+                  style={styles.rememberMeContainer}
+                >
+                  <View
+                    style={[
+                      styles.checkbox,
+                      rememberMe && styles.checkboxChecked,
+                    ]}
+                  >
+                    {rememberMe && <Text style={styles.checkmark}>✔</Text>}
+                  </View>
+                  <Text style={styles.rememberMeText}>Remember Me</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={handleForgetPress}>
+                  <Text style={styles.forgotPasswordText}>
+                    Forgot Password?
+                  </Text>
+                </TouchableOpacity>
               </View>
-              <Text style={styles.rememberMeText}>Remember Me</Text>
-            </TouchableOpacity>
 
-            <TouchableOpacity onPress={handleForgetPress}>
-              <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-            </TouchableOpacity>
-          </View>
+              <Button
+                title="LOGIN"
+                onPress={handleLoginPress}
+                loading={loading}
+              />
 
-          <Button title="LOGIN" onPress={handleLoginPress} loading={loading} />
+              <View style={styles.signupContainer}>
+                <Text style={styles.signupText}>Don't have an account?</Text>
+                <TouchableOpacity onPress={onSignupPress}>
+                  <Text style={styles.signupLink}>Sign up</Text>
+                </TouchableOpacity>
+              </View>
 
-          <View style={styles.signupContainer}>
-            <Text style={styles.signupText}>Don't have an account?</Text>
-            <TouchableOpacity onPress={onSignupPress}>
-              <Text style={styles.signupLink}>Sign up</Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.helpContainer}>
-            <Text style={styles.signupText}>Having trouble logging in?</Text>
-            <TouchableOpacity onPress={() => {}}>
-              <Text style={styles.signupLink}>Get help</Text>
-            </TouchableOpacity>
-          </View>
+              <View style={styles.helpContainer}>
+                <Text style={styles.signupText}>
+                  Having trouble logging in?
+                </Text>
+                <TouchableOpacity onPress={() => {}}>
+                  <Text style={styles.signupLink}>Get help</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     </Modal>
   );
 };
@@ -161,12 +184,12 @@ const styles = StyleSheet.create({
   overlay: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    backgroundColor: "rgba(0, 0, 0, 0.2)",
     justifyContent: "flex-end",
   },
   modalContent: {
-    backgroundColor: "#fff",
-    padding: 30,
+    backgroundColor: colors.whiteColor,
+    ...spacingStyles.p25,
     width: "100%",
     position: "relative",
     borderTopLeftRadius: 30,
@@ -176,52 +199,43 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: 55,
-    marginBottom: 5,
+    ...spacingStyles.mb5,
   },
   subTitle: {
-    fontSize: 15,
-    color: "#555",
-    marginBottom: 12,
+    ...textStyles.subtitle,
     textAlign: "center",
   },
-  input: {
-    width: "100%",
-    padding: 12,
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 8,
-    marginBottom: 10,
-  },
+
   errorInput: {
-    borderColor: "red",
+    borderColor: colors.errorColor,
   },
   errorText: {
-    color: "red",
+    color: colors.errorColor,
     fontSize: 12,
-    marginBottom: 10,
+    ...spacingStyles.mb10,
   },
   apiError: {
-    color: "red",
+    color: colors.errorColor,
     fontSize: 14,
     marginTop: -15,
-    marginBottom: 5,
+    ...spacingStyles.mb15,
     textAlign: "left",
   },
   rowContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 18,
+    ...spacingStyles.mb15,
   },
   checkmark: {
-    color: "#fff",
+    color: colors.whiteColor,
     fontSize: 12,
   },
   checkboxChecked: {
-    backgroundColor: "#0C4A6E",
+    backgroundColor: colors.primaryColor,
   },
   forgotPasswordText: {
-    color: "#0C4A6E",
+    color: colors.linkPrimaryColor,
     fontWeight: "600",
   },
   rememberMeContainer: {
@@ -232,14 +246,14 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     borderWidth: 1,
-    borderColor: "#0C4A6E",
+    borderColor: colors.linkPrimaryColor,
     borderRadius: 4,
-    marginRight: 8,
+    ...spacingStyles.mr5,
     justifyContent: "center",
     alignItems: "center",
   },
   rememberMeText: {
-    color: "#333",
+    color: colors.textSecondary,
     fontSize: 14,
   },
   signupContainer: {
@@ -247,16 +261,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   signupText: {
-    color: "#555",
+    color: colors.textSecondary,
   },
   signupLink: {
-    color: "#0C4A6E",
+    color: colors.linkPrimaryColor,
     fontWeight: "bold",
+    ...spacingStyles.px5,
   },
   helpContainer: {
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: 5,
+    ...spacingStyles.mt5,
   },
   closeButton: {
     position: "absolute",

@@ -11,6 +11,8 @@ import { useRouter } from "expo-router";
 import PasswordField from "../common/PasswordField";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { resetPassword } from "@/store/auth/authSlice";
+import textStyles from "@/style/textStyles";
+import spacingStyles from "@/style/spacingStyles";
 
 export default function CreateNewPassword() {
   const { errors, handlePasswordValidation, handlePasswordMatch } =
@@ -72,7 +74,7 @@ export default function CreateNewPassword() {
           resizeMode="contain"
         />
       </View>
-      <Text style={styles.title}>Create New Password</Text>
+      <Text style={textStyles.title}>Create New Password</Text>
       <Text style={styles.infoText}>
         Your new password must be different from previously used password.
       </Text>
@@ -101,12 +103,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     alignItems: "center",
-    marginTop:20
-  },
-  title: {
-    fontSize: 24,
-    fontFamily: "HelveticaBold",
-    textAlign: "center",
+    ...spacingStyles.mt20,
   },
   imageWrapper: {
     width: 140,
@@ -115,7 +112,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#CCDAF9",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 10,
+    ...spacingStyles.mb10
   },
   image: {
     width: 80,
@@ -126,7 +123,7 @@ const styles = StyleSheet.create({
     color: "#555",
     textAlign: "center",
     width: "80%",
-    marginBottom: 20,
+    ...spacingStyles.mb20,
     fontFamily: "Helvetica",
     lineHeight:20
   },

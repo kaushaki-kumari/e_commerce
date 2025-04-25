@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
 import LoginModal from "@/app/(auth)/loginModal";
 import SignUpModal from "@/app/(auth)/signUpModal";
+import colors from "@/style/staticColors";
+import spacingStyles from "@/style/spacingStyles";
 
 const ProfileHeader: React.FC = () => {
   const router = useRouter();
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
     height: 215,
   },
   header: {
-    backgroundColor: "#505464",
+    backgroundColor: colors.textMuted, 
     position: "absolute",
     top: 0,
     left: 0,
@@ -84,7 +86,7 @@ const styles = StyleSheet.create({
     height: 130,
   },
   contentContainer: {
-    paddingHorizontal: 15,
+    ...spacingStyles.px15
   },
   rowContainer: {
     marginTop: 70,
@@ -95,9 +97,9 @@ const styles = StyleSheet.create({
   avatarContainer: {
     width: 120,
     height: 125,
-    backgroundColor: "white",
+    backgroundColor: colors.whiteColor,
     borderRadius: 5,
-    borderColor: "#ddd",
+    borderColor: colors.borderLight,
     borderWidth: 1,
     alignItems: "center",
     justifyContent: "center",
@@ -113,15 +115,14 @@ const styles = StyleSheet.create({
     width: "62%",
   },
   solidButton: {
-    backgroundColor: "#1E2637",
-    paddingVertical: 12,
-    paddingHorizontal: 20,
+    backgroundColor: colors.buttonPrimary,
+    ...spacingStyles.py10,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 5,
   },
   loginText: {
-    color: "#fff",
+    color: colors.buttonPrimaryText,
     fontWeight: "bold",
     fontSize: 13,
   },

@@ -1,6 +1,9 @@
 import React from "react";
 import { ScrollView, Text, StyleSheet } from "react-native";
 import ExpandableContent from "../ui/ExpandableContent";
+import colors from "@/style/staticColors";
+import textStyles from "@/style/textStyles";
+import spacingStyles from "@/style/spacingStyles";
 
 const PrivacyPolicy: React.FC = () => {
   const privacyPolicyData = [
@@ -56,17 +59,14 @@ const PrivacyPolicy: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 25,
+    ...spacingStyles.p25
   },
   title: {
-    fontSize: 25,
-    fontWeight: "500",
-    marginTop: 25,
-    marginBottom: 25,
-    color: "#444",
+    ...textStyles.title,
     borderBottomWidth: 1,
-    borderColor: "#eee",
+    borderColor: colors.lightColor,
     borderStyle: "dotted",
+    ...spacingStyles.pb10
   },
 });
 

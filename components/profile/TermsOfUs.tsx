@@ -1,6 +1,9 @@
 import React from "react";
 import { View, StyleSheet, ScrollView, Text } from "react-native";
 import ExpandableContent from "../ui/ExpandableContent";
+import colors from "@/style/staticColors";
+import textStyles from "@/style/textStyles";
+import spacingStyles from "@/style/spacingStyles";
 
 const TermsOfUs = () => {
   const termsData = [
@@ -48,11 +51,11 @@ const TermsOfUs = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.title}>MYNTRA: TERMS OF USE</Text>
+      <Text style={textStyles.title}>MYNTRA: TERMS OF USE</Text>
       <Text style={styles.paragraph}>
         Welcome to Myntra.This document is an electronic record in terms of
         Information Technology Act, 2000 and published in accordance with the
-        provisions of Rule 3 ) of the Information Technology (Intermediaries
+        (provisions of Rule 3 ) of the Information Technology (Intermediaries
         guidelines) Rules, 2011 that require publishing the rules and
         regulations, privacy policy and Terms of Use for access or usage of
         Myntra marketplace platform - www.myntra.com (hereinafter referred to as
@@ -77,28 +80,17 @@ const TermsOfUs = () => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 25,
-  
-  },
-  title: {
-    fontSize: 25,
-    fontWeight: "semibold",
-    marginTop: 40,
-    marginBottom: 25,
-    color: "#444",
-    borderBottomWidth: 1,
-    borderColor: "#eee",
-    borderStyle: "dotted",
+    ...spacingStyles.p25,
   },
   section: {
-    marginBottom: 5,
+   ...spacingStyles.mb5
   },
   paragraph: {
     textAlign: "justify",
     fontSize: 13,
     lineHeight: 20,
-    color: "#909091",
-    marginBottom: 20,
+    color: colors.subTitle,
+    ...spacingStyles.mb20,
   },
 });
 

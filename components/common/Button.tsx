@@ -1,6 +1,7 @@
+import spacingStyles from "@/style/spacingStyles";
 import React from "react";
 import { Text, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, ActivityIndicator } from "react-native";
-
+import colors from "@/style/staticColors";
 interface ButtonProps {
   title: string;
   onPress: () => void;
@@ -36,16 +37,16 @@ export const Button: React.FC<ButtonProps> = ({
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "#1E2637",
-    padding: 10,
+    backgroundColor: colors.primaryColor,
+    ...spacingStyles.p10,
     borderRadius: 6,
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 10,
+    ...spacingStyles.mb10,
     width: "100%",
   },
   text: {
-    color: "#fff",
+    color: colors.whiteColor,
     fontWeight: "bold",
     fontSize: 14,
   },

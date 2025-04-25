@@ -1,3 +1,6 @@
+import colors from "@/style/staticColors";
+import spacingStyles from "@/style/spacingStyles";
+import textStyles from "@/style/textStyles";
 import React from "react";
 import {
   ScrollView,
@@ -104,48 +107,43 @@ const Grievance = () => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 25,
+    ...spacingStyles.p20,
   },
   section: {
-    marginBottom: 16,
+    ...spacingStyles.mb15
   },
   title: {
-    fontSize: 23,
-    fontWeight: "600",
-    marginTop: 25,
-    marginBottom: 10,
-    color: "#444",
+    ...textStyles.title,
     borderBottomWidth: 1,
-    borderColor: "#eee",
+    borderColor: colors.lightColor,
     borderStyle: "dotted",
   },
   heading: {
     fontSize: 18,
     fontWeight: "semibold",
-    marginBottom: 5,
+    ...spacingStyles.mb5
   },
   subHeading: {
     fontSize: 16,
     fontWeight: "bold",
-    marginTop: 12,
-    marginBottom: 4,
+    ...spacingStyles.mt10,
+    ...spacingStyles.mb5
   },
   text: {
+    ...textStyles.subtitle,
     fontSize: 14,
-    color: "#333",
-    lineHeight: 21,
-    marginBottom:5
+    ...spacingStyles.mb5
   },
   bold: {
     fontWeight: "bold",
   },
   linkButton: {
-    marginVertical: 8,
+    ...spacingStyles.my10
   },
   linkText: {
-    color: "#007aff",
+    color: colors.linkColor,
     textDecorationLine: "underline",
-    marginVertical:5
+    ...spacingStyles.my5
   },
 });
 

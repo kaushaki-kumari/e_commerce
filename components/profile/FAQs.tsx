@@ -1,6 +1,8 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import FaqSection from "./FaqSection";
+import colors from "@/style/staticColors";
+import spacingStyles from "@/style/spacingStyles";
 
 const faqs = [
   {
@@ -235,10 +237,10 @@ export default function FAQs() {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 25,
-    backgroundColor: "#fff",
+    ...spacingStyles.p25,
+    backgroundColor: colors.whiteColor
   },
   section: {
-    marginBottom: 20,
+    ...spacingStyles.mb20
   },
 });

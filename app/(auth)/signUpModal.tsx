@@ -9,6 +9,7 @@ import {
   Modal,
   KeyboardAvoidingView,
   Platform,
+  TouchableWithoutFeedback,
 } from "react-native";
 import { Button } from "@/components/common/Button";
 import { useRouter } from "expo-router";
@@ -22,6 +23,10 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import PasswordField from "@/components/common/PasswordField";
 import TextField from "@/components/common/TextField";
 import { Ionicons } from "@expo/vector-icons";
+import colors from "@/style/staticColors";
+import textStyles from "@/style/textStyles";
+import spacingStyles from "@/style/spacingStyles";
+import staticColors from "@/style/staticColors";
 
 interface SignUpModalProps {
   visible: boolean;
@@ -139,103 +144,114 @@ const SignUpModal: React.FC<SignUpModalProps> = ({
 
   return (
     <Modal visible={visible} animationType="slide" transparent={true}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.modalContainer}
-      >
-        <View style={styles.backdropTouchable}>
-          <View style={styles.modalContent}>
-            <ScrollView
-              style={styles.container}
-              contentContainerStyle={styles.scrollContent}
-              keyboardShouldPersistTaps="handled"
-              showsVerticalScrollIndicator={false}
-              bounces={false}
-            >
-              <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-                <Ionicons name="close" size={24} color="#1E2637" />
-              </TouchableOpacity>
-
-              <View>
-                <Image
-                  source={require("../../assets/images/logo-blue.png")}
-                  style={styles.image}
-                  resizeMode="contain"
-                />
-                <Text style={styles.subTitle}>
-                  Sign up and shop your favourite brands, all in one place
-                </Text>
-
-                <TextField
-                  label="Enter Your Email"
-                  value={formData.email}
-                  onChangeText={handleEmailChange}
-                  keyboardType="email-address"
-                  error={errors.email}
-                />
-
-                <PasswordField
-                  label="Password"
-                  value={formData.password}
-                  onChangeText={handlePasswordChange}
-                  error={errors.password}
-                />
-
-                <PasswordField
-                  label="Confirm Password"
-                  value={formData.confirmPassword}
-                  onChangeText={handleConfirmPasswordChange}
-                  error={errors.confirmPassword}
-                />
-                {error && <Text style={styles.apiError}>{error}</Text>}
-
-                <TouchableOpacity
-                  style={styles.termsContainer}
-                  onPress={handleTermsChange}
+      <TouchableWithoutFeedback onPress={onClose}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={styles.modalContainer}
+        >
+          <View style={styles.backdropTouchable}>
+            <TouchableWithoutFeedback>
+              <View style={styles.modalContent}>
+                <ScrollView
+                  style={styles.container}
+                  contentContainerStyle={styles.scrollContent}
+                  keyboardShouldPersistTaps="handled"
+                  showsVerticalScrollIndicator={false}
+                  bounces={false}
                 >
-                  <View
-                    style={[
-                      styles.checkbox,
-                      formData.termsAccepted && styles.checkboxChecked,
-                    ]}
+                  <TouchableOpacity
+                    onPress={onClose}
+                    style={styles.closeButton}
                   >
-                    {formData.termsAccepted && (
-                      <Text style={styles.checkmark}>✔</Text>
-                    )}
-                  </View>
-                  <Text style={styles.termsText}>
-                    By continuing, you confirm that you are above 18 years of
-                    age, and you agree to our{" "}
-                    <Text style={styles.link}>Terms of use</Text> and{" "}
-                    <Text style={styles.link}>Privacy Policy</Text>.
-                  </Text>
-                </TouchableOpacity>
-
-                <Button
-                  title="Sign Up"
-                  onPress={handleSignUp}
-                  disabled={!formData.termsAccepted || loading}
-                  loading={loading}
-                  style={
-                    !formData.termsAccepted || loading
-                      ? styles.disabledButton
-                      : {}
-                  }
-                />
-
-                <View style={styles.signupContainer}>
-                  <Text style={styles.signupText}>
-                    Already have an account?
-                  </Text>
-                  <TouchableOpacity onPress={onLoginPress}>
-                    <Text style={styles.signupLink}> Login</Text>
+                    <Ionicons
+                      name="close"
+                      size={24}
+                      color={colors.primaryColor}
+                    />
                   </TouchableOpacity>
-                </View>
+
+                  <View>
+                    <Image
+                      source={require("../../assets/images/logo-blue.png")}
+                      style={styles.image}
+                      resizeMode="contain"
+                    />
+                    <Text style={styles.subTitle}>
+                      Sign up and shop your favourite brands, all in one place
+                    </Text>
+
+                    <TextField
+                      label="Enter Your Email"
+                      value={formData.email}
+                      onChangeText={handleEmailChange}
+                      keyboardType="email-address"
+                      error={errors.email}
+                    />
+
+                    <PasswordField
+                      label="Password"
+                      value={formData.password}
+                      onChangeText={handlePasswordChange}
+                      error={errors.password}
+                    />
+
+                    <PasswordField
+                      label="Confirm Password"
+                      value={formData.confirmPassword}
+                      onChangeText={handleConfirmPasswordChange}
+                      error={errors.confirmPassword}
+                    />
+                    {error && <Text style={styles.apiError}>{error}</Text>}
+
+                    <TouchableOpacity
+                      style={styles.termsContainer}
+                      onPress={handleTermsChange}
+                    >
+                      <View
+                        style={[
+                          styles.checkbox,
+                          formData.termsAccepted && styles.checkboxChecked,
+                        ]}
+                      >
+                        {formData.termsAccepted && (
+                          <Text style={styles.checkmark}>✔</Text>
+                        )}
+                      </View>
+                      <Text style={styles.termsText}>
+                        By continuing, you confirm that you are above 18 years
+                        of age, and you agree to our{" "}
+                        <Text style={styles.link}>Terms of use</Text> and{" "}
+                        <Text style={styles.link}>Privacy Policy</Text>.
+                      </Text>
+                    </TouchableOpacity>
+
+                    <Button
+                      title="Sign Up"
+                      onPress={handleSignUp}
+                      disabled={!formData.termsAccepted || loading}
+                      loading={loading}
+                      style={
+                        !formData.termsAccepted || loading
+                          ? styles.disabledButton
+                          : {}
+                      }
+                    />
+
+                    <View style={styles.signupContainer}>
+                      <Text style={styles.signupText}>
+                        Already have an account?
+                      </Text>
+                      <TouchableOpacity onPress={onLoginPress}>
+                        <Text style={styles.signupLink}> Login</Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                </ScrollView>
               </View>
-            </ScrollView>
+            </TouchableWithoutFeedback>
           </View>
-        </View>
-      </KeyboardAvoidingView>
+        </KeyboardAvoidingView>
+      </TouchableWithoutFeedback>
     </Modal>
   );
 };
@@ -244,86 +260,83 @@ const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
     justifyContent: "flex-end",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    backgroundColor: "rgba(0, 0, 0, 0.1)",
   },
   backdropTouchable: {
     flex: 1,
     justifyContent: "flex-end",
   },
   modalContent: {
-    backgroundColor: "#fff",
+    backgroundColor: colors.whiteColor,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     overflow: "hidden",
   },
   container: {
     width: "100%",
-    backgroundColor: "#fff",
+    backgroundColor: colors.whiteColor,
   },
   scrollContent: {
-    padding: 30,
-    paddingBottom: 30,
+    ...spacingStyles.p25,
   },
   image: {
     width: "100%",
     height: 55,
-    marginBottom: 5,
+    ...spacingStyles.mb5,
   },
   subTitle: {
-    fontSize: 13,
-    fontWeight: "bold",
-    marginBottom: 12,
-    color: "#585959",
+    ...textStyles.subtitle,
     textAlign: "center",
+    fontSize: 13,
   },
   termsContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 10,
+    ...spacingStyles.mb10,
   },
   checkbox: {
     width: 20,
     height: 20,
     borderWidth: 1,
-    borderColor: "#0C4A6E",
+    borderColor: colors.linkPrimaryColor,
     borderRadius: 4,
     marginRight: 8,
     justifyContent: "center",
     alignItems: "center",
   },
   checkboxChecked: {
-    backgroundColor: "#0C4A6E",
+    backgroundColor: colors.primaryColor,
   },
   checkmark: {
-    color: "#fff",
+    color: colors.whiteColor,
     fontSize: 12,
   },
   termsText: {
     fontSize: 12.5,
-    color: "#333",
+    color: staticColors.cardTitleColor,
     flexShrink: 1,
   },
   link: {
-    color: "#0C4A6E",
+    color: colors.linkPrimaryColor,
     fontWeight: "600",
   },
   signupContainer: {
     flexDirection: "row",
     justifyContent: "center",
-    marginBottom: 10,
+    ...spacingStyles.mb10,
   },
   signupText: {
-    color: "#555",
+    color: colors.textSecondary,
   },
   signupLink: {
-    color: "#0C4A6E",
+    color: colors.linkPrimaryColor,
     fontWeight: "bold",
   },
   disabledButton: {
     opacity: 0.5,
   },
   apiError: {
-    color: "red",
+    color: colors.errorColor,
     fontSize: 13,
     marginTop: -10,
     textAlign: "left",
@@ -332,11 +345,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 15,
     right: 15,
-  },
-  extraText: {
-    fontSize: 13,
-    color: "#333",
-    marginTop: 10,
   },
 });
 

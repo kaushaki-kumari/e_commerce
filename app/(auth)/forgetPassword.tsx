@@ -8,6 +8,7 @@ import {
   Image,
   Keyboard,
   ActivityIndicator,
+  SafeAreaView,
 } from "react-native";
 import { useRouter } from "expo-router";
 import CreateNewPassword from "@/components/auth/CreateNewPassword";
@@ -20,6 +21,9 @@ import {
   setResetCredentials,
 } from "@/store/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import colors from "@/style/staticColors";
+import textStyles from "@/style/textStyles";
+import spacingStyles from "@/style/spacingStyles";
 
 export default function ForgetPassword() {
   const router = useRouter();
@@ -136,160 +140,151 @@ export default function ForgetPassword() {
   };
 
   return (
-    <View style={styles.container}>
-      {step === "email" && (
-        <>
-          <Image
-            source={require("../../assets/images/favicon.png")}
-            style={styles.logo}
-            resizeMode="contain"
-          />
-          <Text style={styles.title}>Reset Password</Text>
-          <TextField
-            label="Enter your Email"
-            onChangeText={onEmailChange}
-            keyboardType="email-address"
-            error={errors.email || error || undefined}
-            value={email}
-          />
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={[styles.button, styles.cancelButton]}
-              onPress={handleCancel}
-            >
-              <Text style={styles.cancelText}>Cancel</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.button, styles.confirmButton]}
-              onPress={handleConfirmEmail}
-              disabled={sendCodeLoading}
-            >
-              {sendCodeLoading ? (
-                <ActivityIndicator size="small" color="#fff" />
-              ) : (
-                <Text style={styles.confirmText}>Confirm</Text>
-              )}
-            </TouchableOpacity>
-          </View>
-        </>
-      )}
+    <SafeAreaView style={styles.container}>
+      <View style={styles.spacer} />
+      <View style={styles.innerContainer}>
+        {step === "email" && (
+          <>
+            <Image
+              source={require("../../assets/images/favicon.png")}
+              style={styles.logo}
+              resizeMode="contain"
+            />
+            <Text style={styles.title}>Reset Password</Text>
+            <TextField
+              label="Enter your Email"
+              onChangeText={onEmailChange}
+              keyboardType="email-address"
+              error={errors.email || error || undefined}
+              value={email}
+            />
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity
+                style={[styles.button, styles.cancelButton]}
+                onPress={handleCancel}
+              >
+                <Text style={styles.cancelText}>Cancel</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.button, styles.confirmButton]}
+                onPress={handleConfirmEmail}
+                disabled={sendCodeLoading}
+              >
+                {sendCodeLoading ? (
+                  <ActivityIndicator size="small" color="#fff" />
+                ) : (
+                  <Text style={styles.confirmText}>Confirm</Text>
+                )}
+              </TouchableOpacity>
+            </View>
+          </>
+        )}
 
-      {step === "otp" && (
-        <>
-          <Image
-            source={require("../../assets/images/favicon.png")}
-            style={styles.logo}
-            resizeMode="contain"
-          />
-          <Text style={styles.title}>Verification</Text>
-          <Text style={styles.subtitle}>Enter the code sent to your email</Text>
-          <View style={styles.timerBox}>
-            {timer > 0 ? (
-              <Text style={styles.timerText}>Resend code in {timer}s</Text>
-            ) : (
-              <Text style={styles.timerText}>Resend code now</Text>
-            )}
-          </View>
-          <View style={styles.otpContainer}>
-            {otp.map((digit, index) => (
-              <TextInput
-                key={index}
-                style={[styles.otpBox, otpError && styles.otpError]}
-                keyboardType="numeric"
-                maxLength={1}
-                value={digit}
-                onChangeText={(text) => handleChangeOtp(text, index)}
-                onKeyPress={(e) => handleKeyPress(e, index)}
-                ref={(ref) => (inputsRef.current[index] = ref)}
-              />
-            ))}
-          </View>
-          <Text style={styles.resendText}>
-            Didn't get the code?{" "}
-            <Text
-              style={[styles.resendLink, timer > 0 && styles.disabledResend]}
-              onPress={timer === 0 ? handleResend : undefined}
-            >
-              {sendCodeLoading ? (
-                <ActivityIndicator size={12} color="#ddd" />
-              ) : (
-                <Text>Resend</Text>
-              )}
+        {step === "otp" && (
+          <>
+            <Image
+              source={require("../../assets/images/favicon.png")}
+              style={styles.logo}
+              resizeMode="contain"
+            />
+            <Text style={textStyles.title}>Verification</Text>
+            <Text style={textStyles.subtitle}>
+              Enter the code sent to your email
             </Text>
-          </Text>
-          {(otpError || error) && (
-            <Text style={styles.errorMessage}>{otpError || error}</Text>
-          )}
-
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={[styles.button, styles.cancelButton]}
-              onPress={handleCancel}
-            >
-              <Text style={styles.cancelText}>Cancel</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.button, styles.confirmButton]}
-              onPress={handleVerifyOtp}
-              disabled={verifyCodeLoading}
-            >
-              {verifyCodeLoading ? (
-                <ActivityIndicator size="small" color="#fff" />
+            <View style={styles.timerBox}>
+              {timer > 0 ? (
+                <Text style={styles.timerText}>Resend code in {timer}s</Text>
               ) : (
-                <Text style={styles.confirmText}>Verify</Text>
+                <Text style={styles.timerText}>Resend code now</Text>
               )}
-            </TouchableOpacity>
-          </View>
-        </>
-      )}
+            </View>
+            <View style={styles.otpContainer}>
+              {otp.map((digit, index) => (
+                <TextInput
+                  key={index}
+                  style={[styles.otpBox, otpError && styles.otpError]}
+                  keyboardType="numeric"
+                  maxLength={1}
+                  value={digit}
+                  onChangeText={(text) => handleChangeOtp(text, index)}
+                  onKeyPress={(e) => handleKeyPress(e, index)}
+                  ref={(ref) => (inputsRef.current[index] = ref)}
+                />
+              ))}
+            </View>
+            <Text style={styles.resendText}>
+              Didn't get the code?{" "}
+              <Text
+                style={[styles.resendLink, timer > 0 && styles.disabledResend]}
+                onPress={timer === 0 ? handleResend : undefined}
+              >
+                {sendCodeLoading ? (
+                  <ActivityIndicator size={12} color="#ddd" />
+                ) : (
+                  <Text>Resend</Text>
+                )}
+              </Text>
+            </Text>
+            {(otpError || error) && (
+              <Text style={styles.errorMessage}>{otpError || error}</Text>
+            )}
 
-      {step === "password" && <CreateNewPassword />}
-    </View>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity
+                style={[styles.button, styles.cancelButton]}
+                onPress={handleCancel}
+              >
+                <Text style={styles.cancelText}>Cancel</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.button, styles.confirmButton]}
+                onPress={handleVerifyOtp}
+                disabled={verifyCodeLoading}
+              >
+                {verifyCodeLoading ? (
+                  <ActivityIndicator size="small" color="#fff" />
+                ) : (
+                  <Text style={styles.confirmText}>Verify</Text>
+                )}
+              </TouchableOpacity>
+            </View>
+          </>
+        )}
+
+        {step === "password" && <CreateNewPassword />}
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 80,
+    backgroundColor: colors.whiteColor,
+  },
+  spacer: {
+    height: 40,
+  },
+  innerContainer: {
+    flex: 1,
     alignItems: "center",
-    backgroundColor: "#fff",
-    paddingHorizontal: 24,
+    ...spacingStyles.px25,
+  ...spacingStyles.mt20,
   },
   logo: {
     width: 120,
     height: 150,
   },
   title: {
-    fontSize: 26,
-    fontFamily: "HelveticaBold",
-    marginBottom: 20,
-    color: "#333",
-  },
-  subtitle: {
-    fontSize: 16,
-    fontWeight: "500",
-    marginBottom: 15,
-    color: "#555",
-    textAlign: "center",
-  },
-  input: {
-    width: "100%",
-    height: 50,
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 12,
-    paddingHorizontal: 16,
-    fontSize: 16,
-    color: "#000",
-    marginBottom: 40,
+    ...textStyles.title,
+    ...spacingStyles.mb25,
   },
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     width: "100%",
     gap: 15,
-    marginTop: 20,
+    ...spacingStyles.mt15,
   },
   button: {
     flex: 1,
@@ -299,22 +294,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   cancelButton: {
-    backgroundColor: "#eee",
+    backgroundColor: colors.lightColor,
   },
   confirmButton: {
-    backgroundColor: "#1E2637",
+    backgroundColor: colors.primaryColor,
   },
   cancelText: {
-    color: "#333",
+    color: colors.primaryColor,
     fontFamily: "HelveticaBold",
   },
   confirmText: {
-    color: "#fff",
+    color: colors.whiteColor,
     fontFamily: "HelveticaBold",
   },
   timerBox: {
     alignItems: "center",
-    marginTop: 10,
+    ...spacingStyles.mt10,
   },
   timerText: {
     fontSize: 14,
@@ -324,7 +319,7 @@ const styles = StyleSheet.create({
   otpContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 20,
+    ...spacingStyles.mt20,
     gap: 10,
   },
   otpBox: {
@@ -340,11 +335,11 @@ const styles = StyleSheet.create({
   },
   resendText: {
     fontSize: 15,
-    marginVertical: 25,
+    ...spacingStyles.my20,
     color: "gray",
   },
   resendLink: {
-    color: "#7881FC",
+    color: colors.linkColor,
     fontWeight: "600",
   },
   disabledResend: {
@@ -353,6 +348,6 @@ const styles = StyleSheet.create({
   errorMessage: {
     color: "red",
     fontSize: 14,
-    marginTop: 10,
+    ...spacingStyles.mt10,
   },
 });

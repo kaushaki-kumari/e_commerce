@@ -27,7 +27,12 @@ import ImageSlider from "@/components/home/ImageSlider";
 import bannerData from "../../assets/data/banner.json";
 import PromotionalCards from "@/components/home/PromotionalCards";
 import promotionalData from "../../assets/data/promotionalData.json";
-
+import OfferCardCarousel from "@/components/home/OfferCardCarousel";
+import colors from "@/style/staticColors";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import spacingStyles from "@/style/spacingStyles";
+import BrandCard from "@/components/home/BrandCard";
+import staticColors from "@/style/staticColors";
 interface Product {
   id: string;
   image: string;
@@ -59,7 +64,7 @@ const HomeScreen: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const productData = data as ProductData;
-
+  const insets = useSafeAreaInsets();
   const getFilteredProducts = () => {
     let filtered = productData.products;
 
@@ -119,12 +124,21 @@ const HomeScreen: React.FC = () => {
       )}
       <ImageSlider slides={bannerData} />
       <PromotionalCards cards={promotionalData.promotionalCards} />
+      <OfferCardCarousel />
+      <BrandCard />
     </>
   );
 
   return (
     <View style={styles.container}>
-      <SafeAreaView style={styles.contentWrapper}>
+      <SafeAreaView
+        style={[
+          styles.contentWrapper,
+          {
+            paddingTop: insets.top,
+          },
+        ]}
+      >
         <StatusBar
           barStyle="dark-content"
           translucent
@@ -132,11 +146,22 @@ const HomeScreen: React.FC = () => {
         />
         <View style={styles.addressContainer}>
           <View style={styles.addressTextContainer}>
-            <FontAwesome6 name="location-dot" size={14} color="#1E2637" />
-            <Text style={styles.addressText}>Add Delivery Address</Text>
+            <FontAwesome6
+              name="location-dot"
+              size={14}
+              color={colors.primaryColor}
+            />
+            <Text style={[styles.addressText, { marginLeft: insets.left }]}>
+              Add Delivery Address
+            </Text>
           </View>
-          <MaterialIcons name="keyboard-arrow-down" size={24} color="#1E2637" />
+          <MaterialIcons
+            name="keyboard-arrow-down"
+            size={24}
+            color={colors.primaryColor}
+          />
         </View>
+
         <View style={styles.searchContainer}>
           <View style={styles.searchInputContainer}>
             <Image
@@ -163,17 +188,21 @@ const HomeScreen: React.FC = () => {
             <MaterialIcons
               name="notifications-none"
               size={22}
-              color="#1E2637"
+              color={colors.primaryColor}
             />
           </TouchableOpacity>
           <TouchableOpacity style={styles.iconButton}>
-            <Feather name="heart" size={22} color="#1E2637" />
+            <Feather name="heart" size={22} color={colors.primaryColor} />
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.iconButton}
             onPress={handleUserIconPress}
           >
-            <FontAwesome6 name="user-circle" size={22} color="#1E2637" />
+            <FontAwesome6
+              name="user-circle"
+              size={22}
+              color={colors.primaryColor}
+            />
           </TouchableOpacity>
         </View>
 
@@ -200,32 +229,30 @@ const styles = StyleSheet.create({
     backgroundColor: "#f5fbff",
   },
   contentWrapper: {
-    flex: 1,
-    paddingHorizontal: Platform.OS === "ios" ? 20 : 16,
-    paddingTop: Platform.OS === "ios" ? 20 : StatusBar.currentHeight || 40,
+    flex:1
   },
   addressContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginVertical: 1,
-    marginHorizontal: Platform.OS === "ios" ? 5 : 0,
+    ...spacingStyles.px10,
+    ...spacingStyles.mb10,
   },
   addressTextContainer: {
     flexDirection: "row",
     alignItems: "center",
+    gap:8
   },
   addressText: {
-    fontSize: 12,
-    marginLeft: 6,
+    fontSize: 13,
     fontWeight: "500",
-    color: "#1E2637",
-    marginRight: 4,
+    color: colors.primaryColor,
+    ...spacingStyles.mx5
   },
   searchContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 12,
-    marginHorizontal: Platform.OS === "ios" ? 5 : 0,
+    ...spacingStyles.mb10,
+    ...spacingStyles.px10
   },
   searchInputContainer: {
     flex: 1,
@@ -234,8 +261,8 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     borderWidth: 1,
     borderRadius: 12,
-    paddingHorizontal: 10,
-    backgroundColor: "#fff",
+    ...spacingStyles.px10,
+    backgroundColor: colors.whiteColor,
     justifyContent: "space-between",
   },
 
@@ -243,29 +270,24 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     resizeMode: "contain",
-    marginRight: 8,
+    ...spacingStyles.mr10
   },
 
   searchInput: {
     flex: 1,
     height: 40,
     fontSize: 12,
-    color: "#333",
+    color: staticColors.cardTitleColor,
   },
-
-  searchIconRight: {
-    paddingLeft: 8,
-  },
-
   iconButton: {
-    marginLeft: 15,
+    ...spacingStyles.ml15
   },
   flatListContent: {
-    paddingVertical: 10,
+    ...spacingStyles.px10
   },
   columnWrapper: {
     justifyContent: "space-between",
-    marginBottom: 16,
+    ...spacingStyles.mb10
   },
 });
 

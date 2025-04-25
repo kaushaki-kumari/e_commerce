@@ -8,6 +8,9 @@ import {
   Dimensions,
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import colors from "@/style/staticColors";
+import spacingStyles from "@/style/spacingStyles";
+import staticColors from "@/style/staticColors";
 
 export interface ProductCardProps {
   id: string;
@@ -113,7 +116,7 @@ export default ProductCard;
 const styles = StyleSheet.create({
   card: {
     width: Dimensions.get("window").width / 2 - 20,
-    backgroundColor: "#fff",
+    backgroundColor: colors.whiteColor,
     borderRadius: 8,
     overflow: "hidden",
   },
@@ -135,22 +138,22 @@ const styles = StyleSheet.create({
   },
   cardContainer:{
     borderWidth: 1,
-    borderColor: "#eee",
+    borderColor: colors.lightColor,
   },
   cardTitle: {
     fontSize: 13,
     fontWeight: "600",
-    color: "#333",
+    color: staticColors.cardTitleColor,
     height:43,
-    paddingHorizontal: 12,
-    paddingTop: 10,
+    ...spacingStyles.px10,
+    ...spacingStyles.pt10,
     lineHeight: 18,
   },
   starContainer: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 12,
-    marginTop: 4,
+    ...spacingStyles.px10,
+    ...spacingStyles.mt5,
   },
   starIcon: {
     marginRight: 2,
@@ -163,14 +166,14 @@ const styles = StyleSheet.create({
   cardPrice: {
     fontSize: 16,
     fontWeight: "700",
-    color: "#1E2637",
-    paddingHorizontal: 12,
-    paddingTop: 4,
+    color: colors.primaryColor,
+    ...spacingStyles.px10,
+    ...spacingStyles.pt5,
   },
   discountBadge: {
     alignSelf: "flex-start",
-    marginHorizontal: 12,
-    marginVertical: 4,
+    ...spacingStyles.mx10,
+    ...spacingStyles.my5
   },
   discountText: {
     color: "#FF8C00",

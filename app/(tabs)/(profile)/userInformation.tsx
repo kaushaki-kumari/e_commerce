@@ -13,6 +13,9 @@ import TextField from "@/components/common/TextField";
 import { LinearGradient } from "expo-linear-gradient";
 import { Button } from "@/components/common/Button";
 import { FontAwesome } from "@expo/vector-icons";
+import colors from "@/style/staticColors";
+import spacingStyles from "@/style/spacingStyles";
+import staticColors from "@/style/staticColors";
 
 const { height } = Dimensions.get("window");
 
@@ -152,7 +155,7 @@ export default UserInformationScreen;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
+    backgroundColor: colors.whiteColor,
     alignItems: "center",
     paddingHorizontal: 24,
     paddingTop: height * 0.18,
@@ -174,7 +177,7 @@ const styles = StyleSheet.create({
   accountText: {
     fontSize: 30,
     fontWeight: "bold",
-    color: "#fff",
+    color: colors.whiteColor,
   },
   avatarWrapper: {
     alignItems: "center",
@@ -186,7 +189,7 @@ const styles = StyleSheet.create({
     borderRadius: 60,
     marginBottom: 8,
     borderWidth: 2,
-    borderColor: "#eee",
+    borderColor: colors.lightColor,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -199,7 +202,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     fontWeight: "bold",
     borderBottomWidth: 2,
-    borderColor: "#eee",
+    borderColor: colors.lightColor,
     borderStyle: "dotted",
   },
   rowInput: {
@@ -214,7 +217,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     marginBottom: 6,
     alignSelf: "flex-start",
-    color: "#333",
+    color: staticColors.cardTitleColor,
   },
   cardRow: {
     flexDirection: "row",
@@ -231,7 +234,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#ccc",
     borderRadius: 12,
-    backgroundColor: "#fff",
+    backgroundColor: colors.whiteColor,
   },
 
   selectedCard: {
@@ -254,7 +257,7 @@ const styles = StyleSheet.create({
 
   dobPicker: {
     width: "100%",
-    padding: 10,
+    ...spacingStyles.p10,
     borderWidth: 1,
     borderColor: "#ccc",
     borderRadius: 10,
@@ -263,15 +266,15 @@ const styles = StyleSheet.create({
 
   dobText: {
     fontSize: 16,
-    color: "#333",
+    color:staticColors.cardTitleColor,
   },
   helpContainer: {
     flexDirection: "row",
     justifyContent: "center",
     marginBottom: 30,
-    marginTop: 10,
+    ...spacingStyles.mt10,
     borderBottomWidth: 1,
-    borderColor: "#eee",
+    borderColor: colors.lightColor,
     borderStyle: "dotted",
   },
   helpText: {

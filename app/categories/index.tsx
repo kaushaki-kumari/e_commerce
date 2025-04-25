@@ -15,6 +15,9 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import categoriesData from "../../assets/data/category-data.json";
+import colors from "@/style/staticColors";
+import spacingStyles from "@/style/spacingStyles";
+import staticColors from "@/style/staticColors";
 
 interface CategoryItem {
   id: string;
@@ -324,18 +327,18 @@ const CategoriesScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: colors.whiteColor,
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   header: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 16,
-    paddingVertical: 10,
+    ...spacingStyles.px15,
+    ...spacingStyles.py10
   },
   backButton: {
-    padding: 5,
+   ...spacingStyles.p5,
   },
   headerContain: {
     flexDirection: "row",
@@ -350,14 +353,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   iconButton: {
-    marginLeft: 12,
+    ...spacingStyles.ml10,
     position: "relative",
   },
   badge: {
     position: "absolute",
     right: -8,
     top: -8,
-    backgroundColor: "#1E2637",
+    backgroundColor: colors.primaryColor,
     borderRadius: 10,
     width: 18,
     height: 18,
@@ -365,7 +368,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   badgeText: {
-    color: "#fff",
+    color: colors.whiteColor,
     fontSize: 10,
     fontWeight: "bold",
   },
@@ -379,8 +382,7 @@ const styles = StyleSheet.create({
   },
   sidebarItem: {
     alignItems: "center",
-    paddingVertical: 10,
-    paddingHorizontal: 10,
+    ...spacingStyles.p10
   },
   sidebarItemInner: {
     position: "relative",
@@ -394,10 +396,10 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
   },
   selectedSidebarBorder: {
-    backgroundColor: "#1E2637",
+    backgroundColor: colors.primaryColor,
   },
   selectedSidebarItem: {
-    backgroundColor: "#fff",
+    backgroundColor: colors.whiteColor,
   },
   sidebarImage: {
     width: 55,
@@ -408,28 +410,28 @@ const styles = StyleSheet.create({
   sidebarText: {
     fontSize: 11,
     textAlign: "center",
-    marginTop: 5,
+    ...spacingStyles.mt5,
     fontWeight: "600",
-    color: "#333",
+    color: staticColors.cardTitleColor,
   },
   selectedSidebarText: {
-    color: "#1E2637",
+    color: colors.primaryColor,
     fontWeight: "700",
     fontSize: 13,
   },
   mainContent: {
     flex: 1,
-    paddingVertical: 10,
-    paddingHorizontal: 15,
+    ...spacingStyles.py10,
+    ...spacingStyles.px15,
   },
   section: {
-    marginBottom: 5,
+    ...spacingStyles.mb5
   },
   sectionTitle: {
     fontSize: 15,
     fontFamily: "HelveticaBold",
-    marginVertical: 10,
-    color: "#1E2637",
+    ...spacingStyles.mx10,
+    color: colors.primaryColor,
   },
   spotlightGrid: {
     flexDirection: "row",
@@ -438,7 +440,7 @@ const styles = StyleSheet.create({
   },
   spotlightItemWrapper: {
     width: "33%",
-    marginBottom: 20,
+    ...spacingStyles.mb20,
     alignItems: "center",
   },
   spotlightItem: {
@@ -460,8 +462,8 @@ const styles = StyleSheet.create({
   spotlightTitle: {
     fontSize: 12,
     textAlign: "center",
-    marginTop: 8,
-    color: "#1E2637",
+    ...spacingStyles.mt8,
+    color: colors.primaryColor,
     fontWeight: "600",
   },
   storeItem: {
@@ -483,8 +485,8 @@ const styles = StyleSheet.create({
   storeTitle: {
     fontSize: 12,
     textAlign: "center",
-    marginTop: 8,
-    color: "#333",
+    ...spacingStyles.mt8,
+    color: staticColors.cardTitleColor,
     fontWeight: "500",
   },
 });
