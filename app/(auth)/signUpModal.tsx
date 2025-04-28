@@ -73,37 +73,34 @@ const SignUpModal: React.FC<SignUpModalProps> = ({
     }
   }, [registered, onClose, router, dispatch]);
 
-  const handleChange = (
-    field: keyof FormData,
-    value: string | boolean
-  ): void => {
-    setFormData((prevData) => ({
+  const handleInputChange = (field: keyof FormData, value: string | boolean): void => {
+    setFormData(prevData => ({
       ...prevData,
       [field]: value,
     }));
-  };
-
-  const handleEmailChange = (text: string): void => {
-    handleChange("email", text);
-    handleEmailValidation(text);
-  };
-
-  const handlePasswordChange = (text: string): void => {
-    handleChange("password", text);
-    handlePasswordValidation(text);
-    if (formData.confirmPassword) {
-      handlePasswordMatch(text, formData.confirmPassword);
+  
+    if (typeof value === 'string') {
+      switch (field) {
+        case 'email':
+          handleEmailValidation(value);
+          break;
+        case 'password':
+          handlePasswordValidation(value);
+          if (formData.confirmPassword) {
+            handlePasswordMatch(value, formData.confirmPassword);
+          }
+          break;
+        case 'confirmPassword':
+          handlePasswordMatch(formData.password, value);
+          break;
+      }
+    }
+  
+    if (field === 'termsAccepted') {
+    
     }
   };
-
-  const handleConfirmPasswordChange = (text: string): void => {
-    handleChange("confirmPassword", text);
-    handlePasswordMatch(formData.password, text);
-  };
-
-  const handleTermsChange = (): void => {
-    handleChange("termsAccepted", !formData.termsAccepted);
-  };
+  
 
   const handleSignUp = (): void => {
     handleEmailValidation(formData.email);
@@ -183,7 +180,7 @@ const SignUpModal: React.FC<SignUpModalProps> = ({
                     <TextField
                       label="Enter Your Email"
                       value={formData.email}
-                      onChangeText={handleEmailChange}
+                      onChangeText={(text) => handleInputChange('email', text)}
                       keyboardType="email-address"
                       error={errors.email}
                     />
@@ -191,21 +188,21 @@ const SignUpModal: React.FC<SignUpModalProps> = ({
                     <PasswordField
                       label="Password"
                       value={formData.password}
-                      onChangeText={handlePasswordChange}
+                      onChangeText={(text) => handleInputChange('password', text)}
                       error={errors.password}
                     />
 
                     <PasswordField
                       label="Confirm Password"
                       value={formData.confirmPassword}
-                      onChangeText={handleConfirmPasswordChange}
+                      onChangeText={(text) => handleInputChange('confirmPassword', text)}
                       error={errors.confirmPassword}
                     />
                     {error && <Text style={styles.apiError}>{error}</Text>}
 
                     <TouchableOpacity
                       style={styles.termsContainer}
-                      onPress={handleTermsChange}
+                      onPress={() => handleInputChange('termsAccepted', !formData.termsAccepted)}
                     >
                       <View
                         style={[

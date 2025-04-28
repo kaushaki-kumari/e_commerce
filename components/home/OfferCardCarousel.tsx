@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   timerSegment: {
-    backgroundColor: "#fee2e2",
+    backgroundColor: staticColors.lightPink,
     borderRadius: 6,
     paddingVertical: 5,
     paddingHorizontal: 8,
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     ...spacingStyles.mr10,
     overflow: "hidden",
-    borderColor: "#ddd",
+    borderColor: staticColors.lightColor,
     borderWidth: 1,
     ...spacingStyles.py10,
     alignItems: "center",

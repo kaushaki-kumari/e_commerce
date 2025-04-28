@@ -9,8 +9,8 @@ import {
   Platform,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import colors from "@/style/staticColors";
 import spacingStyles from "@/style/spacingStyles";
+import staticColors from "@/style/staticColors";
 
 interface PasswordFieldProps extends TextInputProps {
   label?: string;
@@ -98,8 +98,8 @@ const styles = StyleSheet.create({
   label: {
     position: "absolute",
     left: 12,
-    color: "#777",
-    backgroundColor: colors.whiteColor,
+    color: staticColors.lightGray,
+    backgroundColor: staticColors.whiteColor,
     zIndex: 1,
     paddingHorizontal: 4,
   },
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   labelFocused: {
-    color: "#0C4A6E",
+    color: staticColors.primaryColor,
     fontWeight: "bold",
   },
   labelError: {
@@ -124,17 +124,17 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: staticColors.lightColor,
     borderRadius: 6,
     ...spacingStyles.p10,
     paddingVertical: Platform.OS === "ios" ? 8 : 5,
     fontSize: 14,
   },
   inputFocused: {
-    borderColor: "#0C4A6E",
+    borderColor: staticColors.primaryColor,
   },
   inputError: {
-    borderColor: "red", 
+    borderColor: staticColors.errorColor, 
   },
   icon: {
     position: "absolute",
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     top: 12,
   },
   errorText: {
-    color: "red",
+    color: staticColors.errorColor,
     fontSize: 12,
     ...spacingStyles.mt5,
   },

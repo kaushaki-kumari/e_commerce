@@ -3,6 +3,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { Image, Text, Platform, SafeAreaView } from "react-native";
 import colors from "@/style/staticColors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import staticColors from "@/style/staticColors";
 export default function TabLayout() {
   const insets = useSafeAreaInsets();
   return (
@@ -32,12 +33,12 @@ export default function TabLayout() {
             return <Ionicons name={iconName} size={size} color={color} />;
           },
           tabBarActiveTintColor: colors.primaryColor,
-          tabBarInactiveTintColor: "gray",
+          tabBarInactiveTintColor: staticColors.lightGray,
           tabBarStyle: {
             backgroundColor: colors.whiteColor,
             borderTopWidth: 0,
             elevation: 10,
-            shadowColor: "#000",
+            shadowColor: staticColors.shadowColor,
             shadowOffset: { width: 0, height: -3 },
             shadowOpacity: 0.1,
             shadowRadius: 5,

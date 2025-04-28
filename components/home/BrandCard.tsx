@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   },
   brandCategory: {
     fontSize: 14,
-    color: "#888",
+    color: staticColors.lightGray,
     ...spacingStyles.mt2,
   },
 });

@@ -172,7 +172,7 @@ const HomeScreen: React.FC = () => {
             <TextInput
               placeholder="Search products..."
               style={styles.searchInput}
-              placeholderTextColor="#999"
+              placeholderTextColor={staticColors.lightGray}
               value={searchQuery}
               onChangeText={setSearchQuery}
             />
@@ -226,7 +226,7 @@ const HomeScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f5fbff",
+    backgroundColor: staticColors.homebackgroundColor,
   },
   contentWrapper: {
     flex:1
@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    borderColor: "#ccc",
+    borderColor: staticColors.lightColor,
     borderWidth: 1,
     borderRadius: 12,
     ...spacingStyles.px10,

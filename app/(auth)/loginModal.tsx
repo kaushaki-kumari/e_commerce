@@ -51,15 +51,16 @@ const LoginModal: React.FC<LoginModalProps> = ({
   const dispatch = useAppDispatch();
   const router = useRouter();
 
-  const handleEmailChange = (text: string): void => {
-    setFormData((prev) => ({ ...prev, email: text }));
-    handleEmailValidation(text);
+  const handleInputChange = (field: 'email' | 'password', text: string): void => {
+    setFormData((prev) => ({ ...prev, [field]: text }));
+  
+    if (field === 'email') {
+      handleEmailValidation(text);
+    } else if (field === 'password') {
+      handleLoginPasswordValidation(text);
+    }
   };
-
-  const handlePasswordChange = (text: string): void => {
-    setFormData((prev) => ({ ...prev, password: text }));
-    handleLoginPasswordValidation(text);
-  };
+  
 
   const handleLoginPress = async (): Promise<void> => {
     handleEmailValidation(formData.email);
@@ -115,7 +116,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
               <TextField
                 label="Enter your Email"
                 value={formData.email}
-                onChangeText={handleEmailChange}
+                onChangeText={(text) => handleInputChange('email', text)}
                 keyboardType="email-address"
                 error={errors.email}
               />
@@ -123,7 +124,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
               <PasswordField
                 label="Password"
                 value={formData.password}
-                onChangeText={handlePasswordChange}
+                onChangeText={(text) => handleInputChange('password', text)}
                 error={errors.password}
               />
               {error && <Text style={styles.apiError}>{error}</Text>}

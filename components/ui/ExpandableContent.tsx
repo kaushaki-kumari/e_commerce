@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Collapsible from "../Collapsible";
-import colors from "@/style/staticColors";
 import spacingStyles from "@/style/spacingStyles";
 import staticColors from "@/style/staticColors";
 interface ExpandableContentProps {
@@ -35,9 +34,9 @@ const ExpandableContent: React.FC<ExpandableContentProps> = ({
 
 const styles = StyleSheet.create({
   faqContainer: {
-    backgroundColor: colors.whiteColor,
+    backgroundColor: staticColors.whiteColor,
     borderRadius: 8,
-    shadowColor: colors.lightColor,
+    shadowColor: staticColors.lightColor,
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.2,
     shadowRadius: 6,
@@ -62,7 +61,7 @@ const styles = StyleSheet.create({
   answer: {
     textAlign: "justify",
     fontSize: 14,
-    color: "#666",
+    color: staticColors.lightGray,
     fontFamily:'Helvetica'
   },
 });

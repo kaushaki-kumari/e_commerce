@@ -259,7 +259,7 @@ const styles = StyleSheet.create({
     width: "100%",
     ...spacingStyles.p10,
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor:staticColors.lightColor,
     borderRadius: 10,
     marginBottom: 15,
   },

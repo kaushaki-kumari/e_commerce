@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import colors from "@/style/staticColors";
 import spacingStyles from "@/style/spacingStyles";
+import staticColors from "@/style/staticColors";
 
 type CartItemProps = {
   id: string;
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   itemSize: {
-    color: "#888",
+    color: staticColors.textMuted,
     ...spacingStyles.mt5,
   },
   itemPrice: {
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     borderRadius: 6,
-    backgroundColor: "#1A1651",
+    backgroundColor: staticColors.primaryColor,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     borderRadius: 6,
-    borderColor:'#1A1651',
+    borderColor:staticColors.primaryColor,
     borderWidth:1,
     justifyContent: "center",
     alignItems: "center",

@@ -1,4 +1,3 @@
-import colors from "@/style/staticColors";
 import spacingStyles from "@/style/spacingStyles";
 import React, { useState } from "react";
 import {
@@ -9,6 +8,7 @@ import {
   TextInputProps,
   Platform,
 } from "react-native";
+import staticColors from "@/style/staticColors";
 
 interface TextFieldProps extends TextInputProps {
   label?: string;
@@ -85,8 +85,8 @@ const styles = StyleSheet.create({
   label: {
     position: "absolute",
     left: 12,
-    color: "#777",
-    backgroundColor: colors.whiteColor,
+    color: staticColors.lightGray,
+    backgroundColor: staticColors.whiteColor,
     zIndex: 1,
    ...spacingStyles.px5
   },
@@ -100,30 +100,30 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   labelFocused: {
-    color: "#0C4A6E",
+    color: staticColors.primaryColor,
     fontWeight: "bold",
   },
   labelError: {
-    color: "#ff4d4f",
+    color: staticColors.errorColor,
   },
   input: {
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: staticColors.lightColor,
     borderRadius: 6,
     ...spacingStyles.p10,
     paddingVertical: Platform.OS === "ios" ? 8 : 5,
     fontSize: 14,
   },
   inputFocused: {
-    borderColor: "#0C4A6E",
+    borderColor: staticColors.primaryColor,
   },
   inputError: {
-    borderColor: "#ff4d4f",
+    borderColor: staticColors.errorColor,
   },
   errorText: {
     ...spacingStyles.mt5,
     ...spacingStyles.ml5,
-    color: "#ff4d4f",
+    color: staticColors.errorColor,
     fontSize: 13,
   },
 });

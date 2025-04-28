@@ -1,9 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
 import ExpandableContent from "../ui/ExpandableContent";
-import colors from "@/style/staticColors";
 import textStyles from "@/style/textStyles";
 import spacingStyles from "@/style/spacingStyles";
+import staticColors from "@/style/staticColors";
 
 const aboutUsData = [
   {
@@ -59,17 +59,17 @@ const AboutUs = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.whiteColor,
+    backgroundColor: staticColors.whiteColor,
   },
   header: {
-    backgroundColor: colors.whiteColor,
+    backgroundColor: staticColors.whiteColor,
     ...spacingStyles.py25,
     alignItems: "center",
     justifyContent: "center",
     ...spacingStyles.mb20,
     borderBottomWidth: 1,
-    borderColor: colors.lightColor,
-    shadowColor: "#000",
+    borderColor: staticColors.lightColor,
+    shadowColor: staticColors.shadowColor,
     shadowOpacity: 0.1,
     shadowRadius: 10,
     elevation: 5,

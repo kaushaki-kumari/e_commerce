@@ -313,7 +313,7 @@ const styles = StyleSheet.create({
   },
   timerText: {
     fontSize: 14,
-    color: "gray",
+    color: colors.backgroundMuted,
     fontWeight: "500",
   },
   otpContainer: {
@@ -331,22 +331,22 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   otpError: {
-    borderColor: "red",
+    borderColor: colors.errorColor,
   },
   resendText: {
     fontSize: 15,
     ...spacingStyles.my20,
-    color: "gray",
+    color: colors.backgroundMuted,
   },
   resendLink: {
     color: colors.linkColor,
     fontWeight: "600",
   },
   disabledResend: {
-    color: "#aaa",
+    color: colors.backgroundMuted,
   },
   errorMessage: {
-    color: "red",
+    color: colors.errorColor,
     fontSize: 14,
     ...spacingStyles.mt10,
   },

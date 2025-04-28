@@ -10,6 +10,7 @@ import {
 import data from "@/assets/data/products.json";
 import colors from "@/style/staticColors";
 import spacingStyles from "@/style/spacingStyles";
+import staticColors from "@/style/staticColors";
 
 interface CategoryItem {
   id: string;
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     overflow: "hidden",
     borderWidth: 1,
-    borderColor: "#f0f0f0",
+    borderColor: staticColors.backgroundMuted,
     backgroundColor: colors.whiteColor,
     justifyContent: "center",
     alignItems: "center",

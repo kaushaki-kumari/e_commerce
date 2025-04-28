@@ -1,4 +1,3 @@
-import colors from "@/style/staticColors";
 import spacingStyles from "@/style/spacingStyles";
 import {
   AntDesign,
@@ -18,7 +17,6 @@ import {
   Dimensions,
 } from "react-native";
 import staticColors from "@/style/staticColors";
-
 interface PromotionalCard {
   id: string;
   title: string;
@@ -191,7 +189,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     ...spacingStyles.mb5,
     overflow: "hidden",
-    backgroundColor: "#f1f0ff",
+    backgroundColor: staticColors.cardBackground,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -201,7 +199,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     ...spacingStyles.mb5,
     overflow: "hidden",
-    backgroundColor: "#f8f2ea",
+    backgroundColor: staticColors.lightColor,
   },
   cardContent: {
     flex: 1,
@@ -232,7 +230,7 @@ const styles = StyleSheet.create({
     ...spacingStyles.px15
   },
   bestSellerTitle: {
-    color: "#1B1650",
+    color: staticColors.primaryColor,
     fontWeight: "800",
     fontSize: 20,
     lineHeight: 24,
@@ -244,7 +242,7 @@ const styles = StyleSheet.create({
   },
   shippingInfoContainer: {
     flexDirection: "row",
-    backgroundColor: "#e6ffe6",
+    backgroundColor: staticColors.lightGreen,
     borderRadius: 15,
     ...spacingStyles.p10,
     justifyContent: "space-between",
@@ -253,7 +251,7 @@ const styles = StyleSheet.create({
     ...spacingStyles.mx10,
     position: "relative",
     borderWidth: 1,
-    borderColor: colors.lightColor,
+    borderColor: staticColors.lightColor,
   },
   infoItem: {
     flexDirection: "row",
@@ -270,12 +268,12 @@ const styles = StyleSheet.create({
   },
   infoSubtitle: {
     fontSize: 10,
-    color: "#666",
+    color: staticColors.lightGray,
   },
   divider: {
     width: 1,
     height: "90%",
-    backgroundColor: "#ddd",
+    backgroundColor: staticColors.lightGray,
     ...spacingStyles.mx5
   },
   sparkleLeft: {

@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: colors.lightColor,
     borderStyle: "dotted",
-    color:'#1A1651'
+    color:colors.primaryColor
   },
   modalOverlay: {
     flex: 1,
@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
   },
   modalPrice: {
     fontSize: 16,
-    color: "#1A1651",
+    color: colors.primaryColor,
   },
   modalButtonContainer: {
     flexDirection: "row",
@@ -271,14 +271,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   cancelButton: {
-    borderColor:'#1A1651',
+    borderColor:colors.primaryColor,
     borderWidth:1,
   },
   removeButton: {
-    backgroundColor: "#1A1651",
+    backgroundColor: colors.primaryColor,
   },
   cancelText:{
-    color:"#1A1651",
+    color:colors.primaryColor,
     fontFamily:'Helvetica',
   },
   removeText:{

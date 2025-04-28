@@ -347,7 +347,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 16,
     fontWeight: "500",
-    color: "#666",
+    color: staticColors.darkGray,
   },
   headerRight: {
     flexDirection: "row",
@@ -378,7 +378,7 @@ const styles = StyleSheet.create({
   },
   sidebar: {
     width: 90,
-    backgroundColor: "#f7f9fa",
+    backgroundColor: staticColors.homebackgroundColor,
   },
   sidebarItem: {
     alignItems: "center",
@@ -452,7 +452,7 @@ const styles = StyleSheet.create({
     height: 80,
     borderRadius: 40,
     overflow: "hidden",
-    backgroundColor: "#f0f0f0",
+    backgroundColor: staticColors.backgroundMuted,
   },
   spotlightImage: {
     width: "100%",
@@ -475,7 +475,7 @@ const styles = StyleSheet.create({
     height: 80,
     borderRadius: 40,
     overflow: "hidden",
-    backgroundColor: "#f0f0f0",
+    backgroundColor: staticColors.backgroundMuted,
   },
   storeImage: {
     width: "100%",

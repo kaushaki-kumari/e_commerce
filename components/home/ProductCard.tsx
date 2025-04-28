@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
   },
   ratingText: {
     fontSize: 12,
-    color: "#666",
+    color: staticColors.lightGray,
     marginLeft: 4,
   },
   cardPrice: {
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     ...spacingStyles.my5
   },
   discountText: {
-    color: "#FF8C00",
+    color: staticColors.discountColor,
     fontSize: 10,
     fontWeight: "bold",
   },

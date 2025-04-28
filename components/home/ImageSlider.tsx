@@ -196,11 +196,11 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: '#D9D9D9',
+    backgroundColor:staticColors.lightColor,
     ...spacingStyles.mx2
   },
   paginationDotActive: {
-    backgroundColor: '#404B63',
+    backgroundColor: staticColors.lightGray,
   },
   nextButton: {
     position: 'absolute',
