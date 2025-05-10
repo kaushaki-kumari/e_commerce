@@ -1,45 +1,72 @@
-import { PropsWithChildren, useState } from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  LayoutAnimation,
+  Platform,
+  UIManager,
+} from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
+import colors from '@/style/staticColors';
+import textStyles from '@/style/textStyles';
+import spacingStyles from '@/style/spacingStyles';
 
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+if (Platform.OS === 'android') {
+  UIManager.setLayoutAnimationEnabledExperimental &&
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 
-export function Collapsible({ children, title }: PropsWithChildren & { title: string }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const theme = useColorScheme() ?? 'light';
+type Props = {
+  title: React.ReactNode;
+  children: React.ReactNode;
+};
+
+export default function Collapsible({ title, children }: Props) {
+  const [expanded, setExpanded] = useState(false);
+
+  const toggleExpand = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setExpanded(!expanded);
+  };
 
   return (
-    <ThemedView>
-      <TouchableOpacity
-        style={styles.heading}
-        onPress={() => setIsOpen((value) => !value)}
-        activeOpacity={0.8}>
-        <IconSymbol
-          name="chevron.right"
-          size={18}
-          weight="medium"
-          color={theme === 'light' ? Colors.light.icon : Colors.dark.icon}
-          style={{ transform: [{ rotate: isOpen ? '90deg' : '0deg' }] }}
-        />
-
-        <ThemedText type="defaultSemiBold">{title}</ThemedText>
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.header} onPress={toggleExpand}>
+        <Text>{title}</Text>
+        <View style={styles.iconContainer}>
+          <AntDesign
+            name={expanded ? 'up' : 'down'}
+            size={16}
+            color={colors.lightColor}
+          />
+        </View>
       </TouchableOpacity>
-      {isOpen && <ThemedView style={styles.content}>{children}</ThemedView>}
-    </ThemedView>
+      {expanded && <View style={styles.content}>{children}</View>}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  heading: {
+  container: {
+    ...spacingStyles.mb15,
+    borderBottomWidth: 1,
+    borderColor: colors.lightColor,
+    ...spacingStyles.pb10
+  },
+  header: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    gap: 6,
+  },
+ 
+  iconContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 20, 
   },
   content: {
-    marginTop: 6,
-    marginLeft: 24,
+    ...spacingStyles.pt10
   },
 });

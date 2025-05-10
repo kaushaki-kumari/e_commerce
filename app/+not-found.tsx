@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import spacingStyles from '@/style/spacingStyles';
 
 export default function NotFoundScreen() {
   return (
@@ -26,7 +27,10 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   link: {
-    marginTop: 15,
+    ...spacingStyles.mt15,
     paddingVertical: 15,
   },
 });
+
+
+
